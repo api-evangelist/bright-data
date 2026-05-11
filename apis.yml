@@ -82,6 +82,10 @@ common:
     url: https://github.com/brightdata/sdk-python
   - type: JavaScript SDK
     url: https://github.com/brightdata/bright-data-sdk-js
+  - type: Integrations
+    url: https://brightdata.com/partners
+integrations:
+  - name: AWS
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
