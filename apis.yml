@@ -70,13 +70,13 @@ common:
     url: https://docs.brightdata.com
   - type: Pricing
     url: https://brightdata.com/pricing/web-unlocker
-  - type: Sign Up
+  - type: SignUp
     url: https://brightdata.com/cp/start
   - type: Login
     url: https://brightdata.com/cp/zones
   - type: Blog
     url: https://brightdata.com/blog
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/luminati-io
   - type: Python SDK
     url: https://github.com/brightdata/sdk-python
