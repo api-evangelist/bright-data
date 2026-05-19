@@ -64,6 +64,8 @@ apis:
       - type: Documentation
         url: https://docs.brightdata.com
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/bright-data
   - type: Website
     url: https://brightdata.com
   - type: Documentation
