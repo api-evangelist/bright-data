@@ -86,6 +86,8 @@ common:
     url: https://github.com/brightdata/bright-data-sdk-js
   - type: Integrations
     url: https://brightdata.com/partners
+  - type: LLMsTxt
+    url: https://docs.brightdata.com/llms.txt
 integrations:
   - name: AWS
 maintainers:
