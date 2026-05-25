@@ -1,0 +1,125 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bright Data Dataset Marketplace
+  description: |
+    Access Bright Data's 350+ ready-to-use datasets across 250+ domains.
+  tags:
+  - Bright Data
+  - Dataset Marketplace
+  - Datasets
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    BRIGHTDATA_API_TOKEN: BRIGHTDATA_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: dataset-marketplace
+    baseUri: https://api.brightdata.com
+    description: Bright Data Dataset Marketplace API.
+    resources:
+    - name: datasets
+      path: /datasets
+      operations:
+      - name: listDatasets
+        method: GET
+        description: List datasets the caller is entitled to.
+        outputRawFormat: json
+        outputParameters:
+        - name: datasets
+          type: array
+          value: $.
+        inputParameters: []
+    - name: dataset-metadata
+      path: /datasets/{dataset_id}/metadata
+      operations:
+      - name: getMetadata
+        method: GET
+        description: Get dataset metadata.
+        outputRawFormat: json
+        outputParameters:
+        - name: metadata
+          type: object
+          value: $.
+        inputParameters:
+        - name: dataset_id
+          in: path
+          type: string
+          required: true
+    - name: snapshot
+      path: /datasets/snapshots/{snapshot_id}
+      operations:
+      - name: getSnapshot
+        method: GET
+        description: Retrieve a dataset snapshot.
+        outputRawFormat: json
+        outputParameters:
+        - name: rows
+          type: array
+          value: $.
+        inputParameters:
+        - name: snapshot_id
+          in: path
+          type: string
+          required: true
+        - name: format
+          in: query
+          type: string
+    - name: deliver
+      path: /datasets/snapshots/{snapshot_id}/deliver
+      operations:
+      - name: deliverSnapshot
+        method: POST
+        description: Deliver a snapshot to cloud storage.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: snapshot_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.BRIGHTDATA_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: dataset-marketplace-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for the Bright Data Dataset Marketplace.
+    tools:
+    - name: bright-data-list-datasets
+      description: List available marketplace datasets.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dataset-marketplace.listDatasets
+      with: {}
+      outputParameters:
+      - type: array
+        mapping: $.
+    - name: bright-data-get-snapshot
+      description: Retrieve a dataset snapshot.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dataset-marketplace.getSnapshot
+      with:
+        snapshot_id: tools.snapshot_id
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.

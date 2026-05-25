@@ -1,0 +1,75 @@
+extends: [[spectral:oas, all]]
+documentationUrl: https://docs.brightdata.com
+functions: []
+rules:
+  bright-data-info-contact:
+    description: Bright Data specs must publish contact info.
+    given: $.info.contact
+    severity: error
+    then:
+      - field: name
+        function: truthy
+      - field: url
+        function: truthy
+  bright-data-bearer-auth:
+    description: Bright Data REST APIs authenticate with a Bearer API token.
+    given: $.components.securitySchemes
+    severity: warn
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+  bright-data-server-api-host:
+    description: Bright Data production server MUST be https://api.brightdata.com (Proxy Manager uses localhost:22999).
+    given: $.servers[*].url
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^(https://api\.brightdata\.com|https://brd\.superproxy\.io|wss://brd\.superproxy\.io|http://localhost:22999)'
+  bright-data-operation-summary-title-case:
+    description: Operation summaries should use Title Case.
+    given: $.paths[*][get,post,put,delete,patch].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^([A-Z][A-Za-z0-9]*)( [A-Za-z0-9/()_-]+)*$'
+  bright-data-operation-tags-required:
+    description: Every Bright Data operation must declare at least one tag.
+    given: $.paths[*][get,post,put,delete,patch]
+    severity: error
+    then:
+      field: tags
+      function: truthy
+  bright-data-snapshot-id-naming:
+    description: Snapshot identifiers MUST use snake_case `snapshot_id`.
+    given: "$.paths[?(@property ~~ /.*snapshot.*/)][*].parameters[?(@.in == 'path')].name"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^snapshot_id$'
+  bright-data-no-trailing-slash:
+    description: Bright Data paths must not include trailing slashes.
+    given: $.paths
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[^/].*[^/]$|^/$|^/[^/]+$|^/.*[^/]$'
+        property: '@key'
+  bright-data-error-response:
+    description: Mutating operations should document a 4xx response.
+    given: $.paths[*][post,put,delete,patch].responses
+    severity: warn
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            '^4\d\d$': {}
+          additionalProperties: true

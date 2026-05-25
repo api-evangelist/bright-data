@@ -1,0 +1,93 @@
+specification: API Commons Vocabulary
+specificationVersion: '0.1'
+provider: Bright Data
+providerId: bright-data
+created: '2026-05-25'
+modified: '2026-05-25'
+description: |
+  Operational and capability vocabulary for the Bright Data API surface. Captures the canonical terms
+  used across Web Unlocker, SERP, Web Scraper, Scraping Browser, Deep Lookup, Web Archive, Dataset
+  Marketplace, Account Management, Proxy Manager, Scraping Shield, and the MCP server.
+domains:
+  - name: Proxy Infrastructure
+    terms:
+      - id: residential-proxy
+        label: Residential Proxy
+        description: IP routed through a real consumer device participating in Bright Data's residential network.
+      - id: isp-proxy
+        label: ISP Proxy
+        description: Static residential IP issued directly by an ISP; combines residential trust with datacenter uptime.
+      - id: datacenter-proxy
+        label: Datacenter Proxy
+        description: IP hosted in Bright Data datacenters; fastest and cheapest, lowest trust.
+      - id: mobile-proxy
+        label: Mobile Proxy
+        description: IP delivered through 3G/4G/5G carrier networks.
+      - id: zone
+        label: Zone
+        description: A named proxy pool or product entitlement; the unit of configuration, billing, and access control.
+      - id: session
+        label: Session
+        description: A logical proxy connection that pins or rotates IPs across requests.
+      - id: peer
+        label: Peer
+        description: A device or IP participating in the residential network.
+  - name: Web Access APIs
+    terms:
+      - id: web-unlocker
+        label: Web Unlocker
+        description: Single-endpoint unblocking with managed proxy, JS rendering, CAPTCHA solving, and anti-bot evasion.
+      - id: serp-api
+        label: SERP API
+        description: Real-time search-engine results across Google, Bing, Yandex, and DuckDuckGo.
+      - id: scraping-browser
+        label: Scraping Browser
+        description: Managed remote Chromium browser controlled via CDP/WebSocket.
+      - id: web-scraper
+        label: Web Scraper
+        description: Snapshot-based scraping over pre-built dataset collectors.
+      - id: deep-lookup
+        label: Deep Lookup
+        description: Entity-research API for companies and professionals across 1,000+ sources.
+      - id: web-archive
+        label: Web Archive
+        description: Historical web index over 250+ domains.
+  - name: Datasets and Delivery
+    terms:
+      - id: dataset
+        label: Dataset
+        description: A Bright Data collector definition or marketplace dataset identifier (e.g. gd_xxx).
+      - id: snapshot
+        label: Snapshot
+        description: An asynchronous unit of scraping work tied to a dataset.
+      - id: delivery
+        label: Delivery
+        description: Output channel for a snapshot — S3, Azure Blob, GCS, Snowflake, or webhook.
+      - id: format
+        label: Format
+        description: Output format — JSON, NDJSON, CSV, XLSX, or Parquet.
+  - name: AI and Agents
+    terms:
+      - id: mcp-server
+        label: MCP Server
+        description: Bright Data's Model Context Protocol server exposing 60+ web-access tools to AI agents.
+      - id: agent-web-access
+        label: Agent Web Access
+        description: The high-reliability web-access tier optimized for autonomous agent workloads.
+      - id: answer-engine
+        label: Answer Engine
+        description: Bright Data's cited-answer service.
+      - id: llm-grounding
+        label: LLM Grounding
+        description: Real-time data used to fact-check or ground LLM outputs.
+  - name: Compliance and Trust
+    terms:
+      - id: scraping-shield
+        label: Scraping Shield
+        description: Bright Data's domain classification taxonomy.
+      - id: kyc
+        label: KYC
+        description: The customer verification process applied to all proxy users.
+      - id: data-residency
+        label: Data Residency
+        description: Geographic boundaries enforced on stored datasets and operational metadata.

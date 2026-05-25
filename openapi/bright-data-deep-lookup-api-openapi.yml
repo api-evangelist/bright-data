@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Deep Lookup API
+  description: |
+    Deep Lookup is an entity-research API that finds companies and professionals across 1,000+
+    public sources with 95%+ accuracy. Submit a natural-language description or structured query
+    via `POST /trigger`, preview row counts and shape with `/preview`, optimize the query with
+    `/enhance_query`, enrich existing columns with `/request/{id}/enrich`, monitor with `/status`,
+    and download results once ready. Billed per delivered result.
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+  - url: https://api.brightdata.com
+    description: Production
+security:
+  - BearerAuth: []
+tags:
+  - name: Lookup
+paths:
+  /deep_lookup/trigger:
+    post:
+      summary: Trigger a Deep Lookup Request
+      operationId: triggerDeepLookup
+      tags: [Lookup]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              properties:
+                query: { type: string, description: Natural-language or structured search prompt. }
+                category: { type: string, enum: [company, professional, mixed] }
+                limit: { type: integer }
+                output: { type: array, items: { type: string } }
+      responses:
+        "200":
+          description: Triggered.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id: { type: string }
+  /deep_lookup/preview:
+    post:
+      summary: Preview a Deep Lookup Query
+      operationId: previewDeepLookup
+      tags: [Lookup]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              properties:
+                query: { type: string }
+      responses:
+        "200":
+          description: Preview.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  estimated_rows: { type: integer }
+                  sample:
+                    type: array
+                    items: { type: object, additionalProperties: true }
+  /deep_lookup/enhance_query:
+    post:
+      summary: Enhance a Deep Lookup Query
+      operationId: enhanceDeepLookupQuery
+      tags: [Lookup]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              properties:
+                query: { type: string }
+      responses:
+        "200":
+          description: Enhanced query.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  enhanced_query: { type: string }
+                  suggestions:
+                    type: array
+                    items: { type: string }
+  /deep_lookup/request/{request_id}/status:
+    parameters:
+      - { name: request_id, in: path, required: true, schema: { type: string } }
+    get:
+      summary: Get Deep Lookup Status
+      operationId: getDeepLookupStatus
+      tags: [Lookup]
+      responses:
+        "200":
+          description: Status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, enum: [pending, running, ready, failed] }
+                  rows: { type: integer }
+  /deep_lookup/request/{request_id}/download:
+    parameters:
+      - { name: request_id, in: path, required: true, schema: { type: string } }
+    get:
+      summary: Download Deep Lookup Results
+      operationId: downloadDeepLookup
+      tags: [Lookup]
+      parameters:
+        - { name: format, in: query, schema: { type: string, enum: [json, ndjson, csv] } }
+      responses:
+        "200":
+          description: Results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: object, additionalProperties: true }
+  /deep_lookup/request/{request_id}/enrich:
+    parameters:
+      - { name: request_id, in: path, required: true, schema: { type: string } }
+    post:
+      summary: Enrich Deep Lookup Columns
+      operationId: enrichDeepLookup
+      tags: [Lookup]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                columns:
+                  type: array
+                  items: { type: string }
+      responses:
+        "200":
+          description: Enrichment queued.
+          content:
+            application/json: { schema: { type: object } }
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

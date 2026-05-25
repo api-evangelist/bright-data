@@ -9,140 +9,124 @@ alignedWith:
 provider: Bright Data
 providerId: bright-data
 publisherName: Bright Data
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
+serviceCategory: WebData
+created: '2026-05-25'
+modified: '2026-05-25'
 tags:
-  - Browser Automation
-  - Data Aggregation
-  - Data Collection
-  - Proxy
-  - Web Scraping
   - FinOps
   - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Bright Data API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+  - Web Data
+  - Proxy
+description: |
+  FinOps framework definition for the Bright Data API surface. Bright Data's chargeable units differ
+  per product — Web Unlocker and SERP are billed per 1,000 successful results, Web Scraper is billed
+  per 1,000 delivered records, proxy networks are billed per GB (residential, mobile) or per dedicated
+  IP per month (ISP, datacenter), and Deep Lookup is billed per result row. This document maps those
+  surfaces into FOCUS-compatible cost allocation, usage measurement, and unit-economics fields.
 principles:
   - name: Visibility
     description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
+      real-time via the Account Management API (/customer/balance, /zone/bw) and the control panel
+      cost reports.
   - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
+    description: Tag every chargeable API call with the consuming team, environment, application,
+      zone, and feature so cost can be allocated. Bright Data exposes per-zone bandwidth and request
+      counters which align directly to FOCUS billing dimensions.
   - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
+    description: Continuously evaluate request patterns, zone routing, peer selection, and tier
+      selection to reduce cost per useful unit of work. Move steady traffic onto committed Growth/Business/Premium
+      tiers; reserve PAYG for spikes.
   - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
+    description: Establish budget owners per zone and chargeback or showback flows for each consuming
+      team using the bandwidth/result counters exposed by /zone/bw.
 domains:
   - name: Understand Usage and Cost
     capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
+      - name: Data Ingestion
+        description: |
+          Pull billing and usage data from `/customer/balance`, `/zone/bw`, and the cost-export endpoints
+          into a FinOps lake or warehouse.
+      - name: Allocation
+        description: |
+          Map each Bright Data zone to a FOCUS BillingAccount / ResourceGroup / SubAccount. Allocate
+          per-request cost to the consuming application using internal tags propagated via the
+          `client_id` request header or proxy username metadata.
+      - name: Reporting and Analytics
+        description: |
+          Compute unit economics — cost per 1K results, cost per GB, cost per session-hour — and
+          publish dashboards per team and per zone.
+      - name: Anomaly Management
+        description: |
+          Alert on bandwidth and result spikes vs. baseline, and on threshold approach against the
+          monthly quota of each commit tier.
   - name: Quantify Business Value
     capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
+      - name: Forecasting
+        description: |
+          Forecast monthly Bright Data spend from rolling 7/30-day result and bandwidth burn rates.
+          Account for monthly commit reset cycles.
+      - name: Budgeting
+        description: |
+          Set per-zone budgets aligned to commit tiers and overage thresholds.
+      - name: Benchmarking
+        description: |
+          Compare cost per 1K results across zones (residential vs. ISP vs. unlocker) and against
+          competitive providers (Oxylabs, Smartproxy, Apify).
+      - name: Unit Economics
+        description: |
+          Track downstream business metric per Bright Data dollar (e.g. enriched leads per $, indexed
+          SERPs per $, monitored prices per $).
   - name: Manage the FinOps Practice
     capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
-billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
-  billingCurrency: USD
-  chargeCategories:
-    - Usage
-    - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
-focusColumns:
+      - name: Policy and Governance
+        description: |
+          Enforce zone naming conventions, KYC compliance status, domain permissions, and rate-limit
+          posture across all teams.
+      - name: Education and Enablement
+        description: |
+          Train engineering teams on choosing Web Unlocker vs. Scraping Browser vs. raw proxies, and
+          on consuming the MCP server inside agentic workflows.
+chargeableUnits:
+  - api: Bright Data Web Unlocker API
+    unit: 1000 successful unlock responses
+    currency: USD
+    typical_unit_cost_range_usd: [1.00, 1.50]
+  - api: Bright Data SERP API
+    unit: 1000 successful SERP responses
+    currency: USD
+    typical_unit_cost_range_usd: [1.00, 1.50]
+  - api: Bright Data Web Scraper API
+    unit: 1000 successfully delivered records
+    currency: USD
+    typical_unit_cost_range_usd: [1.30, 1.50]
+  - api: Bright Data Residential Proxies
+    unit: 1 GB of residential bandwidth
+    currency: USD
+    typical_unit_cost_range_usd: [2.50, 4.00]
+  - api: Bright Data ISP Proxies
+    unit: 1 dedicated ISP IP per month
+    currency: USD
+    typical_unit_cost_range_usd: [1.30, 1.80]
+  - api: Bright Data Datacenter Proxies
+    unit: 1 dedicated datacenter IP per month
+    currency: USD
+    typical_unit_cost_range_usd: [0.90, 1.40]
+  - api: Bright Data Deep Lookup API
+    unit: 1 delivered result row
+    currency: USD
+    typical_unit_cost_range_usd: [0.02, 0.10]
+  - api: Bright Data MCP Server
+    unit: 1 MCP tool call (5,000/month free on hosted tier)
+    currency: USD
+focusMapping:
+  BillingAccountId: Bright Data customer ID
+  SubAccountId: Bright Data zone name
+  ServiceCategory: WebData
   ServiceName: Bright Data
-  ServiceCategory: Developer Tools / API
-  ProviderName: Bright Data
-  PublisherName: Bright Data
-  InvoiceIssuerName: Bright Data
-  PricingCategory: Usage-Based
-  PricingUnit: request
-  BillingCurrency: USD
-  ChargeCategory: Usage
-meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Bright Data Web Scraper API
-    baseURL: ''
-    tags:
-      - Data Extraction
-      - Structured Data
-      - Web Scraping
-    serviceName: Bright Data Web Scraper API
-    serviceCategory: API
-  - name: Bright Data Scraping Browser API
-    baseURL: ''
-    tags:
-      - Browser Automation
-      - Headless Browser
-      - Scraping
-    serviceName: Bright Data Scraping Browser API
-    serviceCategory: API
-  - name: Bright Data Proxy API
-    baseURL: ''
-    tags:
-      - Datacenter Proxy
-      - Proxy
-      - Residential Proxy
-    serviceName: Bright Data Proxy API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  ChargeCategory: Usage / Purchase
+  ChargeFrequency: Recurring or OneTime
+  PricingCategory: Usage / Commitment / Reservation
+  CommitmentDiscountCategory: Commit-based (Growth, Business, Premium)
+sources:
+  - https://docs.brightdata.com
+  - https://brightdata.com/pricing

@@ -1,0 +1,142 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bright Data Web Scraper
+  description: |
+    Asynchronous snapshot-based scraping over 660+ pre-built dataset endpoints. Trigger jobs, poll
+    progress, list snapshots, cancel, rerun, and download results.
+  tags:
+  - Bright Data
+  - Web Scraping
+  - Datasets
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    BRIGHTDATA_API_TOKEN: BRIGHTDATA_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: web-scraper
+    baseUri: https://api.brightdata.com
+    description: Bright Data Web Scraper API.
+    resources:
+    - name: scrape
+      path: /datasets/v3/scrape
+      operations:
+      - name: triggerScrape
+        method: POST
+        description: Trigger an async scrape against a dataset_id.
+        outputRawFormat: json
+        outputParameters:
+        - name: snapshot_id
+          type: string
+          value: $.snapshot_id
+        inputParameters:
+        - name: dataset_id
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: array
+          required: true
+    - name: progress
+      path: /datasets/v3/progress/{snapshot_id}
+      operations:
+      - name: getProgress
+        method: GET
+        description: Poll scrape progress.
+        outputRawFormat: json
+        outputParameters:
+        - name: status
+          type: string
+          value: $.status
+        inputParameters:
+        - name: snapshot_id
+          in: path
+          type: string
+          required: true
+    - name: snapshot
+      path: /datasets/v3/snapshot/{snapshot_id}
+      operations:
+      - name: downloadSnapshot
+        method: GET
+        description: Download snapshot results in JSON/NDJSON/CSV/Parquet.
+        outputRawFormat: json
+        outputParameters:
+        - name: rows
+          type: array
+          value: $.
+        inputParameters:
+        - name: snapshot_id
+          in: path
+          type: string
+          required: true
+        - name: format
+          in: query
+          type: string
+      - name: cancelSnapshot
+        method: POST
+        description: Cancel a running snapshot.
+        path: /datasets/v3/snapshot/{snapshot_id}/cancel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: snapshot_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.BRIGHTDATA_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: web-scraper-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bright Data Web Scraper.
+    tools:
+    - name: bright-data-scrape-trigger
+      description: Trigger a scraping job against a Bright Data dataset.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: web-scraper.triggerScrape
+      with:
+        dataset_id: tools.dataset_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bright-data-scrape-progress
+      description: Get progress of an async snapshot.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: web-scraper.getProgress
+      with:
+        snapshot_id: tools.snapshot_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bright-data-scrape-download
+      description: Download a completed snapshot.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: web-scraper.downloadSnapshot
+      with:
+        snapshot_id: tools.snapshot_id
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.

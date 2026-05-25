@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bright-data/refs/heads/main/json-schema/bright-data-snapshot-schema.json",
+  "title": "Bright Data Snapshot",
+  "description": "A Bright Data Web Scraper API snapshot — the unit of asynchronous scraping work. Created by POST /datasets/v3/scrape and tracked via /datasets/v3/progress/{snapshot_id} and /datasets/v3/snapshot/{snapshot_id}.",
+  "type": "object",
+  "required": ["id", "dataset_id", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Snapshot identifier (e.g. s_1234567890abcdef)."
+    },
+    "dataset_id": {
+      "type": "string",
+      "description": "Bright Data dataset identifier (e.g. gd_l1viktl72bvl7bjuj0)."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["building", "collecting", "running", "ready", "failed", "cancelled"]
+    },
+    "created": { "type": "string", "format": "date-time" },
+    "started": { "type": "string", "format": "date-time" },
+    "ended": { "type": "string", "format": "date-time" },
+    "dataset_size": {
+      "type": "integer",
+      "description": "Snapshot size in bytes."
+    },
+    "records": {
+      "type": "integer",
+      "description": "Number of records produced."
+    },
+    "errors": {
+      "type": "integer",
+      "description": "Number of record-level errors."
+    },
+    "input_size": {
+      "type": "integer",
+      "description": "Number of input rows submitted."
+    },
+    "cost": {
+      "type": "number",
+      "description": "Total billed cost for the snapshot (USD)."
+    },
+    "format": {
+      "type": "string",
+      "enum": ["json", "ndjson", "csv", "jsonl", "parquet"]
+    },
+    "delivery": {
+      "type": "object",
+      "description": "Optional cloud delivery configuration.",
+      "properties": {
+        "type": { "type": "string", "enum": ["s3", "gcs", "azure", "snowflake", "webhook"] },
+        "bucket": { "type": "string" },
+        "path": { "type": "string" },
+        "compressed": { "type": "boolean" }
+      }
+    }
+  }
+}

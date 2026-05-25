@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bright Data Web Archive
+  description: |
+    Petabyte-scale historical web search over 250+ domains. Submit searches, monitor, and deliver
+    results to cloud storage.
+  tags:
+  - Bright Data
+  - Web Archive
+  - Historical Data
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    BRIGHTDATA_API_TOKEN: BRIGHTDATA_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: web-archive
+    baseUri: https://api.brightdata.com
+    description: Bright Data Web Archive API.
+    resources:
+    - name: search
+      path: /webarchive/search
+      operations:
+      - name: submitSearch
+        method: POST
+        description: Submit a web archive search.
+        outputRawFormat: json
+        outputParameters:
+        - name: search_id
+          type: string
+          value: $.search_id
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: search-by-id
+      path: /webarchive/search/{search_id}
+      operations:
+      - name: getSearch
+        method: GET
+        description: Get the status of a web archive search.
+        outputRawFormat: json
+        outputParameters:
+        - name: status
+          type: string
+          value: $.status
+        inputParameters:
+        - name: search_id
+          in: path
+          type: string
+          required: true
+    - name: deliver
+      path: /webarchive/deliver-to-cloud
+      operations:
+      - name: deliverArchive
+        method: POST
+        description: Deliver web archive search results to cloud storage.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.BRIGHTDATA_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: web-archive-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bright Data Web Archive.
+    tools:
+    - name: bright-data-archive-submit
+      description: Submit a historical web archive search.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: web-archive.submitSearch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bright-data-archive-status
+      description: Get search status.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: web-archive.getSearch
+      with:
+        search_id: tools.search_id
+      outputParameters:
+      - type: object
+        mapping: $.

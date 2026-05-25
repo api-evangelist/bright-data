@@ -1,168 +1,21 @@
 openapi: 3.1.0
 info:
-  title: Bright Data Web Scraper API
-  description: >-
-    Bright Data's Web Scraper API exposes asynchronous scraping jobs (scrapes)
-    backed by 660+ structured datasets, snapshot management, progress polling,
-    cancellation, rerun, and result download. Requests authenticate using a
-    Bearer API token issued from the Bright Data control panel.
-  version: v3
-  contact:
-    name: Bright Data
-    url: https://docs.brightdata.com
+  title: Bright Data API (Index)
+  description: |
+    This file is a stub. Bright Data's API surface is profiled across multiple per-product OpenAPI
+    specs in this directory. Use the per-API spec instead:
+
+    - Web Unlocker      → bright-data-web-unlocker-api-openapi.yml
+    - SERP              → bright-data-serp-api-openapi.yml
+    - Web Scraper       → bright-data-web-scraper-api-openapi.yml
+    - Scraping Browser  → bright-data-scraping-browser-api-openapi.yml
+    - Deep Lookup       → bright-data-deep-lookup-api-openapi.yml
+    - Web Archive       → bright-data-web-archive-api-openapi.yml
+    - Dataset Marketplace → bright-data-dataset-marketplace-api-openapi.yml
+    - Account Management → bright-data-account-management-api-openapi.yml
+    - Proxy Manager     → bright-data-proxy-manager-api-openapi.yml
+    - Scraping Shield   → bright-data-scraping-shield-api-openapi.yml
+  version: index
 servers:
   - url: https://api.brightdata.com
-    description: Production
-security:
-  - BearerAuth: []
-tags:
-  - name: Scrape
-  - name: Snapshots
-paths:
-  /datasets/v3/scrape:
-    post:
-      summary: Trigger a Web Scraper job
-      description: Trigger an asynchronous scraping job for a dataset.
-      operationId: triggerScrape
-      tags: [Scrape]
-      parameters:
-        - { name: dataset_id, in: query, required: true, schema: { type: string }, description: Bright Data dataset identifier (e.g. gd_l1viktl72bvl7bjuj0) }
-        - { name: include_errors, in: query, schema: { type: boolean } }
-        - { name: notify, in: query, schema: { type: string, format: uri } }
-        - { name: format, in: query, schema: { type: string, enum: [json, ndjson, csv] } }
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: object
-                additionalProperties: true
-      responses:
-        "200":
-          description: Job submitted
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  snapshot_id: { type: string }
-  /datasets/v3/progress/{snapshot_id}:
-    parameters:
-      - { name: snapshot_id, in: path, required: true, schema: { type: string } }
-    get:
-      summary: Get scrape progress
-      operationId: getScrapeProgress
-      tags: [Scrape]
-      responses:
-        "200":
-          description: Progress
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status: { type: string, enum: [running, ready, failed, building, collecting] }
-                  records: { type: integer }
-                  errors: { type: integer }
-  /datasets/v3/log/{snapshot_id}:
-    parameters:
-      - { name: snapshot_id, in: path, required: true, schema: { type: string } }
-    get:
-      summary: Get snapshot log
-      operationId: getSnapshotLog
-      tags: [Snapshots]
-      responses:
-        "200":
-          description: Snapshot log/data
-          content:
-            application/json:
-              schema:
-                type: array
-                items: { type: object }
-  /datasets/v3/snapshots:
-    get:
-      summary: List snapshots
-      operationId: listSnapshots
-      tags: [Snapshots]
-      parameters:
-        - { name: dataset_id, in: query, schema: { type: string } }
-        - { name: from_date, in: query, schema: { type: string, format: date } }
-        - { name: to_date, in: query, schema: { type: string, format: date } }
-        - { name: status, in: query, schema: { type: string } }
-      responses:
-        "200":
-          description: Snapshots
-          content:
-            application/json:
-              schema:
-                type: array
-                items: { $ref: "#/components/schemas/Snapshot" }
-  /datasets/v3/snapshot/{snapshot_id}/cancel:
-    parameters:
-      - { name: snapshot_id, in: path, required: true, schema: { type: string } }
-    post:
-      summary: Cancel a snapshot
-      operationId: cancelSnapshot
-      tags: [Snapshots]
-      responses:
-        "200":
-          description: Cancelled
-          content:
-            application/json: { schema: { type: object } }
-  /datasets/v3/snapshot/{snapshot_id}/rerun:
-    parameters:
-      - { name: snapshot_id, in: path, required: true, schema: { type: string } }
-    post:
-      summary: Rerun a snapshot
-      operationId: rerunSnapshot
-      tags: [Snapshots]
-      responses:
-        "200":
-          description: Snapshot rerun started
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  snapshot_id: { type: string }
-  /datasets/v3/snapshot/{snapshot_id}:
-    parameters:
-      - { name: snapshot_id, in: path, required: true, schema: { type: string } }
-    get:
-      summary: Download snapshot results
-      operationId: downloadSnapshot
-      tags: [Snapshots]
-      parameters:
-        - { name: format, in: query, schema: { type: string, enum: [json, ndjson, csv, jsonl] } }
-        - { name: compress, in: query, schema: { type: boolean } }
-        - { name: batch_size, in: query, schema: { type: integer } }
-      responses:
-        "200":
-          description: Snapshot data (up to 5 GB per request)
-          content:
-            application/json:
-              schema:
-                type: array
-                items: { type: object }
-            text/csv:
-              schema: { type: string }
-            application/x-ndjson:
-              schema: { type: string }
-components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-  schemas:
-    Snapshot:
-      type: object
-      properties:
-        id: { type: string }
-        dataset_id: { type: string }
-        status: { type: string }
-        created: { type: string, format: date-time }
-        dataset_size: { type: integer }
-        records: { type: integer }
-        errors: { type: integer }
+paths: {}

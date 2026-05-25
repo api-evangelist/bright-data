@@ -3,97 +3,111 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Bright Data
 providerId: bright-data
-created: '2026-05-04'
-modified: '2026-05-04'
+created: '2026-05-25'
+modified: '2026-05-25'
 tags:
-  - Browser Automation
-  - Data Aggregation
-  - Data Collection
-  - Proxy
-  - Web Scraping
   - Rate Limiting
   - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Bright Data API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
+  - Bright Data
+description: |
+  Rate-limit posture for the Bright Data API surface. Bright Data primarily controls usage via per-zone
+  concurrency caps and monthly result/bandwidth quotas tied to the customer's plan. Hard per-second
+  request limits are documented per product; see https://docs.brightdata.com for the authoritative limits.
 headers:
   limit: X-RateLimit-Limit
   remaining: X-RateLimit-Remaining
   reset: X-RateLimit-Reset
   retryAfter: Retry-After
-  policy: RateLimit-Policy
 responseCodes:
   throttled: 429
   quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Bright Data Web Scraper API
-      - Bright Data Scraping Browser API
-      - Bright Data Proxy API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Bright Data Web Scraper API
-      - Bright Data Scraping Browser API
-      - Bright Data Proxy API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
+  - tier: payg
+    name: Pay As You Go — Default Concurrency
+    scope: zone
+    metric: concurrent_requests
     limit: 100
-    burst: 200
-    timeFrame: minute
+    timeFrame: instantaneous
     applies:
+      - Bright Data Web Unlocker API
+      - Bright Data SERP API
       - Bright Data Web Scraper API
-      - Bright Data Scraping Browser API
-      - Bright Data Proxy API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
+    notes: |
+      Bright Data advertises "unlimited concurrent requests" on PAYG and self-serve tiers. The
+      effective ceiling is governed by your zone configuration and account-level fairness; contact
+      support to raise concurrency for sustained spikes.
+  - tier: growth
+    name: Growth — Monthly Result Quota
+    scope: zone
+    metric: results
+    limit: 380000
+    timeFrame: month
+    applies:
+      - Bright Data Web Unlocker API
+      - Bright Data SERP API
+  - tier: business
+    name: Business — Monthly Result Quota
+    scope: zone
+    metric: results
+    limit: 900000
+    timeFrame: month
+    applies:
+      - Bright Data Web Unlocker API
+  - tier: premium
+    name: Premium — Monthly Result Quota
+    scope: zone
+    metric: results
+    limit: 2000000
+    timeFrame: month
+    applies:
+      - Bright Data Web Unlocker API
+  - tier: web-scraper-scale
+    name: Web Scraper API — Scale
+    scope: account
+    metric: records
+    limit: 384000
     timeFrame: month
     applies:
       - Bright Data Web Scraper API
-      - Bright Data Scraping Browser API
-      - Bright Data Proxy API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
+  - tier: residential-growth
+    name: Residential Proxies — Growth Bandwidth Cap
+    scope: zone
+    metric: gigabytes
+    limit: 141
+    timeFrame: month
     applies:
-      - Bright Data Web Scraper API
+      - Bright Data Residential Proxies
+  - tier: scraping-browser
+    name: Scraping Browser — Concurrent Sessions
+    scope: account
+    metric: concurrent_sessions
+    limit: 50
+    timeFrame: instantaneous
+    applies:
       - Bright Data Scraping Browser API
-      - Bright Data Proxy API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+    notes: |
+      Per-account session concurrency is configurable; defaults to a small value for new accounts and
+      scales upward on request.
+  - tier: mcp-hosted-free
+    name: Hosted MCP Server — Free Tier
+    scope: api-key
+    metric: requests
+    limit: 5000
+    timeFrame: month
+    applies:
+      - Bright Data MCP Server
+recovery:
+  - condition: 429 Too Many Requests
+    behavior: |
+      Bright Data returns 429 when zone concurrency or monthly quota is exceeded. Clients should
+      back off using exponential delay, honor `Retry-After` when present, and route to an alternate
+      zone for sustained load.
+  - condition: 503 Service Unavailable
+    behavior: |
+      Transient upstream issues; retry with exponential backoff. Persistent 503s should be reported
+      via support with the response_id or snapshot_id.
+sources:
+  - https://docs.brightdata.com
+  - https://brightdata.com/pricing/web-unlocker
+  - https://brightdata.com/pricing/web-scraper

@@ -1,0 +1,40 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bright Data MCP Server
+  description: |
+    Bright Data's Model Context Protocol server exposes 60+ web-access tools (search, scrape,
+    structured extraction, browser automation, datasets) to MCP-compatible clients. This capability
+    fronts the hosted MCP endpoint behind a Naftiko-managed adapter so it can be governed and
+    composed with the rest of the Bright Data fleet.
+  tags:
+  - Bright Data
+  - MCP
+  - Model Context Protocol
+  - AI Agents
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    BRIGHTDATA_API_TOKEN: BRIGHTDATA_API_TOKEN
+capability:
+  consumes:
+  - type: mcp
+    namespace: brightdata-mcp
+    baseUri: https://mcp.brightdata.com
+    transport: http
+    description: Hosted Bright Data MCP server.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.BRIGHTDATA_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: bright-data-mcp-passthrough
+    port: 9090
+    transport: http
+    description: |
+      Passthrough adapter that surfaces Bright Data MCP tools (search_engine, scrape_as_markdown,
+      scrape_as_html, scraping_browser_*, web_data_*) inside a Naftiko fleet for observability and
+      policy enforcement.

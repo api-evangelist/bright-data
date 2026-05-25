@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bright Data Deep Lookup
+  description: |
+    Entity-research API that finds companies and professionals across 1,000+ public sources.
+  tags:
+  - Bright Data
+  - Deep Lookup
+  - Entity Research
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    BRIGHTDATA_API_TOKEN: BRIGHTDATA_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: deep-lookup
+    baseUri: https://api.brightdata.com
+    description: Bright Data Deep Lookup API.
+    resources:
+    - name: trigger
+      path: /deep_lookup/trigger
+      operations:
+      - name: triggerLookup
+        method: POST
+        description: Trigger a Deep Lookup request.
+        outputRawFormat: json
+        outputParameters:
+        - name: request_id
+          type: string
+          value: $.request_id
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: preview
+      path: /deep_lookup/preview
+      operations:
+      - name: previewLookup
+        method: POST
+        description: Preview a Deep Lookup query.
+        outputRawFormat: json
+        outputParameters:
+        - name: preview
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: status
+      path: /deep_lookup/request/{request_id}/status
+      operations:
+      - name: getLookupStatus
+        method: GET
+        description: Get Deep Lookup status.
+        outputRawFormat: json
+        outputParameters:
+        - name: status
+          type: string
+          value: $.status
+        inputParameters:
+        - name: request_id
+          in: path
+          type: string
+          required: true
+    - name: download
+      path: /deep_lookup/request/{request_id}/download
+      operations:
+      - name: downloadLookup
+        method: GET
+        description: Download Deep Lookup results.
+        outputRawFormat: json
+        outputParameters:
+        - name: rows
+          type: array
+          value: $.
+        inputParameters:
+        - name: request_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.BRIGHTDATA_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: deep-lookup-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bright Data Deep Lookup.
+    tools:
+    - name: bright-data-deep-lookup-trigger
+      description: Trigger a Deep Lookup search.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: deep-lookup.triggerLookup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bright-data-deep-lookup-status
+      description: Get the status of a Deep Lookup request.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: deep-lookup.getLookupStatus
+      with:
+        request_id: tools.request_id
+      outputParameters:
+      - type: object
+        mapping: $.

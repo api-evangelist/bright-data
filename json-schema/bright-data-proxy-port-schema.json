@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bright-data/refs/heads/main/json-schema/bright-data-proxy-port-schema.json",
+  "title": "Bright Data Proxy Port",
+  "description": "A proxy port managed by the local Bright Data Proxy Manager. Encapsulates a zone binding plus per-port behavior including session pinning, rotation, request limits, and logging.",
+  "type": "object",
+  "required": ["port", "zone"],
+  "properties": {
+    "port": { "type": "integer", "minimum": 1024, "maximum": 65535 },
+    "zone": { "type": "string" },
+    "country": { "type": "string" },
+    "state": { "type": "string" },
+    "city": { "type": "string" },
+    "asn": { "type": "integer" },
+    "session": {
+      "type": "string",
+      "enum": ["rand", "sticky", "round-robin"],
+      "description": "Session selection strategy."
+    },
+    "sticky_ip": { "type": "boolean" },
+    "rotate_session": { "type": "integer", "description": "Rotate session after N requests." },
+    "max_requests": { "type": "integer" },
+    "allow_proxy_auth": { "type": "boolean" },
+    "log": {
+      "type": "string",
+      "enum": ["none", "error", "warn", "info", "debug"]
+    },
+    "history": { "type": "boolean" },
+    "ssl": { "type": "boolean" }
+  }
+}

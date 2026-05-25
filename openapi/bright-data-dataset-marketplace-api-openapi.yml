@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Dataset Marketplace API
+  description: |
+    Programmatic access to Bright Data's 350+ ready-to-use datasets across 250+ domains (eCommerce,
+    social, real estate, travel, business). List entitled datasets, inspect metadata, retrieve snapshots,
+    and deliver to S3, Azure Blob, GCS, Snowflake, or a webhook.
+  version: v3
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+  - url: https://api.brightdata.com
+    description: Production
+security:
+  - BearerAuth: []
+tags:
+  - name: Datasets
+  - name: Snapshots
+  - name: Delivery
+paths:
+  /datasets:
+    get:
+      summary: List Marketplace Datasets
+      operationId: listMarketplaceDatasets
+      tags: [Datasets]
+      responses:
+        "200":
+          description: Datasets entitled to the caller.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: string }
+                    name: { type: string }
+                    description: { type: string }
+                    schema_url: { type: string, format: uri }
+                    record_count: { type: integer }
+                    refresh_cadence: { type: string }
+  /datasets/{dataset_id}/metadata:
+    parameters:
+      - { name: dataset_id, in: path, required: true, schema: { type: string } }
+    get:
+      summary: Get Dataset Metadata
+      operationId: getDatasetMetadata
+      tags: [Datasets]
+      responses:
+        "200":
+          description: Dataset metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /datasets/snapshots/{snapshot_id}:
+    parameters:
+      - { name: snapshot_id, in: path, required: true, schema: { type: string } }
+    get:
+      summary: Get Dataset Snapshot
+      operationId: getDatasetSnapshot
+      tags: [Snapshots]
+      parameters:
+        - { name: format, in: query, schema: { type: string, enum: [json, ndjson, csv, parquet] } }
+      responses:
+        "200":
+          description: Snapshot rows.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: object, additionalProperties: true }
+  /datasets/snapshots/{snapshot_id}/deliver:
+    parameters:
+      - { name: snapshot_id, in: path, required: true, schema: { type: string } }
+    post:
+      summary: Deliver Snapshot to Cloud
+      operationId: deliverDatasetSnapshot
+      tags: [Delivery]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [destination]
+              properties:
+                destination:
+                  type: object
+                  properties:
+                    type: { type: string, enum: [s3, azure, gcs, snowflake, webhook] }
+                    bucket: { type: string }
+                    credentials: { type: object, additionalProperties: true }
+                format: { type: string, enum: [json, ndjson, csv, parquet] }
+                compress: { type: boolean }
+      responses:
+        "200":
+          description: Delivery scheduled.
+          content:
+            application/json: { schema: { type: object } }
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

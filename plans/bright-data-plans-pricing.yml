@@ -3,145 +3,377 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: Bright Data
 providerId: bright-data
-created: '2026-05-04'
-modified: '2026-05-04'
+created: '2026-05-25'
+modified: '2026-05-25'
 tags:
-  - Browser Automation
-  - Data Aggregation
-  - Data Collection
+  - Web Data
   - Proxy
   - Web Scraping
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - SERP
+  - Web Unlocker
+description: |
+  Machine-readable plans and pricing for Bright Data's published self-serve subscription tiers across
+  Web Unlocker, SERP API, Web Scraper API, Residential Proxies, ISP Proxies, and Datacenter Proxies.
+  Bright Data also offers a custom-priced Enterprise tier with dedicated account manager, premium SLA,
+  SSO, and priority support across all products.
 plans:
-  - id: bright-data-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Bright Data API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+  - id: bright-data-web-unlocker-payg
+    name: Web Unlocker — Pay As You Go
+    type: payg
+    description: No monthly commitment. Pay per 1,000 successful Web Unlocker results.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
+      - label: Results
+        name: results
+        type: usage
+        metric: results
+        unit: 1000
+        price: '1.50'
+        timeFrame: usage
         geo: global
         domains: []
-        unit: 1
-        price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
+        description: Per 1,000 successful unlock responses.
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Bright Data Web Scraper API
-      - name: Bright Data Scraping Browser API
-      - name: Bright Data Proxy API
-  - id: bright-data-pro
-    name: Professional
+      - name: Pay only for successful requests
+      - name: Unlimited concurrent requests
+      - name: Worldwide geo-targeting
+  - id: bright-data-web-unlocker-growth
+    name: Web Unlocker — Growth
     type: paid
-    description: Production tier for Bright Data. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+    description: 380,000 included unlock results/month plus a $1.30 / 1K overage.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
+      - label: Monthly Commit
+        name: commit
+        type: commit
+        metric: month
+        unit: 1
+        limit: 380000
+        price: '499.00'
         timeFrame: month
         geo: global
         domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
         userMultiplied: false
       - label: Overage
-        description: Per-request price after monthly quota is exceeded
         name: overage
-        type: metered
-        metric: requests
-        limit: -1
+        type: usage
+        metric: results
+        unit: 1000
+        price: '1.30'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+    elements:
+      - name: 380,000 included results
+  - id: bright-data-web-unlocker-business
+    name: Web Unlocker — Business
+    type: paid
+    description: 900,000 included unlock results/month plus a $1.10 / 1K overage.
+    entries:
+      - label: Monthly Commit
+        name: commit
+        type: commit
+        metric: month
+        unit: 1
+        limit: 900000
+        price: '999.00'
         timeFrame: month
         geo: global
         domains: []
+        userMultiplied: false
+      - label: Overage
+        name: overage
+        type: usage
+        metric: results
         unit: 1000
-        price: TBD
+        price: '1.10'
+        timeFrame: usage
+        geo: global
+        domains: []
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Bright Data Web Scraper API
-      - name: Bright Data Scraping Browser API
-      - name: Bright Data Proxy API
+      - name: 900,000 included results
+  - id: bright-data-web-unlocker-premium
+    name: Web Unlocker — Premium
+    type: paid
+    description: 2,000,000 included unlock results/month plus a $1.00 / 1K overage.
+    entries:
+      - label: Monthly Commit
+        name: commit
+        type: commit
+        metric: month
+        unit: 1
+        limit: 2000000
+        price: '1999.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+      - label: Overage
+        name: overage
+        type: usage
+        metric: results
+        unit: 1000
+        price: '1.00'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+    elements:
+      - name: 2,000,000 included results
+  - id: bright-data-serp-payg
+    name: SERP API — Pay As You Go
+    type: payg
+    description: No commitment. $1.50 per 1,000 successful SERP results.
+    entries:
+      - label: Results
+        name: results
+        type: usage
+        metric: results
+        unit: 1000
+        price: '1.50'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-serp-growth
+    name: SERP API — Growth
+    type: paid
+    description: 380K included SERP results/month at $499.
+    entries:
+      - label: Monthly Commit
+        name: commit
+        type: commit
+        metric: month
+        unit: 1
+        limit: 380000
+        price: '499.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+      - label: Overage
+        name: overage
+        type: usage
+        metric: results
+        unit: 1000
+        price: '1.30'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-web-scraper-payg
+    name: Web Scraper API — Pay As You Go
+    type: payg
+    description: $1.50 per 1,000 successfully delivered records.
+    entries:
+      - label: Records
+        name: records
+        type: usage
+        metric: records
+        unit: 1000
+        price: '1.50'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-web-scraper-scale
+    name: Web Scraper API — Scale
+    type: paid
+    description: 384,000 included records/month for $499, then $1.30 / 1K records.
+    entries:
+      - label: Monthly Commit
+        name: commit
+        type: commit
+        metric: month
+        unit: 1
+        limit: 384000
+        price: '499.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+      - label: Overage
+        name: overage
+        type: usage
+        metric: records
+        unit: 1000
+        price: '1.30'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-residential-payg
+    name: Residential Proxies — Pay As You Go
+    type: payg
+    description: $4.00 per GB residential bandwidth.
+    entries:
+      - label: Bandwidth
+        name: bandwidth
+        type: usage
+        metric: gigabyte
+        unit: 1
+        price: '4.00'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-residential-growth
+    name: Residential Proxies — Growth
+    type: paid
+    description: $499/month for ~141 GB at $3.50/GB.
+    entries:
+      - label: Monthly Commit
+        name: commit
+        type: commit
+        metric: month
+        unit: 1
+        limit: 141
+        price: '499.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+      - label: Overage
+        name: overage
+        type: usage
+        metric: gigabyte
+        unit: 1
+        price: '3.50'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-residential-business
+    name: Residential Proxies — Business
+    type: paid
+    description: $999/month for ~332 GB at $3.00/GB.
+    entries:
+      - label: Monthly Commit
+        name: commit
+        type: commit
+        metric: month
+        unit: 1
+        limit: 332
+        price: '999.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+      - label: Overage
+        name: overage
+        type: usage
+        metric: gigabyte
+        unit: 1
+        price: '3.00'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-residential-premium
+    name: Residential Proxies — Premium
+    type: paid
+    description: $1,999/month for ~798 GB at $2.50/GB.
+    entries:
+      - label: Monthly Commit
+        name: commit
+        type: commit
+        metric: month
+        unit: 1
+        limit: 798
+        price: '1999.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+      - label: Overage
+        name: overage
+        type: usage
+        metric: gigabyte
+        unit: 1
+        price: '2.50'
+        timeFrame: usage
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-isp-starter
+    name: ISP Proxies — Starter
+    type: paid
+    description: 10 IPs for $18/month ($1.80/IP).
+    entries:
+      - label: IPs
+        name: ips
+        type: commit
+        metric: ip
+        unit: 10
+        price: '18.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-isp-growth
+    name: ISP Proxies — Growth
+    type: paid
+    description: 100 IPs for $145/month ($1.45/IP).
+    entries:
+      - label: IPs
+        name: ips
+        type: commit
+        metric: ip
+        unit: 100
+        price: '145.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-datacenter-starter
+    name: Datacenter Proxies — Starter
+    type: paid
+    description: 10 IPs for $14/month ($1.40/IP).
+    entries:
+      - label: IPs
+        name: ips
+        type: commit
+        metric: ip
+        unit: 10
+        price: '14.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
+  - id: bright-data-datacenter-growth
+    name: Datacenter Proxies — Growth
+    type: paid
+    description: 100 IPs for $100/month ($1.00/IP).
+    entries:
+      - label: IPs
+        name: ips
+        type: commit
+        metric: ip
+        unit: 100
+        price: '100.00'
+        timeFrame: month
+        geo: global
+        domains: []
+        userMultiplied: false
   - id: bright-data-enterprise
     name: Enterprise
     type: enterprise
-    description: Custom-negotiated tier for Bright Data. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
+    description: |
+      Custom-priced enterprise tier across all products. Includes dedicated account manager, premium
+      SLA, priority support, SSO, custom packages, and matching deposit bonuses up to $500 for new
+      customers.
+    entries: []
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Bright Data Web Scraper API
-      - name: Bright Data Scraping Browser API
-      - name: Bright Data Proxy API
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+      - name: Dedicated account manager
+      - name: Premium SLA
+      - name: Priority support
+      - name: SSO
+      - name: Custom packages
+      - name: Volume discounts
+sources:
+  - https://brightdata.com/pricing
+  - https://brightdata.com/pricing/web-unlocker
+  - https://brightdata.com/pricing/serp
+  - https://brightdata.com/pricing/web-scraper
+  - https://brightdata.com/pricing/proxy-network

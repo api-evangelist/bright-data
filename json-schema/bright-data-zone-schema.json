@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bright-data/refs/heads/main/json-schema/bright-data-zone-schema.json",
+  "title": "Bright Data Zone",
+  "description": "A Bright Data zone is a configured proxy pool or product entitlement (residential, ISP, datacenter, mobile, Web Unlocker, SERP, or Scraping Browser). Zones own credentials, allocated IPs, geo-targeting, access rules, and billing scope.",
+  "type": "object",
+  "required": ["zone", "type"],
+  "properties": {
+    "zone": {
+      "type": "string",
+      "description": "Human-readable zone name selected by the customer."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["residential", "isp", "datacenter", "mobile", "unblocker", "serp", "scraping_browser"]
+    },
+    "password": {
+      "type": "string",
+      "description": "Generated password used in proxy authentication."
+    },
+    "ips": {
+      "type": "integer",
+      "description": "Number of dedicated IPs allocated to the zone (ISP, datacenter)."
+    },
+    "country": {
+      "type": "string",
+      "description": "Default ISO 3166-1 alpha-2 country code for targeting."
+    },
+    "cities": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "asn": { "type": "integer" },
+    "plan": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "monthly_commit_usd": { "type": "number" },
+        "rate_per_gb_usd": { "type": "number" },
+        "rate_per_1k_results_usd": { "type": "number" }
+      }
+    },
+    "whitelist": {
+      "type": "array",
+      "items": { "type": "string", "description": "Customer IP allowed to authenticate against the zone." }
+    },
+    "blacklist": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "domain_permissions": {
+      "type": "object",
+      "description": "Per-domain allow/deny rules.",
+      "additionalProperties": { "type": "string", "enum": ["allow", "deny"] }
+    },
+    "disabled": { "type": "boolean" }
+  }
+}

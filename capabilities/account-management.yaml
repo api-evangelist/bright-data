@@ -1,0 +1,167 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bright Data Account Management
+  description: |
+    Manage Bright Data zones, IP allocations, access control, and billing/bandwidth reporting.
+  tags:
+  - Bright Data
+  - Account Management
+  - Zones
+  - Billing
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    BRIGHTDATA_API_TOKEN: BRIGHTDATA_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: account-management
+    baseUri: https://api.brightdata.com
+    description: Bright Data Account Management API.
+    resources:
+    - name: zone
+      path: /zone
+      operations:
+      - name: addZone
+        method: POST
+        description: Create a new zone.
+        outputRawFormat: json
+        outputParameters:
+        - name: zone
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: getZone
+        method: GET
+        description: Get zone configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: zone
+          type: object
+          value: $.
+        inputParameters:
+        - name: zone
+          in: query
+          type: string
+          required: true
+      - name: deleteZone
+        method: DELETE
+        description: Delete a zone.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: zone
+          in: query
+          type: string
+          required: true
+    - name: zone-ips
+      path: /zone/ips
+      operations:
+      - name: listIps
+        method: GET
+        description: List IPs allocated to a zone.
+        outputRawFormat: json
+        outputParameters:
+        - name: ips
+          type: array
+          value: $.
+        inputParameters:
+        - name: zone
+          in: query
+          type: string
+          required: true
+    - name: balance
+      path: /customer/balance
+      operations:
+      - name: getBalance
+        method: GET
+        description: Get account balance.
+        outputRawFormat: json
+        outputParameters:
+        - name: balance
+          type: object
+          value: $.
+        inputParameters: []
+    - name: zone-bandwidth
+      path: /zone/bw
+      operations:
+      - name: getBandwidth
+        method: GET
+        description: Get zone bandwidth usage.
+        outputRawFormat: json
+        outputParameters:
+        - name: usage
+          type: object
+          value: $.
+        inputParameters:
+        - name: zone
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.BRIGHTDATA_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: account-management-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bright Data Account Management.
+    tools:
+    - name: bright-data-add-zone
+      description: Create a new Bright Data zone.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account-management.addZone
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bright-data-get-zone
+      description: Get a Bright Data zone.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account-management.getZone
+      with:
+        zone: tools.zone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bright-data-get-balance
+      description: Get the current account balance.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account-management.getBalance
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bright-data-get-bandwidth
+      description: Get zone bandwidth usage.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account-management.getBandwidth
+      with:
+        zone: tools.zone
+      outputParameters:
+      - type: object
+        mapping: $.
