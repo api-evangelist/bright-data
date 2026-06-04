@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Rerun a Failed Snapshot and Monitor It
+  summary: Inspect an existing snapshot, rerun it when it failed, and poll the new snapshot.
+  description: >-
+    A recovery pattern for the Web Scraper API. The workflow reads the progress
+    of an existing snapshot and, when it did not complete successfully, reruns
+    it to produce a fresh snapshot id, then polls the new snapshot until it
+    reaches a terminal status. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: webScraperApi
+  url: ../openapi/bright-data-web-scraper-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rerun-and-monitor-snapshot
+  summary: Check a snapshot, rerun it when not ready, and poll the new snapshot.
+  description: >-
+    Reads the current progress of a snapshot, and when its status is not ready
+    triggers a rerun, then polls the freshly created snapshot until it finishes.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - snapshotId
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      snapshotId:
+        type: string
+        description: Identifier of the existing snapshot to inspect and rerun.
+  steps:
+  - stepId: checkProgress
+    description: >-
+      Read the progress of the existing snapshot. A failed or cancelled status
+      means the snapshot should be rerun.
+    operationId: getScrapeProgress
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $inputs.snapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: needsRerun
+      type: goto
+      stepId: rerunSnapshot
+      criteria:
+      - context: $response.body
+        condition: $.status != "ready"
+        type: jsonpath
+    - name: alreadyReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "ready"
+        type: jsonpath
+  - stepId: rerunSnapshot
+    description: >-
+      Rerun the snapshot, producing a new snapshot id that reprocesses the
+      original inputs.
+    operationId: rerunSnapshot
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $inputs.snapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      newSnapshotId: $response.body#/snapshot_id
+  - stepId: pollRerun
+    description: >-
+      Poll the rerun snapshot until it reaches a terminal status. A ready status
+      means the rerun produced rows.
+    operationId: getScrapeProgress
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $steps.rerunSnapshot.outputs.newSnapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      records: $response.body#/records
+    onSuccess:
+    - name: keepPolling
+      type: goto
+      stepId: pollRerun
+      criteria:
+      - context: $response.body
+        condition: $.status != "ready" && $.status != "failed" && $.status != "cancelled"
+        type: jsonpath
+  outputs:
+    originalStatus: $steps.checkProgress.outputs.status
+    newSnapshotId: $steps.rerunSnapshot.outputs.newSnapshotId
+    rerunStatus: $steps.pollRerun.outputs.status

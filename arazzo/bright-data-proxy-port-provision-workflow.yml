@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Proxy Manager Create and Verify a Port
+  summary: Create a proxy port in the local Proxy Manager and read it back to confirm it.
+  description: >-
+    A Proxy Manager provisioning pattern. The workflow creates a new proxy port
+    bound to a zone in the locally hosted Bright Data Proxy Manager, then reads
+    the port back to confirm its configuration. The Proxy Manager is a local
+    control plane and its endpoints do not require a Bearer token. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: proxyManagerApi
+  url: ../openapi/bright-data-proxy-manager-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-verify-proxy-port
+  summary: Create a proxy port bound to a zone and read it back to confirm.
+  description: >-
+    Creates a new proxy port in the local Proxy Manager bound to the requested
+    zone and country, then reads the port back to confirm its configuration.
+  inputs:
+    type: object
+    required:
+    - port
+    - zone
+    properties:
+      port:
+        type: integer
+        description: Local port number to expose for the proxy.
+      zone:
+        type: string
+        description: Bright Data zone the proxy port routes through.
+      country:
+        type: string
+        description: Country to pin the port to (ISO 3166-1 alpha-2).
+      session:
+        type: string
+        description: Session strategy for the port (rand, sticky, round-robin).
+  steps:
+  - stepId: createPort
+    description: >-
+      Create a new proxy port bound to the requested zone, country, and session
+      strategy.
+    operationId: createProxy
+    requestBody:
+      contentType: application/json
+      payload:
+        port: $inputs.port
+        zone: $inputs.zone
+        country: $inputs.country
+        session: $inputs.session
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      createdPort: $response.body#/port
+  - stepId: verifyPort
+    description: >-
+      Read the proxy port back to confirm it was created with the expected zone
+      configuration.
+    operationId: getProxy
+    parameters:
+    - name: port
+      in: path
+      value: $steps.createPort.outputs.createdPort
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      zone: $response.body#/zone
+      country: $response.body#/country
+  outputs:
+    createdPort: $steps.createPort.outputs.createdPort
+    zone: $steps.verifyPort.outputs.zone

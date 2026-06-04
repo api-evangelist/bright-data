@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Monitor a Snapshot and Cancel a Stuck Job
+  summary: Read snapshot progress, pull the log on errors, and cancel a job that is still running.
+  description: >-
+    An operational governance pattern for the Web Scraper API. The workflow
+    reads a snapshot's progress, retrieves its log to inspect what happened, and
+    branches: when the snapshot is still running it issues a cancel so the job
+    stops consuming budget. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: webScraperApi
+  url: ../openapi/bright-data-web-scraper-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: monitor-and-cancel-snapshot
+  summary: Inspect a snapshot's progress and log, and cancel it if still running.
+  description: >-
+    Reads the progress of a snapshot, retrieves its log for inspection, and
+    cancels the snapshot when it is still running rather than already finished.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - snapshotId
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      snapshotId:
+        type: string
+        description: Identifier of the snapshot to monitor and possibly cancel.
+  steps:
+  - stepId: readProgress
+    description: >-
+      Read the snapshot progress, capturing its status and error count.
+    operationId: getScrapeProgress
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $inputs.snapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      errors: $response.body#/errors
+  - stepId: readLog
+    description: >-
+      Retrieve the snapshot log to inspect collection detail before deciding
+      whether to cancel.
+    operationId: getSnapshotLog
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $inputs.snapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      log: $response.body
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: cancelSnapshot
+      criteria:
+      - context: $steps.readProgress.outputs.status
+        condition: $ == "running"
+        type: jsonpath
+    - name: alreadyDone
+      type: end
+      criteria:
+      - context: $steps.readProgress.outputs.status
+        condition: $ != "running"
+        type: jsonpath
+  - stepId: cancelSnapshot
+    description: >-
+      Cancel the snapshot because it is still running, stopping further budget
+      consumption.
+    operationId: cancelSnapshot
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $inputs.snapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelResult: $response.body
+  outputs:
+    status: $steps.readProgress.outputs.status
+    log: $steps.readLog.outputs.log
+    cancelResult: $steps.cancelSnapshot.outputs.cancelResult

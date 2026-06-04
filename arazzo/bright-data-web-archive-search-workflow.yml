@@ -1,0 +1,129 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Web Archive Search and Deliver
+  summary: Submit a Web Archive search, poll it until ready, and deliver the corpus to cloud.
+  description: >-
+    The historical Web Archive corpus pattern. The workflow submits a domain
+    search against Bright Data's historical web index, polls the search status
+    until it reaches a terminal state, and then schedules delivery of the
+    matching corpus to a cloud destination. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: webArchiveApi
+  url: ../openapi/bright-data-web-archive-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: search-and-deliver-archive
+  summary: Submit an archive search, poll until ready, then deliver the corpus.
+  description: >-
+    Submits a historical web archive search for a domain, polls the search
+    status until it is ready, and schedules delivery of the matching corpus to
+    a configured cloud destination.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - domain
+    - destinationType
+    - bucket
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      domain:
+        type: string
+        description: Domain to search the historical web index for.
+      query:
+        type: string
+        description: Optional full-text query to constrain the search.
+      destinationType:
+        type: string
+        description: Delivery destination type (s3, azure, gcs).
+      bucket:
+        type: string
+        description: Destination bucket or container name.
+      credentials:
+        type: object
+        description: Destination credentials object.
+      format:
+        type: string
+        description: Delivery format (json, ndjson, parquet).
+  steps:
+  - stepId: submitSearch
+    description: >-
+      Submit the archive search for the domain, returning a search id used to
+      poll status and deliver.
+    operationId: submitArchiveSearch
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        domain: $inputs.domain
+        query: $inputs.query
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      searchId: $response.body#/search_id
+  - stepId: pollSearch
+    description: >-
+      Poll the search status until it reaches a terminal state. A ready status
+      means the matching corpus can be delivered.
+    operationId: getArchiveSearch
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: search_id
+      in: path
+      value: $steps.submitSearch.outputs.searchId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      records: $response.body#/records
+    onSuccess:
+    - name: searchReady
+      type: goto
+      stepId: deliverArchive
+      criteria:
+      - context: $response.body
+        condition: $.status == "ready"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollSearch
+      criteria:
+      - context: $response.body
+        condition: $.status == "pending" || $.status == "running"
+        type: jsonpath
+  - stepId: deliverArchive
+    description: >-
+      Schedule delivery of the matching corpus to the configured cloud
+      destination in the requested format.
+    operationId: deliverArchiveToCloud
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        search_id: $steps.submitSearch.outputs.searchId
+        destination:
+          type: $inputs.destinationType
+          bucket: $inputs.bucket
+          credentials: $inputs.credentials
+        format: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deliveryResult: $response.body
+  outputs:
+    searchId: $steps.submitSearch.outputs.searchId
+    status: $steps.pollSearch.outputs.status
+    deliveryResult: $steps.deliverArchive.outputs.deliveryResult

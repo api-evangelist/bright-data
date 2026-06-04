@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Marketplace Dataset Snapshot and Deliver
+  summary: Inspect a marketplace dataset's metadata, read a snapshot, and deliver it to cloud.
+  description: >-
+    A marketplace consumption pattern. The workflow reads a dataset's metadata
+    to confirm its shape, retrieves a snapshot of its rows, and schedules
+    delivery of that snapshot to a cloud destination. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datasetMarketplaceApi
+  url: ../openapi/bright-data-dataset-marketplace-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: inspect-snapshot-and-deliver
+  summary: Read dataset metadata, fetch a snapshot, then deliver it to cloud storage.
+  description: >-
+    Reads a marketplace dataset's metadata, retrieves a snapshot of its rows,
+    and schedules delivery of the snapshot to a configured cloud destination.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - datasetId
+    - snapshotId
+    - destinationType
+    - bucket
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      datasetId:
+        type: string
+        description: Marketplace dataset identifier to inspect.
+      snapshotId:
+        type: string
+        description: Snapshot identifier to read and deliver.
+      destinationType:
+        type: string
+        description: Delivery destination type (s3, azure, gcs, snowflake, webhook).
+      bucket:
+        type: string
+        description: Destination bucket or container name.
+      credentials:
+        type: object
+        description: Destination credentials object.
+      format:
+        type: string
+        description: Delivery format (json, ndjson, csv, parquet).
+  steps:
+  - stepId: readMetadata
+    description: >-
+      Read the dataset metadata to confirm its shape before consuming a
+      snapshot.
+    operationId: getDatasetMetadata
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: dataset_id
+      in: path
+      value: $inputs.datasetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      metadata: $response.body
+  - stepId: readSnapshot
+    description: >-
+      Retrieve a snapshot of the dataset rows in the requested format.
+    operationId: getDatasetSnapshot
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $inputs.snapshotId
+    - name: format
+      in: query
+      value: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      rows: $response.body
+  - stepId: deliverSnapshot
+    description: >-
+      Schedule delivery of the snapshot to the configured cloud destination in
+      the requested format.
+    operationId: deliverDatasetSnapshot
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $inputs.snapshotId
+    requestBody:
+      contentType: application/json
+      payload:
+        destination:
+          type: $inputs.destinationType
+          bucket: $inputs.bucket
+          credentials: $inputs.credentials
+        format: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deliveryResult: $response.body
+  outputs:
+    metadata: $steps.readMetadata.outputs.metadata
+    deliveryResult: $steps.deliverSnapshot.outputs.deliveryResult

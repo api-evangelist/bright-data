@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Submit SERP Request and Retrieve Results
+  summary: Submit an asynchronous SERP request and poll for the parsed search results.
+  description: >-
+    The asynchronous SERP API pattern. The workflow submits a search-engine
+    request against a SERP zone, receives a response id, and polls the result
+    endpoint until the parsed payload is available. The result endpoint returns
+    202 while the request is still processing and 200 once the organic, ads, and
+    related blocks are ready. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: serpApi
+  url: ../openapi/bright-data-serp-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: submit-and-fetch-serp
+  summary: Submit a SERP request and poll until the parsed results are ready.
+  description: >-
+    Submits a search-engine query for a SERP zone and polls the result endpoint,
+    which returns 202 until the parsed SERP payload is ready and 200 with the
+    results once complete.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - zone
+    - url
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      zone:
+        type: string
+        description: SERP zone name to route the request through.
+      url:
+        type: string
+        description: Constructed search-engine URL (e.g. https://www.google.com/search?q=pizza).
+      country:
+        type: string
+        description: Two-letter country code for geo-targeting.
+      device:
+        type: string
+        description: Device profile (desktop, mobile, tablet).
+  steps:
+  - stepId: submitRequest
+    description: >-
+      Submit the asynchronous SERP request for the given zone and search URL,
+      returning a response id used to poll for the parsed payload.
+    operationId: submitSerpRequest
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        zone: $inputs.zone
+        url: $inputs.url
+        country: $inputs.country
+        device: $inputs.device
+        format: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      responseId: $response.body#/response_id
+  - stepId: pollResult
+    description: >-
+      Poll for the parsed SERP result. The endpoint returns 202 while the
+      request is still processing and 200 with the organic and ads blocks once
+      ready.
+    operationId: getSerpResult
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: response_id
+      in: query
+      value: $steps.submitRequest.outputs.responseId
+    successCriteria:
+    - condition: $statusCode == 200
+    onSuccess:
+    - name: resultReady
+      type: end
+    onFailure:
+    - name: notReadyRetry
+      type: goto
+      stepId: pollResult
+      criteria:
+      - condition: $statusCode == 202
+    outputs:
+      organic: $response.body#/organic
+      ads: $response.body#/ads
+      general: $response.body#/general
+  outputs:
+    responseId: $steps.submitRequest.outputs.responseId
+    organic: $steps.pollResult.outputs.organic
+    general: $steps.pollResult.outputs.general

@@ -38,7 +38,7 @@ paths:
               required: [zone, url]
               properties:
                 zone: { type: string }
-                url: { type: string, format: uri, description: Constructed search-engine URL (e.g. `https://www.google.com/search?q=pizza`). }
+                url: { type: string, format: uri, description: 'Constructed search-engine URL (e.g. https://www.google.com/search?q=pizza).' }
                 country: { type: string }
                 language: { type: string }
                 device: { type: string, enum: [desktop, mobile, tablet] }

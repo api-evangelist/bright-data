@@ -1,0 +1,136 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Deep Lookup Research and Download
+  summary: Preview a Deep Lookup query, trigger it, poll until ready, and download results.
+  description: >-
+    The end-to-end Deep Lookup research pattern. The workflow previews a
+    natural-language query to estimate row counts, triggers the lookup, polls
+    the request status until it reaches a terminal state, and downloads the
+    delivered results once ready. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: deepLookupApi
+  url: ../openapi/bright-data-deep-lookup-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: research-and-download
+  summary: Preview, trigger, poll, and download a Deep Lookup research request.
+  description: >-
+    Previews the query to estimate the result shape, triggers the lookup,
+    polls the request status until it is ready, and downloads the delivered
+    entity records.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - query
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      query:
+        type: string
+        description: Natural-language or structured research prompt.
+      category:
+        type: string
+        description: Entity category to research (company, professional, mixed).
+      limit:
+        type: integer
+        description: Maximum number of results to deliver.
+      format:
+        type: string
+        description: Download format (json, ndjson, csv).
+  steps:
+  - stepId: previewQuery
+    description: >-
+      Preview the query to estimate the row count and sample shape before
+      committing to a billed lookup.
+    operationId: previewDeepLookup
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      estimatedRows: $response.body#/estimated_rows
+  - stepId: triggerLookup
+    description: >-
+      Trigger the Deep Lookup request, returning a request id used to poll for
+      status and download.
+    operationId: triggerDeepLookup
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+        category: $inputs.category
+        limit: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requestId: $response.body#/request_id
+  - stepId: pollStatus
+    description: >-
+      Poll the request status until it reaches a terminal state. A ready status
+      means the results are available for download.
+    operationId: getDeepLookupStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: request_id
+      in: path
+      value: $steps.triggerLookup.outputs.requestId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      rows: $response.body#/rows
+    onSuccess:
+    - name: lookupReady
+      type: goto
+      stepId: downloadResults
+      criteria:
+      - context: $response.body
+        condition: $.status == "ready"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "pending" || $.status == "running"
+        type: jsonpath
+  - stepId: downloadResults
+    description: >-
+      Download the delivered entity records once the request reports a ready
+      status.
+    operationId: downloadDeepLookup
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: request_id
+      in: path
+      value: $steps.triggerLookup.outputs.requestId
+    - name: format
+      in: query
+      value: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body
+  outputs:
+    requestId: $steps.triggerLookup.outputs.requestId
+    estimatedRows: $steps.previewQuery.outputs.estimatedRows
+    results: $steps.downloadResults.outputs.results

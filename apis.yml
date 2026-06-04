@@ -240,6 +240,48 @@ apis:
     NVIDIA NeMo, and Cloudflare Agents. Available as a hosted endpoint (5,000 free requests/month),
     self-hosted, and remote.
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/bright-data-dataset-marketplace-deliver-workflow.yml
+    name: Bright Data Marketplace Dataset Snapshot and Deliver
+    summary: Inspect a marketplace dataset's metadata, read a snapshot, and deliver it to cloud.
+  - url: arazzo/bright-data-deep-lookup-enrich-workflow.yml
+    name: Bright Data Deep Lookup Trigger and Enrich Columns
+    summary: Trigger a Deep Lookup, wait for it to finish, and enrich its columns.
+  - url: arazzo/bright-data-deep-lookup-research-workflow.yml
+    name: Bright Data Deep Lookup Research and Download
+    summary: Preview a Deep Lookup query, trigger it, poll until ready, and download results.
+  - url: arazzo/bright-data-provision-unlocker-zone-and-scrape-workflow.yml
+    name: Bright Data Provision an Unlocker Zone then Unlock a URL
+    summary: Create a Web Unlocker zone, confirm it, and run a synchronous unlock against it.
+  - url: arazzo/bright-data-provision-zone-ips-workflow.yml
+    name: Bright Data Provision a Zone and Allocate IPs
+    summary: Create a zone, confirm it, and allocate dedicated IPs to it.
+  - url: arazzo/bright-data-proxy-port-provision-workflow.yml
+    name: Bright Data Proxy Manager Create and Verify a Port
+    summary: Create a proxy port in the local Proxy Manager and read it back to confirm it.
+  - url: arazzo/bright-data-serp-search-workflow.yml
+    name: Bright Data Submit SERP Request and Retrieve Results
+    summary: Submit an asynchronous SERP request and poll for the parsed search results.
+  - url: arazzo/bright-data-web-archive-search-workflow.yml
+    name: Bright Data Web Archive Search and Deliver
+    summary: Submit a Web Archive search, poll it until ready, and deliver the corpus to cloud.
+  - url: arazzo/bright-data-web-scraper-deliver-workflow.yml
+    name: Bright Data Scrape and Deliver Snapshot to Cloud Storage
+    summary: Trigger a scrape, wait for the snapshot to finish, and deliver it to cloud storage.
+  - url: arazzo/bright-data-web-scraper-job-workflow.yml
+    name: Bright Data Trigger Web Scraper Job and Download Results
+    summary: Trigger a Web Scraper collector, poll the snapshot until ready, and download the rows.
+  - url: arazzo/bright-data-web-scraper-monitor-cancel-workflow.yml
+    name: Bright Data Monitor a Snapshot and Cancel a Stuck Job
+    summary: Read snapshot progress, pull the log on errors, and cancel a job that is still running.
+  - url: arazzo/bright-data-web-scraper-rerun-workflow.yml
+    name: Bright Data Rerun a Failed Snapshot and Monitor It
+    summary: Inspect an existing snapshot, rerun it when it failed, and poll the new snapshot.
+  - url: arazzo/bright-data-web-unlocker-async-workflow.yml
+    name: Bright Data Submit Async Unlock and Retrieve Result
+    summary: Submit an asynchronous Web Unlocker request and poll for the unlocked response.
 - type: Portal
   url: https://brightdata.com
 - type: Documentation

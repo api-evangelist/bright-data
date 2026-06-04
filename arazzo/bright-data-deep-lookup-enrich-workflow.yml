@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Deep Lookup Trigger and Enrich Columns
+  summary: Trigger a Deep Lookup, wait for it to finish, and enrich its columns.
+  description: >-
+    A column-enrichment pattern for Deep Lookup. The workflow triggers a lookup
+    request, polls its status until it reaches a terminal state, and then queues
+    an enrichment pass that fills in additional columns on the delivered
+    results. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: deepLookupApi
+  url: ../openapi/bright-data-deep-lookup-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: trigger-and-enrich
+  summary: Trigger a Deep Lookup, poll until ready, then enrich its columns.
+  description: >-
+    Triggers a lookup request, polls the request status until it is ready, and
+    then queues enrichment of the requested columns on the result set.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - query
+    - columns
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      query:
+        type: string
+        description: Natural-language or structured research prompt.
+      category:
+        type: string
+        description: Entity category to research (company, professional, mixed).
+      columns:
+        type: array
+        description: Names of the columns to enrich on the result set.
+        items:
+          type: string
+  steps:
+  - stepId: triggerLookup
+    description: >-
+      Trigger the Deep Lookup request, returning a request id used to poll and
+      enrich.
+    operationId: triggerDeepLookup
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+        category: $inputs.category
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requestId: $response.body#/request_id
+  - stepId: pollStatus
+    description: >-
+      Poll the request status until it reaches a terminal state. A ready status
+      means the columns can be enriched.
+    operationId: getDeepLookupStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: request_id
+      in: path
+      value: $steps.triggerLookup.outputs.requestId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: lookupReady
+      type: goto
+      stepId: enrichColumns
+      criteria:
+      - context: $response.body
+        condition: $.status == "ready"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "pending" || $.status == "running"
+        type: jsonpath
+  - stepId: enrichColumns
+    description: >-
+      Queue an enrichment pass that fills in the requested columns on the
+      delivered result set.
+    operationId: enrichDeepLookup
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: request_id
+      in: path
+      value: $steps.triggerLookup.outputs.requestId
+    requestBody:
+      contentType: application/json
+      payload:
+        columns: $inputs.columns
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      enrichResult: $response.body
+  outputs:
+    requestId: $steps.triggerLookup.outputs.requestId
+    enrichResult: $steps.enrichColumns.outputs.enrichResult

@@ -1,0 +1,126 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Trigger Web Scraper Job and Download Results
+  summary: Trigger a Web Scraper collector, poll the snapshot until ready, and download the rows.
+  description: >-
+    The core Bright Data Web Scraper pattern. The workflow triggers an
+    asynchronous scraping job against a dataset collector, receives a
+    snapshot id, polls the snapshot progress endpoint until the status reaches
+    a terminal state, and then downloads the collected rows when the snapshot is
+    ready. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: webScraperApi
+  url: ../openapi/bright-data-web-scraper-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: trigger-and-download-scrape
+  summary: Trigger a scrape, poll the snapshot, and download the results.
+  description: >-
+    Submits a scraping job for a dataset, waits for the resulting snapshot to
+    finish building, and downloads the collected records once the snapshot
+    status is ready.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - datasetId
+    - records
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      datasetId:
+        type: string
+        description: Bright Data dataset identifier of the collector to run.
+      records:
+        type: array
+        description: Array of per-record input objects passed to the collector.
+        items:
+          type: object
+      includeErrors:
+        type: boolean
+        description: Whether to include error rows in the snapshot output.
+      format:
+        type: string
+        description: Download format for the snapshot (json, ndjson, csv, jsonl).
+  steps:
+  - stepId: triggerScrape
+    description: >-
+      Trigger an asynchronous scraping job for the dataset using the supplied
+      per-record input payload, returning a snapshot id to poll.
+    operationId: triggerScrape
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: dataset_id
+      in: query
+      value: $inputs.datasetId
+    - name: include_errors
+      in: query
+      value: $inputs.includeErrors
+    requestBody:
+      contentType: application/json
+      payload: $inputs.records
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      snapshotId: $response.body#/snapshot_id
+  - stepId: pollProgress
+    description: >-
+      Poll the snapshot progress endpoint. Bright Data reports running,
+      building, or collecting while the job is in flight and ready when the rows
+      are available for download.
+    operationId: getScrapeProgress
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $steps.triggerScrape.outputs.snapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      records: $response.body#/records
+    onSuccess:
+    - name: snapshotReady
+      type: goto
+      stepId: downloadSnapshot
+      criteria:
+      - context: $response.body
+        condition: $.status == "ready"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollProgress
+      criteria:
+      - context: $response.body
+        condition: $.status != "ready" && $.status != "failed" && $.status != "cancelled"
+        type: jsonpath
+  - stepId: downloadSnapshot
+    description: >-
+      Download the snapshot rows once the snapshot reports a ready status,
+      returning the collected records in the requested format.
+    operationId: downloadSnapshot
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $steps.triggerScrape.outputs.snapshotId
+    - name: format
+      in: query
+      value: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      rows: $response.body
+  outputs:
+    snapshotId: $steps.triggerScrape.outputs.snapshotId
+    status: $steps.pollProgress.outputs.status
+    rows: $steps.downloadSnapshot.outputs.rows

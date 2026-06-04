@@ -1,0 +1,133 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Scrape and Deliver Snapshot to Cloud Storage
+  summary: Trigger a scrape, wait for the snapshot to finish, and deliver it to cloud storage.
+  description: >-
+    A delivery-oriented Web Scraper pattern. The workflow triggers an
+    asynchronous scraping job, polls the snapshot progress until it is ready,
+    and then schedules delivery of the finished snapshot to an S3, GCS, Azure,
+    Snowflake, or webhook destination. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: webScraperApi
+  url: ../openapi/bright-data-web-scraper-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: scrape-and-deliver-snapshot
+  summary: Trigger a scrape, poll until ready, and deliver the snapshot to cloud storage.
+  description: >-
+    Submits a scraping job, waits for the resulting snapshot to reach a ready
+    status, and then schedules its delivery to a configured cloud storage
+    destination.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - datasetId
+    - records
+    - deliverType
+    - bucket
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      datasetId:
+        type: string
+        description: Bright Data dataset identifier of the collector to run.
+      records:
+        type: array
+        description: Array of per-record input objects passed to the collector.
+        items:
+          type: object
+      deliverType:
+        type: string
+        description: Delivery destination type (s3, gcs, azure, snowflake, webhook).
+      bucket:
+        type: string
+        description: Destination bucket or container name.
+      credentials:
+        type: object
+        description: Destination credentials object.
+      format:
+        type: string
+        description: Delivery format (json, ndjson, csv, parquet).
+  steps:
+  - stepId: triggerScrape
+    description: >-
+      Trigger an asynchronous scraping job for the dataset, returning a snapshot
+      id to poll and deliver.
+    operationId: triggerScrape
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: dataset_id
+      in: query
+      value: $inputs.datasetId
+    requestBody:
+      contentType: application/json
+      payload: $inputs.records
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      snapshotId: $response.body#/snapshot_id
+  - stepId: pollProgress
+    description: >-
+      Poll the snapshot progress endpoint until the status reaches a terminal
+      value. A ready status means the snapshot can be delivered.
+    operationId: getScrapeProgress
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $steps.triggerScrape.outputs.snapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: snapshotReady
+      type: goto
+      stepId: deliverSnapshot
+      criteria:
+      - context: $response.body
+        condition: $.status == "ready"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollProgress
+      criteria:
+      - context: $response.body
+        condition: $.status != "ready" && $.status != "failed" && $.status != "cancelled"
+        type: jsonpath
+  - stepId: deliverSnapshot
+    description: >-
+      Schedule delivery of the ready snapshot to the configured cloud storage
+      destination in the requested format.
+    operationId: deliverSnapshot
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: snapshot_id
+      in: path
+      value: $steps.triggerScrape.outputs.snapshotId
+    requestBody:
+      contentType: application/json
+      payload:
+        deliver:
+          type: $inputs.deliverType
+          bucket: $inputs.bucket
+          credentials: $inputs.credentials
+        format: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deliveryResult: $response.body
+  outputs:
+    snapshotId: $steps.triggerScrape.outputs.snapshotId
+    deliveryResult: $steps.deliverSnapshot.outputs.deliveryResult

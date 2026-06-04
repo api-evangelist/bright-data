@@ -1,0 +1,107 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Submit Async Unlock and Retrieve Result
+  summary: Submit an asynchronous Web Unlocker request and poll for the unlocked response.
+  description: >-
+    The asynchronous Web Unlocker pattern. The workflow submits a target URL for
+    unblocking through a Web Unlocker zone, receives a response id, and polls the
+    result endpoint until the unlocked page is ready. The result endpoint returns
+    202 while the unlock is still in progress and 200 with a ready status once the
+    rendered response is available. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: webUnlockerApi
+  url: ../openapi/bright-data-web-unlocker-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: submit-and-fetch-unlock
+  summary: Submit an async unlock request and poll until the response is ready.
+  description: >-
+    Submits a URL for asynchronous unblocking through a Web Unlocker zone and
+    polls the result endpoint, which returns 202 until ready and 200 with the
+    unlocked response once complete.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - zone
+    - url
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      zone:
+        type: string
+        description: Web Unlocker zone name to route the request through.
+      url:
+        type: string
+        description: Target URL to unblock.
+      country:
+        type: string
+        description: Two-letter country code for geo-targeting.
+  steps:
+  - stepId: submitUnlock
+    description: >-
+      Submit the asynchronous unlock request for the target URL through the
+      Web Unlocker zone, returning a response id used to poll for the result.
+    operationId: unlockAsync
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        url: $inputs.url
+        zone: $inputs.zone
+        country: $inputs.country
+        format: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      responseId: $response.body#/response_id
+  - stepId: pollResult
+    description: >-
+      Poll for the unlock result. The endpoint returns 202 while the unlock is
+      still in progress and 200 with a status of ready once the rendered
+      response is available.
+    operationId: getUnlockResult
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: response_id
+      in: query
+      value: $steps.submitUnlock.outputs.responseId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      result: $response.body#/result
+      statusCode: $response.body#/status_code
+    onSuccess:
+    - name: resultReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "ready"
+        type: jsonpath
+    - name: stillPending
+      type: goto
+      stepId: pollResult
+      criteria:
+      - context: $response.body
+        condition: $.status == "pending"
+        type: jsonpath
+    onFailure:
+    - name: notReadyRetry
+      type: goto
+      stepId: pollResult
+      criteria:
+      - condition: $statusCode == 202
+  outputs:
+    responseId: $steps.submitUnlock.outputs.responseId
+    status: $steps.pollResult.outputs.status
+    result: $steps.pollResult.outputs.result

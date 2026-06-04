@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Provision an Unlocker Zone then Unlock a URL
+  summary: Create a Web Unlocker zone, confirm it, and run a synchronous unlock against it.
+  description: >-
+    An end-to-end onboarding pattern that spans account management and the Web
+    Unlocker product. The workflow creates a new unlocker-type zone, reads it
+    back to confirm it is enabled, and then submits a target URL for synchronous
+    unblocking through the freshly provisioned zone. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: accountManagementApi
+  url: ../openapi/bright-data-account-management-api-openapi.yml
+  type: openapi
+- name: webUnlockerApi
+  url: ../openapi/bright-data-web-unlocker-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-zone-and-unlock
+  summary: Create an unlocker zone, verify it, then synchronously unlock a URL.
+  description: >-
+    Provisions a new Web Unlocker zone, reads it back to confirm the
+    configuration, and runs a one-shot synchronous unlock request against it.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - zone
+    - url
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      zone:
+        type: string
+        description: Name for the new Web Unlocker zone.
+      country:
+        type: string
+        description: Default country for the zone (ISO 3166-1 alpha-2).
+      url:
+        type: string
+        description: Target URL to unblock once the zone is provisioned.
+  steps:
+  - stepId: createZone
+    description: >-
+      Create a new zone of type unlocker that the unlock request will route
+      through.
+    operationId: addZone
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        zone: $inputs.zone
+        plan:
+          type: unlocker
+          country: $inputs.country
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      zoneName: $response.body#/zone
+  - stepId: confirmZone
+    description: >-
+      Read the zone back to confirm it exists and is not disabled before sending
+      traffic through it.
+    operationId: getZone
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: zone
+      in: query
+      value: $steps.createZone.outputs.zoneName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      disabled: $response.body#/disabled
+  - stepId: unlockUrl
+    description: >-
+      Submit the target URL for synchronous unblocking through the newly
+      provisioned zone, returning the rendered response.
+    operationId: unlockSync
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        url: $inputs.url
+        zone: $steps.createZone.outputs.zoneName
+        country: $inputs.country
+        format: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      unlocked: $response.body
+  outputs:
+    zoneName: $steps.createZone.outputs.zoneName
+    unlocked: $steps.unlockUrl.outputs.unlocked

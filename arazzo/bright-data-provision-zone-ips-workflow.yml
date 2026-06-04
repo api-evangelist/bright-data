@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: Bright Data Provision a Zone and Allocate IPs
+  summary: Create a zone, confirm it, and allocate dedicated IPs to it.
+  description: >-
+    A zone provisioning pattern in the Account Management API. The workflow
+    creates a new zone, reads it back to confirm it exists, and then allocates a
+    batch of dedicated IPs to the zone. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: accountManagementApi
+  url: ../openapi/bright-data-account-management-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-zone-and-ips
+  summary: Create a zone, verify it, and allocate IPs to it.
+  description: >-
+    Provisions a new zone of the requested type, confirms it by reading it back,
+    and allocates a batch of dedicated IPs to the zone.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - zone
+    - planType
+    - ips
+    properties:
+      apiToken:
+        type: string
+        description: Bright Data API token used as a Bearer credential.
+      zone:
+        type: string
+        description: Name for the new zone.
+      planType:
+        type: string
+        description: Zone plan type (residential, isp, datacenter, mobile, unblocker, serp, scraping_browser).
+      country:
+        type: string
+        description: Country for the zone and IP allocation (ISO 3166-1 alpha-2).
+      ips:
+        type: integer
+        description: Number of dedicated IPs to allocate to the zone.
+  steps:
+  - stepId: createZone
+    description: >-
+      Create a new zone of the requested plan type and country.
+    operationId: addZone
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        zone: $inputs.zone
+        plan:
+          type: $inputs.planType
+          country: $inputs.country
+          ips: $inputs.ips
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      zoneName: $response.body#/zone
+  - stepId: confirmZone
+    description: >-
+      Read the zone back to confirm it was created before allocating IPs.
+    operationId: getZone
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    - name: zone
+      in: query
+      value: $steps.createZone.outputs.zoneName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      zoneType: $response.body#/type
+  - stepId: allocateIps
+    description: >-
+      Allocate a batch of dedicated IPs to the confirmed zone.
+    operationId: addZoneIps
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        zone: $steps.createZone.outputs.zoneName
+        ips: $inputs.ips
+        country: $inputs.country
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      allocation: $response.body
+  outputs:
+    zoneName: $steps.createZone.outputs.zoneName
+    zoneType: $steps.confirmZone.outputs.zoneType
+    allocation: $steps.allocateIps.outputs.allocation
