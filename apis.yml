@@ -2,407 +2,397 @@ aid: bright-data
 url: https://raw.githubusercontent.com/api-evangelist/bright-data/refs/heads/main/apis.yml
 name: Bright Data
 tags:
-- Web Data
-- Web Scraping
-- Proxy
-- Residential Proxy
-- Datacenter Proxy
-- ISP Proxy
-- Mobile Proxy
-- SERP
-- Web Unlocker
-- Scraping Browser
-- Dataset Marketplace
-- MCP
-- AI Agents
+  - Web Data
+  - Web Scraping
+  - Proxy
+  - Residential Proxy
+  - Datacenter Proxy
+  - ISP Proxy
+  - Mobile Proxy
+  - SERP
+  - Web Unlocker
+  - Scraping Browser
+  - Dataset Marketplace
+  - MCP
+  - AI Agents
 kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 x-type: company
 apis:
-- aid: bright-data:web-unlocker-api
-  name: Bright Data Web Unlocker API
-  tags:
-  - Web Unlocker
-  - Unblocking
-  - Anti-Bot
-  - CAPTCHA
-  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
-  properties:
-  - url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
-    type: Documentation
-  - url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
-    type: Documentation
-  - url: openapi/bright-data-web-unlocker-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/web-unlocker.yaml
-    type: NaftikoCapability
-  description: Single-endpoint web unblocking with a 98%+ success rate. Send any URL, Bright Data handles
-    residential proxy selection, JavaScript rendering, CAPTCHA solving, fingerprint spoofing, and anti-bot
-    evasion, returning the fully rendered page. Supports both synchronous and asynchronous modes via
-    `/unblocker/req` with `/unblocker/get_result` for polling. Pay only for successful requests.
-- aid: bright-data:serp-api
-  name: Bright Data SERP API
-  tags:
-  - SERP
-  - Search
-  - Google
-  - Bing
-  humanURL: https://docs.brightdata.com/scraping-automation/serp-api/introduction
-  properties:
-  - url: https://docs.brightdata.com/scraping-automation/serp-api/introduction
-    type: Documentation
-  - url: https://docs.brightdata.com/scraping-automation/serp-api/send-your-first-request
-    type: Documentation
-  - url: openapi/bright-data-serp-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/serp.yaml
-    type: NaftikoCapability
-  description: Real-time SERP data from Google, Bing, Yandex, and DuckDuckGo across 31 languages and
-    195 countries. Supports organic, news, images, videos, shopping, jobs, hotels, flights, lens, trends,
-    reviews, maps, and AI Overview result types. Submit asynchronous requests via `/serp/req` and poll
-    `/serp/get_result`, or stream synchronously over the proxy on port 33335. Geolocation, device, browser,
-    pagination, and localization parameters supported.
-- aid: bright-data:web-scraper-api
-  name: Bright Data Web Scraper API
-  tags:
-  - Web Scraping
-  - Datasets
-  - Structured Data
-  humanURL: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
-  properties:
-  - url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
-    type: Documentation
-  - url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
-    type: Documentation
-  - url: openapi/bright-data-web-scraper-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/web-scraper.yaml
-    type: NaftikoCapability
-  - url: json-schema/bright-data-snapshot-schema.json
-    type: JSONSchema
-  description: Asynchronous snapshot-based scraping over 660+ pre-built dataset endpoints (Amazon, Walmart,
-    LinkedIn, Instagram, TikTok, YouTube, Reddit, Google Maps, Airbnb, Booking, Zillow, and many more)
-    plus custom collectors. Trigger via `POST /datasets/v3/scrape`, poll `/datasets/v3/progress/{snapshot_id}`,
-    and download via `/datasets/v3/snapshot/{snapshot_id}`. Returns JSON, NDJSON, CSV, or Parquet; supports
-    direct delivery to S3, Azure Blob, GCS, Snowflake, and webhooks.
-- aid: bright-data:scraping-browser-api
-  name: Bright Data Scraping Browser API
-  tags:
-  - Browser Automation
-  - Headless Browser
-  - Puppeteer
-  - Playwright
-  - Selenium
-  humanURL: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
-  properties:
-  - url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
-    type: Documentation
-  - url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
-    type: Documentation
-  - url: openapi/bright-data-scraping-browser-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/scraping-browser.yaml
-    type: NaftikoCapability
-  description: Fully managed remote Chromium browsers driven over CDP/WebSocket from Puppeteer, Playwright,
-    or Selenium. Each session ships with built-in unlocker logic, residential proxy egress, CAPTCHA solving,
-    and fingerprint management so JavaScript-heavy and interactive flows complete reliably. REST endpoints
-    expose session inventory (`GET /browser_sessions`) for observability and lifecycle inspection.
-- aid: bright-data:deep-lookup-api
-  name: Bright Data Deep Lookup API
-  tags:
-  - Entity Resolution
-  - People Search
-  - Company Search
-  - Enrichment
-  humanURL: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
-  properties:
-  - url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
-    type: Documentation
-  - url: openapi/bright-data-deep-lookup-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/deep-lookup.yaml
-    type: NaftikoCapability
-  description: Find companies and professionals across 1,000+ public sources with 95%+ accuracy. Submit
-    a natural-language description or structured query via `POST /trigger`, preview row counts with `/preview`,
-    optimize the query with `/enhance_query`, and enrich existing columns with `/request/{id}/enrich`.
-    Results are downloaded via `/request/{id}/download`. Billed per result.
-- aid: bright-data:web-archive-api
-  name: Bright Data Web Archive API
-  tags:
-  - Historical Data
-  - Web Archive
-  - Time Series
-  humanURL: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
-  properties:
-  - url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
-    type: Documentation
-  - url: openapi/bright-data-web-archive-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/web-archive.yaml
-    type: NaftikoCapability
-  description: Search and deliver petabyte-scale historical web snapshots across 250+ domains. Submit
-    a query via `POST /webarchive/search`, monitor with `GET /webarchive/search/{search_id}`, list all
-    searches via `GET /webarchive/searches`, and deliver matching corpora to S3/Azure/GCS via `POST
-    /deliver-to-cloud`.
-- aid: bright-data:dataset-marketplace-api
-  name: Bright Data Dataset Marketplace API
-  tags:
-  - Datasets
-  - Marketplace
-  - Bulk Data
-  humanURL: https://docs.brightdata.com/datasets/marketplace
-  properties:
-  - url: https://docs.brightdata.com/datasets/marketplace
-    type: Documentation
-  - url: openapi/bright-data-dataset-marketplace-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/dataset-marketplace.yaml
-    type: NaftikoCapability
-  description: Programmatic access to 350+ ready-to-use datasets across 250+ domains (eCommerce, social,
-    real estate, travel, business). List available datasets via `GET /datasets`, inspect schemas via
-    `GET /datasets/{dataset_id}/metadata`, retrieve snapshots via `GET /datasets/snapshots/{id}`, and
-    push deliveries to S3, Azure, GCS, Snowflake, or webhooks via `POST /datasets/snapshots/{id}/deliver`.
-- aid: bright-data:account-management-api
-  name: Bright Data Account Management API
-  tags:
-  - Administrative
-  - Zones
-  - Billing
-  humanURL: https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
-  properties:
-  - url: https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
-    type: Documentation
-  - url: openapi/bright-data-account-management-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/account-management.yaml
-    type: NaftikoCapability
-  - url: json-schema/bright-data-zone-schema.json
-    type: JSONSchema
-  description: Manage Bright Data zones (proxy pools and product entitlements), IP allocations, access
-    control, and billing programmatically. Endpoints include `POST/GET/DELETE /zone`, `/zone/change_disable`,
-    `/zone/ips` (add/remove/refresh/migrate/statistics), `/zone/whitelist`, `/zone/blacklist`, `/zone/domain_perm`,
-    plus `/customer/balance` and `/zone/bw` for balance and bandwidth reporting.
-- aid: bright-data:proxy-manager-api
-  name: Bright Data Proxy Manager API
-  tags:
-  - Proxy Manager
-  - Local API
-  - Self-Hosted
-  humanURL: https://docs.brightdata.com/proxy-networks/proxy-manager/api
-  properties:
-  - url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
-    type: Documentation
-  - url: openapi/bright-data-proxy-manager-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/proxy-manager.yaml
-    type: NaftikoCapability
-  description: Local self-hosted REST control plane (port 22999) for the Bright Data Proxy Manager. Programmatically
-    create and configure proxy ports (`/api/proxies`, `/api/proxies/{PORT}`), ban offending IPs
-    (`/api/proxies/{PORT}/banip`), refresh IP pools (`/api/refresh_ips`), and read zone configuration
-    (`/api/zones`). Supports SSL, logging, statistics, and remote upgrade/restart endpoints.
-- aid: bright-data:scraping-shield-api
-  name: Bright Data Scraping Shield API
-  tags:
-  - Compliance
-  - Domain Classification
-  - Trust and Safety
-  humanURL: https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
-  properties:
-  - url: https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
-    type: Documentation
-  - url: openapi/bright-data-scraping-shield-api-openapi.yml
-    type: OpenAPI
-  - url: capabilities/scraping-shield.yaml
-    type: NaftikoCapability
-  description: Compliance-focused classification API that exposes Bright Data's allowlist/blocklist taxonomy.
-    `GET /shield/class` lists every classification, `/shield/domains_by_class` returns domains by category,
-    `/shield/samples` returns sample classifications, and `/shield/zones_by_class` reports the zones cleared
-    for each class.
-- aid: bright-data:mcp-server
-  name: Bright Data MCP Server
-  tags:
-  - MCP
-  - Model Context Protocol
-  - AI Agents
-  - Tools
-  humanURL: https://docs.brightdata.com/mcp-server/overview
-  properties:
-  - url: https://docs.brightdata.com/mcp-server/overview
-    type: Documentation
-  - url: https://github.com/brightdata/brightdata-mcp
-    type: SourceCode
-  - url: capabilities/mcp-server.yaml
-    type: NaftikoCapability
-  description: Bright Data's Model Context Protocol server exposes 60+ web-access tools (search, scrape,
-    structured extraction, browser automation, datasets) to MCP-compatible clients including Claude
-    Desktop, Claude Code, ChatGPT, Cursor, LangChain, LangGraph, LlamaIndex, CrewAI, n8n, Google ADK,
-    NVIDIA NeMo, and Cloudflare Agents. Available as a hosted endpoint (5,000 free requests/month),
-    self-hosted, and remote.
+  - aid: bright-data:web-unlocker-api
+    name: Bright Data Web Unlocker API
+    tags:
+      - Web Unlocker
+      - Unblocking
+      - Anti-Bot
+      - CAPTCHA
+    humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+    properties:
+      - url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+        type: Documentation
+      - url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+        type: Documentation
+      - url: openapi/bright-data-web-unlocker-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Single-endpoint web unblocking with a 98%+ success rate. Send any URL, Bright Data handles residential proxy
+      selection, JavaScript rendering, CAPTCHA solving, fingerprint spoofing, and anti-bot evasion, returning the fully
+      rendered page. Supports both synchronous and asynchronous modes via `/unblocker/req` with `/unblocker/get_result`
+      for polling. Pay only for successful requests.
+  - aid: bright-data:serp-api
+    name: Bright Data SERP API
+    tags:
+      - SERP
+      - Search
+      - Google
+      - Bing
+    humanURL: https://docs.brightdata.com/scraping-automation/serp-api/introduction
+    properties:
+      - url: https://docs.brightdata.com/scraping-automation/serp-api/introduction
+        type: Documentation
+      - url: https://docs.brightdata.com/scraping-automation/serp-api/send-your-first-request
+        type: Documentation
+      - url: openapi/bright-data-serp-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Real-time SERP data from Google, Bing, Yandex, and DuckDuckGo across 31 languages and 195 countries. Supports
+      organic, news, images, videos, shopping, jobs, hotels, flights, lens, trends, reviews, maps, and AI Overview
+      result types. Submit asynchronous requests via `/serp/req` and poll `/serp/get_result`, or stream synchronously
+      over the proxy on port 33335. Geolocation, device, browser, pagination, and localization parameters supported.
+  - aid: bright-data:web-scraper-api
+    name: Bright Data Web Scraper API
+    tags:
+      - Web Scraping
+      - Datasets
+      - Structured Data
+    humanURL: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+    properties:
+      - url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+        type: Documentation
+      - url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+        type: Documentation
+      - url: openapi/bright-data-web-scraper-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/bright-data-snapshot-schema.json
+        type: JSONSchema
+    description: >-
+      Asynchronous snapshot-based scraping over 660+ pre-built dataset endpoints (Amazon, Walmart, LinkedIn, Instagram,
+      TikTok, YouTube, Reddit, Google Maps, Airbnb, Booking, Zillow, and many more) plus custom collectors. Trigger via
+      `POST /datasets/v3/scrape`, poll `/datasets/v3/progress/{snapshot_id}`, and download via
+      `/datasets/v3/snapshot/{snapshot_id}`. Returns JSON, NDJSON, CSV, or Parquet; supports direct delivery to S3,
+      Azure Blob, GCS, Snowflake, and webhooks.
+  - aid: bright-data:scraping-browser-api
+    name: Bright Data Scraping Browser API
+    tags:
+      - Browser Automation
+      - Headless Browser
+      - Puppeteer
+      - Playwright
+      - Selenium
+    humanURL: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+    properties:
+      - url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+        type: Documentation
+      - url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+        type: Documentation
+      - url: openapi/bright-data-scraping-browser-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Fully managed remote Chromium browsers driven over CDP/WebSocket from Puppeteer, Playwright, or Selenium. Each
+      session ships with built-in unlocker logic, residential proxy egress, CAPTCHA solving, and fingerprint management
+      so JavaScript-heavy and interactive flows complete reliably. REST endpoints expose session inventory (`GET
+      /browser_sessions`) for observability and lifecycle inspection.
+  - aid: bright-data:deep-lookup-api
+    name: Bright Data Deep Lookup API
+    tags:
+      - Entity Resolution
+      - People Search
+      - Company Search
+      - Enrichment
+    humanURL: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+    properties:
+      - url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+        type: Documentation
+      - url: openapi/bright-data-deep-lookup-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Find companies and professionals across 1,000+ public sources with 95%+ accuracy. Submit a natural-language
+      description or structured query via `POST /trigger`, preview row counts with `/preview`, optimize the query with
+      `/enhance_query`, and enrich existing columns with `/request/{id}/enrich`. Results are downloaded via
+      `/request/{id}/download`. Billed per result.
+  - aid: bright-data:web-archive-api
+    name: Bright Data Web Archive API
+    tags:
+      - Historical Data
+      - Web Archive
+      - Time Series
+    humanURL: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+    properties:
+      - url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+        type: Documentation
+      - url: openapi/bright-data-web-archive-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Search and deliver petabyte-scale historical web snapshots across 250+ domains. Submit a query via `POST
+      /webarchive/search`, monitor with `GET /webarchive/search/{search_id}`, list all searches via `GET
+      /webarchive/searches`, and deliver matching corpora to S3/Azure/GCS via `POST /deliver-to-cloud`.
+  - aid: bright-data:dataset-marketplace-api
+    name: Bright Data Dataset Marketplace API
+    tags:
+      - Datasets
+      - Marketplace
+      - Bulk Data
+    humanURL: https://docs.brightdata.com/datasets/marketplace
+    properties:
+      - url: https://docs.brightdata.com/datasets/marketplace
+        type: Documentation
+      - url: openapi/bright-data-dataset-marketplace-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Programmatic access to 350+ ready-to-use datasets across 250+ domains (eCommerce, social, real estate, travel,
+      business). List available datasets via `GET /datasets`, inspect schemas via `GET /datasets/{dataset_id}/metadata`,
+      retrieve snapshots via `GET /datasets/snapshots/{id}`, and push deliveries to S3, Azure, GCS, Snowflake, or
+      webhooks via `POST /datasets/snapshots/{id}/deliver`.
+  - aid: bright-data:account-management-api
+    name: Bright Data Account Management API
+    tags:
+      - Administrative
+      - Zones
+      - Billing
+    humanURL: https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+    properties:
+      - url: https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+        type: Documentation
+      - url: openapi/bright-data-account-management-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/bright-data-zone-schema.json
+        type: JSONSchema
+    description: >-
+      Manage Bright Data zones (proxy pools and product entitlements), IP allocations, access control, and billing
+      programmatically. Endpoints include `POST/GET/DELETE /zone`, `/zone/change_disable`, `/zone/ips`
+      (add/remove/refresh/migrate/statistics), `/zone/whitelist`, `/zone/blacklist`, `/zone/domain_perm`, plus
+      `/customer/balance` and `/zone/bw` for balance and bandwidth reporting.
+  - aid: bright-data:proxy-manager-api
+    name: Bright Data Proxy Manager API
+    tags:
+      - Proxy Manager
+      - Local API
+      - Self-Hosted
+    humanURL: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+    properties:
+      - url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+        type: Documentation
+      - url: openapi/bright-data-proxy-manager-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Local self-hosted REST control plane (port 22999) for the Bright Data Proxy Manager. Programmatically create and
+      configure proxy ports (`/api/proxies`, `/api/proxies/{PORT}`), ban offending IPs (`/api/proxies/{PORT}/banip`),
+      refresh IP pools (`/api/refresh_ips`), and read zone configuration (`/api/zones`). Supports SSL, logging,
+      statistics, and remote upgrade/restart endpoints.
+  - aid: bright-data:scraping-shield-api
+    name: Bright Data Scraping Shield API
+    tags:
+      - Compliance
+      - Domain Classification
+      - Trust and Safety
+    humanURL: https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+    properties:
+      - url: https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+        type: Documentation
+      - url: openapi/bright-data-scraping-shield-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Compliance-focused classification API that exposes Bright Data's allowlist/blocklist taxonomy. `GET /shield/class`
+      lists every classification, `/shield/domains_by_class` returns domains by category, `/shield/samples` returns
+      sample classifications, and `/shield/zones_by_class` reports the zones cleared for each class.
+  - aid: bright-data:mcp-server
+    name: Bright Data MCP Server
+    tags:
+      - MCP
+      - Model Context Protocol
+      - AI Agents
+      - Tools
+    humanURL: https://docs.brightdata.com/mcp-server/overview
+    properties:
+      - url: https://docs.brightdata.com/mcp-server/overview
+        type: Documentation
+      - url: https://github.com/brightdata/brightdata-mcp
+        type: SourceCode
+    description: >-
+      Bright Data's Model Context Protocol server exposes 60+ web-access tools (search, scrape, structured extraction,
+      browser automation, datasets) to MCP-compatible clients including Claude Desktop, Claude Code, ChatGPT, Cursor,
+      LangChain, LangGraph, LlamaIndex, CrewAI, n8n, Google ADK, NVIDIA NeMo, and Cloudflare Agents. Available as a
+      hosted endpoint (5,000 free requests/month), self-hosted, and remote.
 common:
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/bright-data-dataset-marketplace-deliver-workflow.yml
-    name: Bright Data Marketplace Dataset Snapshot and Deliver
-    summary: Inspect a marketplace dataset's metadata, read a snapshot, and deliver it to cloud.
-  - url: arazzo/bright-data-deep-lookup-enrich-workflow.yml
-    name: Bright Data Deep Lookup Trigger and Enrich Columns
-    summary: Trigger a Deep Lookup, wait for it to finish, and enrich its columns.
-  - url: arazzo/bright-data-deep-lookup-research-workflow.yml
-    name: Bright Data Deep Lookup Research and Download
-    summary: Preview a Deep Lookup query, trigger it, poll until ready, and download results.
-  - url: arazzo/bright-data-provision-unlocker-zone-and-scrape-workflow.yml
-    name: Bright Data Provision an Unlocker Zone then Unlock a URL
-    summary: Create a Web Unlocker zone, confirm it, and run a synchronous unlock against it.
-  - url: arazzo/bright-data-provision-zone-ips-workflow.yml
-    name: Bright Data Provision a Zone and Allocate IPs
-    summary: Create a zone, confirm it, and allocate dedicated IPs to it.
-  - url: arazzo/bright-data-proxy-port-provision-workflow.yml
-    name: Bright Data Proxy Manager Create and Verify a Port
-    summary: Create a proxy port in the local Proxy Manager and read it back to confirm it.
-  - url: arazzo/bright-data-serp-search-workflow.yml
-    name: Bright Data Submit SERP Request and Retrieve Results
-    summary: Submit an asynchronous SERP request and poll for the parsed search results.
-  - url: arazzo/bright-data-web-archive-search-workflow.yml
-    name: Bright Data Web Archive Search and Deliver
-    summary: Submit a Web Archive search, poll it until ready, and deliver the corpus to cloud.
-  - url: arazzo/bright-data-web-scraper-deliver-workflow.yml
-    name: Bright Data Scrape and Deliver Snapshot to Cloud Storage
-    summary: Trigger a scrape, wait for the snapshot to finish, and deliver it to cloud storage.
-  - url: arazzo/bright-data-web-scraper-job-workflow.yml
-    name: Bright Data Trigger Web Scraper Job and Download Results
-    summary: Trigger a Web Scraper collector, poll the snapshot until ready, and download the rows.
-  - url: arazzo/bright-data-web-scraper-monitor-cancel-workflow.yml
-    name: Bright Data Monitor a Snapshot and Cancel a Stuck Job
-    summary: Read snapshot progress, pull the log on errors, and cancel a job that is still running.
-  - url: arazzo/bright-data-web-scraper-rerun-workflow.yml
-    name: Bright Data Rerun a Failed Snapshot and Monitor It
-    summary: Inspect an existing snapshot, rerun it when it failed, and poll the new snapshot.
-  - url: arazzo/bright-data-web-unlocker-async-workflow.yml
-    name: Bright Data Submit Async Unlock and Retrieve Result
-    summary: Submit an asynchronous Web Unlocker request and poll for the unlocked response.
-- type: Portal
-  url: https://brightdata.com
-- type: Documentation
-  url: https://docs.brightdata.com
-- type: GettingStarted
-  url: https://docs.brightdata.com/quickstart
-- type: SignUp
-  url: https://brightdata.com/cp/start
-- type: Login
-  url: https://brightdata.com/cp/zones
-- type: Pricing
-  url: https://brightdata.com/pricing
-- type: Plans
-  url: plans/bright-data-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/bright-data-rate-limits.yml
-- type: FinOps
-  url: finops/bright-data-finops.yml
-- type: Blog
-  url: https://brightdata.com/blog
-- type: StatusPage
-  url: https://status.brightdata.com
-- type: TermsOfService
-  url: https://brightdata.com/legal/tos
-- type: PrivacyPolicy
-  url: https://brightdata.com/legal/privacy-policy
-- type: TrustCenter
-  url: https://brightdata.com/trust-center
-- type: Support
-  url: https://brightdata.com/contact
-- type: LinkedIn
-  url: https://www.linkedin.com/company/bright-data
-- type: GitHubOrganization
-  url: https://github.com/luminati-io
-- type: GitHubOrganization
-  url: https://github.com/brightdata
-- type: SDK
-  name: Python SDK
-  url: https://github.com/brightdata/sdk-python
-- type: SDK
-  name: JavaScript SDK
-  url: https://github.com/brightdata/sdk-js
-- type: SDK
-  name: AI SDK
-  url: https://github.com/brightdata/ai-sdk
-- type: CommandLineInterface
-  name: Bright Data CLI
-  url: https://github.com/brightdata/cli
-- type: Tool
-  name: MCP Server
-  url: https://github.com/brightdata/brightdata-mcp
-- type: Tool
-  name: OpenClaw Plugin
-  url: https://github.com/brightdata/openclaw-plugin
-- type: Tool
-  name: Cursor Plugin
-  url: https://github.com/brightdata/brightdata-cursor-plugin
-- type: CodeExamples
-  name: Quickstart Templates
-  url: https://github.com/brightdata/bright-data-quickstart-templates
-- type: CodeExamples
-  name: Scraping Browser Examples
-  url: https://github.com/luminati-io/sbr-examples
-- type: Integrations
-  url: https://brightdata.com/integrations
-- type: LLMsTxt
-  url: https://docs.brightdata.com/llms.txt
-- type: Documentation
-  name: API Reference
-  url: https://docs.brightdata.com/api-reference
-- type: Forum
-  url: https://discord.gg/brightdata
-- type: Features
-  data:
-  - Web Unlocker API — 98%+ success rate single-endpoint unblocking with proxy, JS rendering, CAPTCHA solving,
-    and anti-bot evasion
-  - SERP API — real-time Google/Bing/Yandex/DuckDuckGo across 31 languages and 195 countries with organic,
-    news, images, video, shopping, jobs, hotels, flights, lens, trends, and AI Overview result types
-  - Web Scraper API — 660+ pre-built dataset endpoints plus custom collectors with snapshot-based async
-    delivery
-  - Scraping Browser — managed remote Chromium browsers compatible with Puppeteer, Playwright, and Selenium
-  - Deep Lookup API — natural-language entity research over 1,000+ sources with 95%+ accuracy
-  - Web Archive API — petabyte-scale historical web search over 250+ domains
-  - Dataset Marketplace — 350+ ready-to-use datasets across eCommerce, social, real estate, travel, and
-    business verticals
-  - Proxy Networks — 400M+ residential IPs, 1.3M+ ISP IPs, datacenter and 7M+ mobile IPs across 195 countries
-  - Geo-targeting at country, state, city, ZIP, and ASN granularity with sticky and rotating sessions
-  - Account Management API — programmatic zone, IP, balance, bandwidth, and billing management
-  - Proxy Manager API — local self-hosted REST control plane (port 22999) for routing, banning, and refreshing
-  - Scraping Shield API — domain classification API for compliance and trust-and-safety workflows
-  - MCP Server with 60+ tools, hosted (5,000 free requests/month), self-hosted, or remote
-  - Direct delivery to Amazon S3, Azure Blob Storage, Google Cloud Storage, Snowflake, and webhooks
-  - JSON, NDJSON, CSV, XLSX, and Parquet output formats
-  - Official Python SDK, JavaScript SDK, AI SDK, and CLI
-  - Pay-only-for-success pricing across Web Unlocker, SERP, and Web Scraper APIs
-  - 99.99% uptime, 99.95% success rate
-  - SOC 2 Type II, ISO 27001, GDPR, and CCPA compliant
-  - Open MCP integrations with Claude Desktop, Claude Code, ChatGPT, Cursor, LangChain, LangGraph, LlamaIndex,
-    CrewAI, n8n, Google ADK, NVIDIA NeMo, Cloudflare Agents, Snowflake Cortex, and Vapi
-  sources:
-  - https://docs.brightdata.com
-  - https://docs.brightdata.com/llms.txt
-  - https://brightdata.com/pricing
-  - https://brightdata.com/pricing/web-unlocker
-  - https://brightdata.com/pricing/proxy-network
-  - https://github.com/brightdata
-  - https://github.com/luminati-io
-  updated: '2026-05-25'
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/bright-data/overview
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+      - url: arazzo/bright-data-dataset-marketplace-deliver-workflow.yml
+        name: Bright Data Marketplace Dataset Snapshot and Deliver
+        summary: Inspect a marketplace dataset's metadata, read a snapshot, and deliver it to cloud.
+      - url: arazzo/bright-data-deep-lookup-enrich-workflow.yml
+        name: Bright Data Deep Lookup Trigger and Enrich Columns
+        summary: Trigger a Deep Lookup, wait for it to finish, and enrich its columns.
+      - url: arazzo/bright-data-deep-lookup-research-workflow.yml
+        name: Bright Data Deep Lookup Research and Download
+        summary: Preview a Deep Lookup query, trigger it, poll until ready, and download results.
+      - url: arazzo/bright-data-provision-unlocker-zone-and-scrape-workflow.yml
+        name: Bright Data Provision an Unlocker Zone then Unlock a URL
+        summary: Create a Web Unlocker zone, confirm it, and run a synchronous unlock against it.
+      - url: arazzo/bright-data-provision-zone-ips-workflow.yml
+        name: Bright Data Provision a Zone and Allocate IPs
+        summary: Create a zone, confirm it, and allocate dedicated IPs to it.
+      - url: arazzo/bright-data-proxy-port-provision-workflow.yml
+        name: Bright Data Proxy Manager Create and Verify a Port
+        summary: Create a proxy port in the local Proxy Manager and read it back to confirm it.
+      - url: arazzo/bright-data-serp-search-workflow.yml
+        name: Bright Data Submit SERP Request and Retrieve Results
+        summary: Submit an asynchronous SERP request and poll for the parsed search results.
+      - url: arazzo/bright-data-web-archive-search-workflow.yml
+        name: Bright Data Web Archive Search and Deliver
+        summary: Submit a Web Archive search, poll it until ready, and deliver the corpus to cloud.
+      - url: arazzo/bright-data-web-scraper-deliver-workflow.yml
+        name: Bright Data Scrape and Deliver Snapshot to Cloud Storage
+        summary: Trigger a scrape, wait for the snapshot to finish, and deliver it to cloud storage.
+      - url: arazzo/bright-data-web-scraper-job-workflow.yml
+        name: Bright Data Trigger Web Scraper Job and Download Results
+        summary: Trigger a Web Scraper collector, poll the snapshot until ready, and download the rows.
+      - url: arazzo/bright-data-web-scraper-monitor-cancel-workflow.yml
+        name: Bright Data Monitor a Snapshot and Cancel a Stuck Job
+        summary: Read snapshot progress, pull the log on errors, and cancel a job that is still running.
+      - url: arazzo/bright-data-web-scraper-rerun-workflow.yml
+        name: Bright Data Rerun a Failed Snapshot and Monitor It
+        summary: Inspect an existing snapshot, rerun it when it failed, and poll the new snapshot.
+      - url: arazzo/bright-data-web-unlocker-async-workflow.yml
+        name: Bright Data Submit Async Unlock and Retrieve Result
+        summary: Submit an asynchronous Web Unlocker request and poll for the unlocked response.
+  - type: Portal
+    url: https://brightdata.com
+  - type: Documentation
+    url: https://docs.brightdata.com
+  - type: GettingStarted
+    url: https://docs.brightdata.com/quickstart
+  - type: SignUp
+    url: https://brightdata.com/cp/start
+  - type: Login
+    url: https://brightdata.com/cp/zones
+  - type: Pricing
+    url: https://brightdata.com/pricing
+  - type: Plans
+    url: plans/bright-data-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/bright-data-rate-limits.yml
+  - type: FinOps
+    url: finops/bright-data-finops.yml
+  - type: Blog
+    url: https://brightdata.com/blog
+  - type: StatusPage
+    url: https://status.brightdata.com
+  - type: TermsOfService
+    url: https://brightdata.com/legal/tos
+  - type: PrivacyPolicy
+    url: https://brightdata.com/legal/privacy-policy
+  - type: TrustCenter
+    url: https://brightdata.com/trust-center
+  - type: Support
+    url: https://brightdata.com/contact
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/bright-data
+  - type: GitHubOrganization
+    url: https://github.com/luminati-io
+  - type: GitHubOrganization
+    url: https://github.com/brightdata
+  - type: SDK
+    name: Python SDK
+    url: https://github.com/brightdata/sdk-python
+  - type: SDK
+    name: JavaScript SDK
+    url: https://github.com/brightdata/sdk-js
+  - type: SDK
+    name: AI SDK
+    url: https://github.com/brightdata/ai-sdk
+  - type: CommandLineInterface
+    name: Bright Data CLI
+    url: https://github.com/brightdata/cli
+  - type: Tool
+    name: MCP Server
+    url: https://github.com/brightdata/brightdata-mcp
+  - type: Tool
+    name: OpenClaw Plugin
+    url: https://github.com/brightdata/openclaw-plugin
+  - type: Tool
+    name: Cursor Plugin
+    url: https://github.com/brightdata/brightdata-cursor-plugin
+  - type: CodeExamples
+    name: Quickstart Templates
+    url: https://github.com/brightdata/bright-data-quickstart-templates
+  - type: CodeExamples
+    name: Scraping Browser Examples
+    url: https://github.com/luminati-io/sbr-examples
+  - type: Integrations
+    url: https://brightdata.com/integrations
+  - type: LLMsTxt
+    url: https://docs.brightdata.com/llms.txt
+  - type: Documentation
+    name: API Reference
+    url: https://docs.brightdata.com/api-reference
+  - type: Forum
+    url: https://discord.gg/brightdata
+  - type: Features
+    data:
+      - >-
+        Web Unlocker API — 98%+ success rate single-endpoint unblocking with proxy, JS rendering, CAPTCHA solving, and
+        anti-bot evasion
+      - >-
+        SERP API — real-time Google/Bing/Yandex/DuckDuckGo across 31 languages and 195 countries with organic, news,
+        images, video, shopping, jobs, hotels, flights, lens, trends, and AI Overview result types
+      - Web Scraper API — 660+ pre-built dataset endpoints plus custom collectors with snapshot-based async delivery
+      - Scraping Browser — managed remote Chromium browsers compatible with Puppeteer, Playwright, and Selenium
+      - Deep Lookup API — natural-language entity research over 1,000+ sources with 95%+ accuracy
+      - Web Archive API — petabyte-scale historical web search over 250+ domains
+      - >-
+        Dataset Marketplace — 350+ ready-to-use datasets across eCommerce, social, real estate, travel, and business
+        verticals
+      - Proxy Networks — 400M+ residential IPs, 1.3M+ ISP IPs, datacenter and 7M+ mobile IPs across 195 countries
+      - Geo-targeting at country, state, city, ZIP, and ASN granularity with sticky and rotating sessions
+      - Account Management API — programmatic zone, IP, balance, bandwidth, and billing management
+      - Proxy Manager API — local self-hosted REST control plane (port 22999) for routing, banning, and refreshing
+      - Scraping Shield API — domain classification API for compliance and trust-and-safety workflows
+      - MCP Server with 60+ tools, hosted (5,000 free requests/month), self-hosted, or remote
+      - Direct delivery to Amazon S3, Azure Blob Storage, Google Cloud Storage, Snowflake, and webhooks
+      - JSON, NDJSON, CSV, XLSX, and Parquet output formats
+      - Official Python SDK, JavaScript SDK, AI SDK, and CLI
+      - Pay-only-for-success pricing across Web Unlocker, SERP, and Web Scraper APIs
+      - 99.99% uptime, 99.95% success rate
+      - SOC 2 Type II, ISO 27001, GDPR, and CCPA compliant
+      - >-
+        Open MCP integrations with Claude Desktop, Claude Code, ChatGPT, Cursor, LangChain, LangGraph, LlamaIndex,
+        CrewAI, n8n, Google ADK, NVIDIA NeMo, Cloudflare Agents, Snowflake Cortex, and Vapi
+    sources:
+      - https://docs.brightdata.com
+      - https://docs.brightdata.com/llms.txt
+      - https://brightdata.com/pricing
+      - https://brightdata.com/pricing/web-unlocker
+      - https://brightdata.com/pricing/proxy-network
+      - https://github.com/brightdata
+      - https://github.com/luminati-io
+    updated: '2026-05-25'
 created: '2026-03-26'
 modified: '2026-05-25'
 position: Consuming
-description: Bright Data is an Israeli web data platform and operator of the world's largest legitimate
-  residential proxy network (400M+ IPs across 195 countries). The platform combines proxy infrastructure
-  (residential, ISP, datacenter, mobile) with higher-level web-access APIs — Web Unlocker, SERP API,
-  Web Scraper API, Scraping Browser, Deep Lookup, and Web Archive — plus a 350-dataset marketplace and
-  an MCP server that exposes 60+ web-access tools to AI agents. Serves 20,000+ customers across eCommerce,
-  finance, real estate, ad-tech, and AI/ML, and is a primary supplier of training and grounding data
-  for foundation-model providers.
+description: >-
+  Bright Data is an Israeli web data platform and operator of the world's largest legitimate residential proxy network
+  (400M+ IPs across 195 countries). The platform combines proxy infrastructure (residential, ISP, datacenter, mobile)
+  with higher-level web-access APIs — Web Unlocker, SERP API, Web Scraper API, Scraping Browser, Deep Lookup, and Web
+  Archive — plus a 350-dataset marketplace and an MCP server that exposes 60+ web-access tools to AI agents. Serves
+  20,000+ customers across eCommerce, finance, real estate, ad-tech, and AI/ML, and is a primary supplier of training
+  and grounding data for foundation-model providers.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  X: apievangelist
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+    X: apievangelist
+    url: https://apievangelist.com
 specificationVersion: '0.20'
