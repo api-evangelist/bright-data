@@ -1,0 +1,457 @@
+{
+  "item": [
+    {
+      "id": "2f48d12c-1e39-42e9-8498-54ff18f9f62d",
+      "name": "Datasets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a8fa53a-9578-4253-b1b6-4e46e42aa102",
+          "name": "List Marketplace Datasets",
+          "request": {
+            "name": "List Marketplace Datasets",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7541127-ad15-4f40-a640-902fa532c0d7",
+              "name": "Datasets entitled to the caller.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"schema_url\": \"https://sIYxTPpjwYtDTZgnMlVsPqH.vahzKDxHt0XqpTowoxKgu+MxXmU7WgI9\",\n    \"record_count\": 3737,\n    \"refresh_cadence\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"schema_url\": \"https://MOwUGInFibLV.eoGYN.,UD5fMfay3i5EKbyUlh6MHKVL9hyf6OnmOlw4I-O5jF-J8KiY-cKEiR\",\n    \"record_count\": 9995,\n    \"refresh_cadence\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c9216e1-4a6f-4231-8a57-cb33b6d2048d",
+          "name": "Get Dataset Metadata",
+          "request": {
+            "name": "Get Dataset Metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                ":dataset_id",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16e423b4-3b71-4a20-bdcb-c820afc02b5e",
+              "name": "Dataset metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":dataset_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 8755.814283390197,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bbd090fc-61d0-45dd-a5a3-b205f2cf7c54",
+      "name": "Snapshots",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e71fc1a4-5dab-4f9f-8192-58e74ece0653",
+          "name": "Get Dataset Snapshot",
+          "request": {
+            "name": "Get Dataset Snapshot",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "snapshots",
+                ":snapshot_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0661e4b2-35da-437b-a478-614be2f41bfb",
+              "name": "Snapshot rows.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "snapshots",
+                    ":snapshot_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 4878.54728191938,\n    \"key_1\": true,\n    \"key_2\": \"string\",\n    \"key_3\": 8560,\n    \"key_4\": 4398.623322018284\n  },\n  {\n    \"key_0\": false,\n    \"key_1\": 5392.424909286882,\n    \"key_2\": 8719.827573709865\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6cd3a35c-fc09-4c77-9325-74ba788816d2",
+      "name": "Delivery",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "755c0392-b787-41fb-9082-60d739bbbb1f",
+          "name": "Deliver Snapshot to Cloud",
+          "request": {
+            "name": "Deliver Snapshot to Cloud",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "snapshots",
+                ":snapshot_id",
+                "deliver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": 2403\n    }\n  },\n  \"format\": \"<string>\",\n  \"compress\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97f1a7b2-809a-4544-8f92-93fd7e406ac6",
+              "name": "Delivery scheduled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "snapshots",
+                    ":snapshot_id",
+                    "deliver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"format\": \"<string>\",\n  \"compress\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brightdata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f02d58a1-f4fa-40f7-9c29-560c54748e01",
+    "name": "Bright Data Dataset Marketplace API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Programmatic access to Bright Data's 350+ ready-to-use datasets across 250+ domains (eCommerce,\nsocial, real estate, travel, business). List entitled datasets, inspect metadata, retrieve snapshots,\nand deliver to S3, Azure Blob, GCS, Snowflake, or a webhook.\n\n\nContact Support:\n Name: Bright Data",
+      "type": "text/plain"
+    }
+  }
+}

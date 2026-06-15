@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Web Archive API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Archive",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a Web Archive Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/webarchive/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a Web Archive Search"
+        },
+        {
+          "info": {
+            "name": "Get Web Archive Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/webarchive/search/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Web Archive Search"
+        },
+        {
+          "info": {
+            "name": "List Web Archive Searches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/webarchive/searches"
+          },
+          "docs": "List Web Archive Searches"
+        },
+        {
+          "info": {
+            "name": "Deliver Archive Search to Cloud Storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/webarchive/deliver-to-cloud",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deliver Archive Search to Cloud Storage"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

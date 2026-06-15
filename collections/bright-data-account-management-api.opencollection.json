@@ -1,0 +1,272 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Account Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/zone",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Zone"
+        },
+        {
+          "info": {
+            "name": "Add Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Zone"
+        },
+        {
+          "info": {
+            "name": "Delete Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.brightdata.com/zone",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete Zone"
+        },
+        {
+          "info": {
+            "name": "Enable or Disable Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/change_disable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or Disable Zone"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IPs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Zone IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/zone/ips",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Zone IPs"
+        },
+        {
+          "info": {
+            "name": "Add IPs to Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/ips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add IPs to Zone"
+        },
+        {
+          "info": {
+            "name": "Remove IPs from Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.brightdata.com/zone/ips",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ips",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Remove IPs from Zone"
+        },
+        {
+          "info": {
+            "name": "Refresh Zone IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/ips/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refresh Zone IPs"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add IPs to Zone Whitelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/whitelist",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add IPs to Zone Whitelist"
+        },
+        {
+          "info": {
+            "name": "Add to Zone Blacklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/blacklist",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add to Zone Blacklist"
+        },
+        {
+          "info": {
+            "name": "Get Zone Domain Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/zone/domain_perm",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Zone Domain Permissions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Customer Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/customer/balance"
+          },
+          "docs": "Get Customer Balance"
+        },
+        {
+          "info": {
+            "name": "Get Zone Bandwidth Usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/zone/bw",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Zone Bandwidth Usage"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

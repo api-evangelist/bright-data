@@ -1,0 +1,1352 @@
+{
+  "info": {
+    "_postman_id": "89b44a21-f619-47e6-ada1-397acfe5a2ff",
+    "name": "Bright Data Account Management API",
+    "description": "Programmatic management of Bright Data zones (proxy pools and product entitlements), IP\nallocations, access control (whitelists, blacklists, domain permissions), passwords, and\nbilling/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.\n\n\nContact Support:\n Name: Bright Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:06:08.000Z",
+    "updatedAt": "2026-06-05T15:06:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-89b44a21-f619-47e6-ada1-397acfe5a2ff"
+  },
+  "item": [
+    {
+      "name": "zone",
+      "item": [
+        {
+          "name": "change_disable",
+          "item": [
+            {
+              "name": "Enable or Disable Zone",
+              "id": "f0416f1f-5950-45e5-9657-cd965a016fd0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"disable\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/zone/change_disable",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone",
+                    "change_disable"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4ccd0527-b91d-4c4d-9ca5-9244ed0990e3",
+                  "name": "Updated.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"zone\": \"<string>\",\n  \"disable\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/change_disable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "change_disable"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-4ccd0527-b91d-4c4d-9ca5-9244ed0990e3"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-f0416f1f-5950-45e5-9657-cd965a016fd0"
+            }
+          ],
+          "id": "deb4a0dc-eb64-4d3c-9e9b-9a09fb6adcaf",
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-deb4a0dc-eb64-4d3c-9e9b-9a09fb6adcaf"
+        },
+        {
+          "name": "ips",
+          "item": [
+            {
+              "name": "refresh",
+              "item": [
+                {
+                  "name": "Refresh Zone IPs",
+                  "id": "0959f2bf-27e4-41ed-afdc-db55978181d7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"zone\": \"<string>\",\n  \"ips\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/ips/refresh",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "ips",
+                        "refresh"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c16bb8f6-4ecb-40a5-bbf2-f0aa8b720173",
+                      "name": "Refresh queued.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"zone\": \"<string>\",\n  \"ips\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/zone/ips/refresh",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "zone",
+                            "ips",
+                            "refresh"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-06-05T15:06:09.000Z",
+                      "updatedAt": "2026-06-05T15:06:09.000Z",
+                      "uid": "35240-c16bb8f6-4ecb-40a5-bbf2-f0aa8b720173"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-0959f2bf-27e4-41ed-afdc-db55978181d7"
+                }
+              ],
+              "id": "4ee55920-0db0-4fd4-87cd-84dcba91d39f",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-4ee55920-0db0-4fd4-87cd-84dcba91d39f"
+            },
+            {
+              "name": "List Zone IPs",
+              "id": "e8450212-9877-4df5-b490-34ad0b4af06c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/zone/ips?zone=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone",
+                    "ips"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "zone",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4ecbe94b-eefc-4a02-84ec-1b1d73c7a504",
+                  "name": "Allocated IPs.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/ips?zone=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "ips"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "zone",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-4ecbe94b-eefc-4a02-84ec-1b1d73c7a504"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-e8450212-9877-4df5-b490-34ad0b4af06c"
+            },
+            {
+              "name": "Add IPs to Zone",
+              "id": "d1460ddd-e83f-4622-8b64-0a76fa95a6d5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"ips\": \"<integer>\",\n  \"country\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/zone/ips",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone",
+                    "ips"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c22b9c23-9d8f-41e8-b3fb-04834fd22a0c",
+                  "name": "Allocation submitted.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"zone\": \"<string>\",\n  \"ips\": \"<integer>\",\n  \"country\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/ips",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "ips"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-c22b9c23-9d8f-41e8-b3fb-04834fd22a0c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-d1460ddd-e83f-4622-8b64-0a76fa95a6d5"
+            },
+            {
+              "name": "Remove IPs from Zone",
+              "id": "4e2e97e0-8d29-41a9-8e95-1b2a09520734",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/zone/ips?zone=<string>&ips=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone",
+                    "ips"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ips",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5618d964-feaf-463d-b3e7-dfca906a733e",
+                  "name": "Removed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/ips?zone=<string>&ips=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "ips"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "zone",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "ips",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-5618d964-feaf-463d-b3e7-dfca906a733e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-4e2e97e0-8d29-41a9-8e95-1b2a09520734"
+            }
+          ],
+          "id": "52331cfb-c955-44ba-a4d2-85a2a604a028",
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-52331cfb-c955-44ba-a4d2-85a2a604a028"
+        },
+        {
+          "name": "whitelist",
+          "item": [
+            {
+              "name": "Add IPs to Zone Whitelist",
+              "id": "7327e080-b7ad-454a-95ef-07fbf36de381",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"ip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/zone/whitelist",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone",
+                    "whitelist"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2e931538-5ce2-4ed2-be5b-530175059040",
+                  "name": "Whitelist updated.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"zone\": \"<string>\",\n  \"ip\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/whitelist",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "whitelist"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-2e931538-5ce2-4ed2-be5b-530175059040"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-7327e080-b7ad-454a-95ef-07fbf36de381"
+            }
+          ],
+          "id": "e6430496-8c5f-4477-b8ad-48d6322b78b9",
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-e6430496-8c5f-4477-b8ad-48d6322b78b9"
+        },
+        {
+          "name": "blacklist",
+          "item": [
+            {
+              "name": "Add to Zone Blacklist",
+              "id": "e8872c95-98d7-42f2-ae16-a80e3c014f14",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"ip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/zone/blacklist",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone",
+                    "blacklist"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9abe469d-5abd-426c-8ed3-1124270ea5d3",
+                  "name": "Blacklist updated.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"zone\": \"<string>\",\n  \"ip\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/blacklist",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "blacklist"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-9abe469d-5abd-426c-8ed3-1124270ea5d3"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-e8872c95-98d7-42f2-ae16-a80e3c014f14"
+            }
+          ],
+          "id": "bb206221-fa92-48e3-9c26-da47419cc8ee",
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-bb206221-fa92-48e3-9c26-da47419cc8ee"
+        },
+        {
+          "name": "domain_perm",
+          "item": [
+            {
+              "name": "Get Zone Domain Permissions",
+              "id": "cd0ce0dc-60b9-42e3-95d4-93a19a2f6d67",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/zone/domain_perm?zone=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone",
+                    "domain_perm"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "zone",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "96a7222a-2026-415b-a28a-b2865b139776",
+                  "name": "Domain permission entries.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/domain_perm?zone=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "domain_perm"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "zone",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"veniam22\": 40726513\n}",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-96a7222a-2026-415b-a28a-b2865b139776"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-cd0ce0dc-60b9-42e3-95d4-93a19a2f6d67"
+            }
+          ],
+          "id": "63eaf1dc-d031-443a-8f03-ff7f4dabfd32",
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-63eaf1dc-d031-443a-8f03-ff7f4dabfd32"
+        },
+        {
+          "name": "bw",
+          "item": [
+            {
+              "name": "Get Zone Bandwidth Usage",
+              "id": "e1c39b08-e5c7-4132-b155-51b9364ae9c0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/zone/bw?zone=<string>&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone",
+                    "bw"
+                  ],
+                  "query": [
+                    {
+                      "key": "zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "e3b9d1f7-96d7-47df-b5ac-8b01fe2ceacc",
+                  "name": "Bandwidth usage.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/zone/bw?zone=<string>&from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "zone",
+                        "bw"
+                      ],
+                      "query": [
+                        {
+                          "key": "zone",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"veniam22\": 40726513\n}",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-e3b9d1f7-96d7-47df-b5ac-8b01fe2ceacc"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-e1c39b08-e5c7-4132-b155-51b9364ae9c0"
+            }
+          ],
+          "id": "6a240bd2-e5bf-4bf6-9dc1-28885a7d443b",
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-6a240bd2-e5bf-4bf6-9dc1-28885a7d443b"
+        },
+        {
+          "name": "Add Zone",
+          "id": "4e0a6f3e-6eae-440b-9893-cf14cf6098cd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"zone\": \"<string>\",\n  \"plan\": {\n    \"type\": \"residential\",\n    \"country\": \"<string>\",\n    \"ips\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/zone",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "zone"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f4bf4c38-6841-42e3-bd04-67dd2790ac09",
+              "name": "Zone created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"plan\": {\n    \"type\": \"residential\",\n    \"country\": \"<string>\",\n    \"ips\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/zone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"zone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"ips\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"plan\": {\n    \"deserunt_3d5\": \"nisi labore\"\n  },\n  \"disabled\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-f4bf4c38-6841-42e3-bd04-67dd2790ac09"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:09.000Z",
+          "updatedAt": "2026-06-05T15:06:09.000Z",
+          "uid": "35240-4e0a6f3e-6eae-440b-9893-cf14cf6098cd"
+        },
+        {
+          "name": "Get Zone",
+          "id": "4dc5f460-a4a6-44d5-8c91-2de7662bb2b9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/zone?zone=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "zone"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "zone",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "73bda5cf-1959-4245-a992-45f4f1f69b66",
+              "name": "Zone detail.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/zone?zone=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "zone",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"zone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"ips\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"plan\": {\n    \"deserunt_3d5\": \"nisi labore\"\n  },\n  \"disabled\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-73bda5cf-1959-4245-a992-45f4f1f69b66"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:09.000Z",
+          "updatedAt": "2026-06-05T15:06:09.000Z",
+          "uid": "35240-4dc5f460-a4a6-44d5-8c91-2de7662bb2b9"
+        },
+        {
+          "name": "Delete Zone",
+          "id": "7b8c8ea7-f7d0-40b7-95e9-ef29fa3598c2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/zone?zone=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "zone"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "zone",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f9911c8f-47f5-43fc-ae67-ffcc48a44933",
+              "name": "Zone deleted.",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/zone?zone=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "zone"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "zone",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-f9911c8f-47f5-43fc-ae67-ffcc48a44933"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:09.000Z",
+          "updatedAt": "2026-06-05T15:06:09.000Z",
+          "uid": "35240-7b8c8ea7-f7d0-40b7-95e9-ef29fa3598c2"
+        }
+      ],
+      "id": "acd614d4-f631-45d4-bb4b-b0e68fdf8942",
+      "createdAt": "2026-06-05T15:06:08.000Z",
+      "updatedAt": "2026-06-05T15:06:08.000Z",
+      "uid": "35240-acd614d4-f631-45d4-bb4b-b0e68fdf8942"
+    },
+    {
+      "name": "customer",
+      "item": [
+        {
+          "name": "balance",
+          "item": [
+            {
+              "name": "Get Customer Balance",
+              "id": "6105adc6-19fe-4d90-bc60-5dbb5ef0ccf5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer/balance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer",
+                    "balance"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8d5764e6-7869-4a5c-a0cb-a7b383f22732",
+                  "name": "Account balance.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/balance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "balance"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"balance\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"pending\": \"<number>\"\n}",
+                  "createdAt": "2026-06-05T15:06:09.000Z",
+                  "updatedAt": "2026-06-05T15:06:09.000Z",
+                  "uid": "35240-8d5764e6-7869-4a5c-a0cb-a7b383f22732"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:09.000Z",
+              "updatedAt": "2026-06-05T15:06:09.000Z",
+              "uid": "35240-6105adc6-19fe-4d90-bc60-5dbb5ef0ccf5"
+            }
+          ],
+          "id": "87cd6fd6-b91e-4e6c-b095-e7d6e2bb9598",
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-87cd6fd6-b91e-4e6c-b095-e7d6e2bb9598"
+        }
+      ],
+      "id": "9299b65e-6593-4738-9ec4-5617fba9c5b4",
+      "createdAt": "2026-06-05T15:06:08.000Z",
+      "updatedAt": "2026-06-05T15:06:08.000Z",
+      "uid": "35240-9299b65e-6593-4738-9ec4-5617fba9c5b4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.brightdata.com"
+    }
+  ]
+}

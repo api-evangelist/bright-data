@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "5ba6dc12-1b18-4f64-a20e-3406106022aa",
+    "name": "Bright Data SERP API",
+    "description": "Real-time search-engine results for Google, Bing, Yandex, and DuckDuckGo across 31 languages and\n195 countries. Supports organic, news, images, videos, shopping, jobs, hotels, flights, lens,\ntrends, reviews, maps, and AI Overview result types.\n\nTwo access modes: asynchronous via `POST /serp/req` + `GET /serp/get_result`, or synchronous via\nBright Data's proxy on port 33335. All calls require a Bearer API token. Pay only for successful\nrequests.\n\n\nContact Support:\n Name: Bright Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:57.000Z",
+    "updatedAt": "2026-06-05T15:05:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ba6dc12-1b18-4f64-a20e-3406106022aa"
+  },
+  "item": [
+    {
+      "name": "serp",
+      "item": [
+        {
+          "name": "req",
+          "item": [
+            {
+              "name": "Submit Asynchronous SERP Request",
+              "id": "082b40d6-310c-47bb-baf6-24789a111915",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"tablet\",\n  \"browser\": \"chrome\",\n  \"format\": \"html\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/serp/req",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "serp",
+                    "req"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1302ee2e-8beb-42e9-aab3-2fc470e50c83",
+                  "name": "Submitted.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"tablet\",\n  \"browser\": \"chrome\",\n  \"format\": \"html\",\n  \"callback_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/serp/req",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "serp",
+                        "req"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response_id\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:57.000Z",
+                  "updatedAt": "2026-06-05T15:05:57.000Z",
+                  "uid": "35240-1302ee2e-8beb-42e9-aab3-2fc470e50c83"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:57.000Z",
+              "updatedAt": "2026-06-05T15:05:57.000Z",
+              "uid": "35240-082b40d6-310c-47bb-baf6-24789a111915"
+            }
+          ],
+          "id": "6d2a69b7-a069-4b49-a52a-e04807a6d3b0",
+          "createdAt": "2026-06-05T15:05:57.000Z",
+          "updatedAt": "2026-06-05T15:05:57.000Z",
+          "uid": "35240-6d2a69b7-a069-4b49-a52a-e04807a6d3b0"
+        },
+        {
+          "name": "get_result",
+          "item": [
+            {
+              "name": "Get Asynchronous SERP Result",
+              "id": "7e713128-6d95-4d01-b892-9faf8032f10c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/serp/get_result?response_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "serp",
+                    "get_result"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "response_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "27118750-c0a8-4bb3-b2b3-7f043f0b9900",
+                  "name": "Parsed SERP payload.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/serp/get_result?response_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "serp",
+                        "get_result"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "response_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"organic\": [\n    {\n      \"minim22\": \"labore ipsum\",\n      \"pariatur3\": true\n    },\n    {\n      \"Excepteura\": -34389799\n    }\n  ],\n  \"ads\": [\n    {\n      \"laborum__1\": -20432606,\n      \"dolorf53\": \"laboris proident mollit\"\n    },\n    {\n      \"tempor5d\": \"commodo\",\n      \"quisd5\": true,\n      \"sint_8\": \"ex proi\"\n    }\n  ],\n  \"related\": [\n    {\n      \"aute_b5\": -53684619.99345451\n    },\n    {\n      \"exercitation6c\": -2940737.450902596\n    }\n  ],\n  \"ai_overview\": {\n    \"culpa6c4\": false\n  },\n  \"knowledge\": {\n    \"anim_88\": \"in mollit\",\n    \"consecteturf0\": false\n  },\n  \"general\": {\n    \"query\": \"<string>\",\n    \"language\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:57.000Z",
+                  "updatedAt": "2026-06-05T15:05:57.000Z",
+                  "uid": "35240-27118750-c0a8-4bb3-b2b3-7f043f0b9900"
+                },
+                {
+                  "id": "b4615068-4fb4-4f59-beec-cb7d1a7796f4",
+                  "name": "Not yet ready.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/serp/get_result?response_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "serp",
+                        "get_result"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "response_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:05:57.000Z",
+                  "updatedAt": "2026-06-05T15:05:57.000Z",
+                  "uid": "35240-b4615068-4fb4-4f59-beec-cb7d1a7796f4"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:57.000Z",
+              "updatedAt": "2026-06-05T15:05:57.000Z",
+              "uid": "35240-7e713128-6d95-4d01-b892-9faf8032f10c"
+            }
+          ],
+          "id": "db22da43-5064-49f8-a63d-d6b227666d07",
+          "createdAt": "2026-06-05T15:05:57.000Z",
+          "updatedAt": "2026-06-05T15:05:57.000Z",
+          "uid": "35240-db22da43-5064-49f8-a63d-d6b227666d07"
+        }
+      ],
+      "id": "e6bd3aad-9dd4-469d-8107-6fe1185ae0eb",
+      "createdAt": "2026-06-05T15:05:57.000Z",
+      "updatedAt": "2026-06-05T15:05:57.000Z",
+      "uid": "35240-e6bd3aad-9dd4-469d-8107-6fe1185ae0eb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.brightdata.com"
+    }
+  ]
+}

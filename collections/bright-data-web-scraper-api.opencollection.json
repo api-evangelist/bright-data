@@ -1,0 +1,265 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Web Scraper API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scrape",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger a Web Scraper Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/v3/scrape",
+            "params": [
+              {
+                "name": "dataset_id",
+                "value": "",
+                "type": "query",
+                "description": "Bright Data dataset identifier (e.g. `gd_l1viktl72bvl7bjuj0`)."
+              },
+              {
+                "name": "include_errors",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "notify",
+                "value": "",
+                "type": "query",
+                "description": "Webhook URL Bright Data calls when the snapshot completes."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit_per_input",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit_multiple_results",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger an asynchronous scraping job against a Bright Data dataset. Pass the `dataset_id` of\nthe target collector and the per-record input payload as a JSON array. Returns a `snapshot_id`\nused to poll progress and download results.\n"
+        },
+        {
+          "info": {
+            "name": "Get Scrape Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/v3/progress/:snapshot_id",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Scrape Progress"
+        },
+        {
+          "info": {
+            "name": "List Available Datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets"
+          },
+          "docs": "List Available Datasets"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Snapshot Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/v3/log/:snapshot_id",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Snapshot Log"
+        },
+        {
+          "info": {
+            "name": "List Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/v3/snapshots",
+            "params": [
+              {
+                "name": "dataset_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Snapshots"
+        },
+        {
+          "info": {
+            "name": "Cancel a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/v3/snapshot/:snapshot_id/cancel",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a Snapshot"
+        },
+        {
+          "info": {
+            "name": "Rerun a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/v3/snapshot/:snapshot_id/rerun",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Rerun a Snapshot"
+        },
+        {
+          "info": {
+            "name": "Download Snapshot Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/v3/snapshot/:snapshot_id",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "compress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "batch_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "part",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Download Snapshot Results"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Delivery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deliver Snapshot to Cloud Storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/v3/snapshot/:snapshot_id/deliver",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deliver Snapshot to Cloud Storage"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

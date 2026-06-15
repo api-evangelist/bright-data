@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Dataset Marketplace API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Marketplace Datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets"
+          },
+          "docs": "List Marketplace Datasets"
+        },
+        {
+          "info": {
+            "name": "Get Dataset Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/:dataset_id/metadata",
+            "params": [
+              {
+                "name": "dataset_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Dataset Metadata"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dataset Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/snapshots/:snapshot_id",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Dataset Snapshot"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Delivery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deliver Snapshot to Cloud",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/snapshots/:snapshot_id/deliver",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deliver Snapshot to Cloud"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

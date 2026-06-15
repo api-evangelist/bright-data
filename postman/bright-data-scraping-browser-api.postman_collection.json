@@ -1,0 +1,227 @@
+{
+  "info": {
+    "_postman_id": "5dbaa70b-ddec-4d40-99eb-e316c9e77c84",
+    "name": "Bright Data Scraping Browser API",
+    "description": "Scraping Browser provides fully managed remote Chromium browsers controlled via CDP/WebSocket\nfrom Puppeteer, Playwright, or Selenium. The browser session includes built-in unlocker logic,\nresidential proxy egress, CAPTCHA solving, and fingerprint management.\n\nDriver control happens over WebSocket. This REST surface exposes session inventory and lifecycle\ninspection for observability and management.\n\n\nContact Support:\n Name: Bright Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:06:00.000Z",
+    "updatedAt": "2026-06-05T15:06:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5dbaa70b-ddec-4d40-99eb-e316c9e77c84"
+  },
+  "item": [
+    {
+      "name": "browser_sessions",
+      "item": [
+        {
+          "name": "{session_id}",
+          "item": [
+            {
+              "name": "Get Browser Session",
+              "id": "235f1cf5-c538-4854-93ea-0fd2906df77c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/browser_sessions/:session_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "browser_sessions",
+                    ":session_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "47c3f3ea-977c-41a1-9220-4594d9ac31e5",
+                      "key": "session_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b271e0e6-4e96-4b8f-b8c8-98f330bcc6a0",
+                  "name": "Session detail.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/browser_sessions/:session_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "browser_sessions",
+                        ":session_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "session_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"session_id\": \"<string>\",\n  \"zone\": \"<string>\",\n  \"status\": \"<string>\",\n  \"started\": \"<dateTime>\",\n  \"duration_ms\": \"<integer>\",\n  \"pages\": \"<integer>\",\n  \"bytes\": \"<integer>\",\n  \"events\": [\n    {\n      \"adipisicing_a\": 41264870.225295514,\n      \"ipsum0\": 93184816.45406207\n    },\n    {\n      \"deserunt_e19\": true\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:06:01.000Z",
+                  "updatedAt": "2026-06-05T15:06:01.000Z",
+                  "uid": "35240-b271e0e6-4e96-4b8f-b8c8-98f330bcc6a0"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:01.000Z",
+              "updatedAt": "2026-06-05T15:06:01.000Z",
+              "uid": "35240-235f1cf5-c538-4854-93ea-0fd2906df77c"
+            }
+          ],
+          "id": "1bd467f8-62b4-4901-b359-def26e198801",
+          "createdAt": "2026-06-05T15:06:01.000Z",
+          "updatedAt": "2026-06-05T15:06:01.000Z",
+          "uid": "35240-1bd467f8-62b4-4901-b359-def26e198801"
+        },
+        {
+          "name": "List Browser Sessions",
+          "id": "050f0e97-af6e-4233-a5d9-4d4d12f9c628",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/browser_sessions?zone=<string>&status=closed",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "browser_sessions"
+              ],
+              "query": [
+                {
+                  "key": "zone",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "closed"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "da167ec7-ead9-424a-8056-05c368034b76",
+              "name": "Sessions.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/browser_sessions?zone=<string>&status=closed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "browser_sessions"
+                  ],
+                  "query": [
+                    {
+                      "key": "zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "closed"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"session_id\": \"<string>\",\n    \"zone\": \"<string>\",\n    \"status\": \"<string>\",\n    \"started\": \"<dateTime>\",\n    \"duration_ms\": \"<integer>\",\n    \"pages\": \"<integer>\",\n    \"bytes\": \"<integer>\"\n  },\n  {\n    \"session_id\": \"<string>\",\n    \"zone\": \"<string>\",\n    \"status\": \"<string>\",\n    \"started\": \"<dateTime>\",\n    \"duration_ms\": \"<integer>\",\n    \"pages\": \"<integer>\",\n    \"bytes\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:06:01.000Z",
+              "updatedAt": "2026-06-05T15:06:01.000Z",
+              "uid": "35240-da167ec7-ead9-424a-8056-05c368034b76"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:01.000Z",
+          "updatedAt": "2026-06-05T15:06:01.000Z",
+          "uid": "35240-050f0e97-af6e-4233-a5d9-4d4d12f9c628"
+        }
+      ],
+      "id": "751e92b6-5d79-4deb-8ef9-d50cf4424615",
+      "createdAt": "2026-06-05T15:06:01.000Z",
+      "updatedAt": "2026-06-05T15:06:01.000Z",
+      "uid": "35240-751e92b6-5d79-4deb-8ef9-d50cf4424615"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.brightdata.com"
+    }
+  ]
+}

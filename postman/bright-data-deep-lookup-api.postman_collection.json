@@ -1,0 +1,730 @@
+{
+  "info": {
+    "_postman_id": "b3cc5702-ebb8-4f25-a01c-aa0889345627",
+    "name": "Bright Data Deep Lookup API",
+    "description": "Deep Lookup is an entity-research API that finds companies and professionals across 1,000+\npublic sources with 95%+ accuracy. Submit a natural-language description or structured query\nvia `POST /trigger`, preview row counts and shape with `/preview`, optimize the query with\n`/enhance_query`, enrich existing columns with `/request/{id}/enrich`, monitor with `/status`,\nand download results once ready. Billed per delivered result.\n\n\nContact Support:\n Name: Bright Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:06:02.000Z",
+    "updatedAt": "2026-06-05T15:06:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b3cc5702-ebb8-4f25-a01c-aa0889345627"
+  },
+  "item": [
+    {
+      "name": "deep_lookup",
+      "item": [
+        {
+          "name": "trigger",
+          "item": [
+            {
+              "name": "Trigger a Deep Lookup Request",
+              "id": "2f699a6a-fab0-4a1c-b240-78dbe1b5be63",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"category\": \"company\",\n  \"limit\": \"<integer>\",\n  \"output\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/deep_lookup/trigger",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deep_lookup",
+                    "trigger"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4b062508-c104-46ea-9424-56992736ea79",
+                  "name": "Triggered.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"category\": \"company\",\n  \"limit\": \"<integer>\",\n  \"output\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/deep_lookup/trigger",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deep_lookup",
+                        "trigger"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:06:03.000Z",
+                  "updatedAt": "2026-06-05T15:06:03.000Z",
+                  "uid": "35240-4b062508-c104-46ea-9424-56992736ea79"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:03.000Z",
+              "updatedAt": "2026-06-05T15:06:03.000Z",
+              "uid": "35240-2f699a6a-fab0-4a1c-b240-78dbe1b5be63"
+            }
+          ],
+          "id": "193f07b7-d157-4a0d-b4c4-2b5cbd979a43",
+          "createdAt": "2026-06-05T15:06:03.000Z",
+          "updatedAt": "2026-06-05T15:06:03.000Z",
+          "uid": "35240-193f07b7-d157-4a0d-b4c4-2b5cbd979a43"
+        },
+        {
+          "name": "preview",
+          "item": [
+            {
+              "name": "Preview a Deep Lookup Query",
+              "id": "97556d65-a0c4-4ae2-aa9b-879d6e87ec0b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/deep_lookup/preview",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deep_lookup",
+                    "preview"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7ada2050-41e6-409c-844e-762af0c9f257",
+                  "name": "Preview.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/deep_lookup/preview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deep_lookup",
+                        "preview"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"estimated_rows\": \"<integer>\",\n  \"sample\": [\n    {\n      \"animddc\": false,\n      \"nulla46\": -3330068.713053882,\n      \"eu_19\": false,\n      \"officiaf61\": -26109928.150232926\n    },\n    {\n      \"laboris4a\": true,\n      \"voluptate_65\": \"eu sint\",\n      \"Duis_e2\": false\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:06:03.000Z",
+                  "updatedAt": "2026-06-05T15:06:03.000Z",
+                  "uid": "35240-7ada2050-41e6-409c-844e-762af0c9f257"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:03.000Z",
+              "updatedAt": "2026-06-05T15:06:03.000Z",
+              "uid": "35240-97556d65-a0c4-4ae2-aa9b-879d6e87ec0b"
+            }
+          ],
+          "id": "862114d6-9105-4b9f-af87-468dc7c9d352",
+          "createdAt": "2026-06-05T15:06:03.000Z",
+          "updatedAt": "2026-06-05T15:06:03.000Z",
+          "uid": "35240-862114d6-9105-4b9f-af87-468dc7c9d352"
+        },
+        {
+          "name": "enhance_query",
+          "item": [
+            {
+              "name": "Enhance a Deep Lookup Query",
+              "id": "38d91fb9-9791-414a-af32-283a6267f92e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/deep_lookup/enhance_query",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deep_lookup",
+                    "enhance_query"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3092e133-7f50-4203-9753-2a8a4740a6a3",
+                  "name": "Enhanced query.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/deep_lookup/enhance_query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deep_lookup",
+                        "enhance_query"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"enhanced_query\": \"<string>\",\n  \"suggestions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-06-05T15:06:03.000Z",
+                  "updatedAt": "2026-06-05T15:06:03.000Z",
+                  "uid": "35240-3092e133-7f50-4203-9753-2a8a4740a6a3"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:03.000Z",
+              "updatedAt": "2026-06-05T15:06:03.000Z",
+              "uid": "35240-38d91fb9-9791-414a-af32-283a6267f92e"
+            }
+          ],
+          "id": "3d34b873-adf2-429e-ab10-3a3d7c12fc30",
+          "createdAt": "2026-06-05T15:06:03.000Z",
+          "updatedAt": "2026-06-05T15:06:03.000Z",
+          "uid": "35240-3d34b873-adf2-429e-ab10-3a3d7c12fc30"
+        },
+        {
+          "name": "request",
+          "item": [
+            {
+              "name": "{request_id}",
+              "item": [
+                {
+                  "name": "status",
+                  "item": [
+                    {
+                      "name": "Get Deep Lookup Status",
+                      "id": "a5c0b525-2c08-4b68-bd20-7b76b7ec595a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/deep_lookup/request/:request_id/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "deep_lookup",
+                            "request",
+                            ":request_id",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "id": "55a0cd03-7e65-489b-909b-68ccbaf4c663",
+                              "key": "request_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "95f90b50-d555-414e-b622-5740eff01f91",
+                          "name": "Status.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/deep_lookup/request/:request_id/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "deep_lookup",
+                                "request",
+                                ":request_id",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"failed\",\n  \"rows\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:06:03.000Z",
+                          "updatedAt": "2026-06-05T15:06:03.000Z",
+                          "uid": "35240-95f90b50-d555-414e-b622-5740eff01f91"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:03.000Z",
+                      "updatedAt": "2026-06-05T15:06:03.000Z",
+                      "uid": "35240-a5c0b525-2c08-4b68-bd20-7b76b7ec595a"
+                    }
+                  ],
+                  "id": "041ebf15-5596-4a12-9d5d-f0488a5b8baa",
+                  "createdAt": "2026-06-05T15:06:03.000Z",
+                  "updatedAt": "2026-06-05T15:06:03.000Z",
+                  "uid": "35240-041ebf15-5596-4a12-9d5d-f0488a5b8baa"
+                },
+                {
+                  "name": "download",
+                  "item": [
+                    {
+                      "name": "Download Deep Lookup Results",
+                      "id": "8dfa38f5-70c4-49d5-aefc-692615097897",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/deep_lookup/request/:request_id/download?format=ndjson",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "deep_lookup",
+                            "request",
+                            ":request_id",
+                            "download"
+                          ],
+                          "query": [
+                            {
+                              "key": "format",
+                              "value": "ndjson"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "25435617-65db-488e-8055-7b73f68a2cce",
+                              "key": "request_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "d23208a5-194e-4013-9f56-035a54851227",
+                          "name": "Results.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/deep_lookup/request/:request_id/download?format=ndjson",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "deep_lookup",
+                                "request",
+                                ":request_id",
+                                "download"
+                              ],
+                              "query": [
+                                {
+                                  "key": "format",
+                                  "value": "ndjson"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"voluptate_dd\": false\n  },\n  {\n    \"exercitation_6_5\": 98352893,\n    \"sunt4\": false\n  }\n]",
+                          "createdAt": "2026-06-05T15:06:03.000Z",
+                          "updatedAt": "2026-06-05T15:06:03.000Z",
+                          "uid": "35240-d23208a5-194e-4013-9f56-035a54851227"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:03.000Z",
+                      "updatedAt": "2026-06-05T15:06:03.000Z",
+                      "uid": "35240-8dfa38f5-70c4-49d5-aefc-692615097897"
+                    }
+                  ],
+                  "id": "18fea6d3-f677-4cda-a570-ae4aae432b5a",
+                  "createdAt": "2026-06-05T15:06:03.000Z",
+                  "updatedAt": "2026-06-05T15:06:03.000Z",
+                  "uid": "35240-18fea6d3-f677-4cda-a570-ae4aae432b5a"
+                },
+                {
+                  "name": "enrich",
+                  "item": [
+                    {
+                      "name": "Enrich Deep Lookup Columns",
+                      "id": "8c165d03-e945-45cc-89dc-b7ea20e1aa59",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/deep_lookup/request/:request_id/enrich",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "deep_lookup",
+                            "request",
+                            ":request_id",
+                            "enrich"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b6a7f653-8911-49fe-a9c8-4a980611d74b",
+                              "key": "request_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "3d36af24-b667-4542-8e9e-b1941adb5de9",
+                          "name": "Enrichment queued.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/deep_lookup/request/:request_id/enrich",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "deep_lookup",
+                                "request",
+                                ":request_id",
+                                "enrich"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "request_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-06-05T15:06:03.000Z",
+                          "updatedAt": "2026-06-05T15:06:03.000Z",
+                          "uid": "35240-3d36af24-b667-4542-8e9e-b1941adb5de9"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:03.000Z",
+                      "updatedAt": "2026-06-05T15:06:03.000Z",
+                      "uid": "35240-8c165d03-e945-45cc-89dc-b7ea20e1aa59"
+                    }
+                  ],
+                  "id": "763d70b1-74a4-4729-875e-af766d40eba7",
+                  "createdAt": "2026-06-05T15:06:03.000Z",
+                  "updatedAt": "2026-06-05T15:06:03.000Z",
+                  "uid": "35240-763d70b1-74a4-4729-875e-af766d40eba7"
+                }
+              ],
+              "id": "918c9cb7-5a16-445d-813e-131bc8792b67",
+              "createdAt": "2026-06-05T15:06:03.000Z",
+              "updatedAt": "2026-06-05T15:06:03.000Z",
+              "uid": "35240-918c9cb7-5a16-445d-813e-131bc8792b67"
+            }
+          ],
+          "id": "7c65b736-e7a2-433b-a0a4-8124419a097b",
+          "createdAt": "2026-06-05T15:06:03.000Z",
+          "updatedAt": "2026-06-05T15:06:03.000Z",
+          "uid": "35240-7c65b736-e7a2-433b-a0a4-8124419a097b"
+        }
+      ],
+      "id": "8ca2617a-949e-4d9d-8a47-b1f2b2c60317",
+      "createdAt": "2026-06-05T15:06:03.000Z",
+      "updatedAt": "2026-06-05T15:06:03.000Z",
+      "uid": "35240-8ca2617a-949e-4d9d-8a47-b1f2b2c60317"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.brightdata.com"
+    }
+  ]
+}

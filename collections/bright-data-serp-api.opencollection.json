@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data SERP API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SERP",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Asynchronous SERP Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/serp/req",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit Asynchronous SERP Request"
+        },
+        {
+          "info": {
+            "name": "Get Asynchronous SERP Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/serp/get_result",
+            "params": [
+              {
+                "name": "response_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Asynchronous SERP Result"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

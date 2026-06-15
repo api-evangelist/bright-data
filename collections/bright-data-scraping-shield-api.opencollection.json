@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Scraping Shield API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shield",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shield Classifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/shield/class"
+          },
+          "docs": "List Shield Classifications"
+        },
+        {
+          "info": {
+            "name": "List Domains by Classification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/shield/domains_by_class",
+            "params": [
+              {
+                "name": "class",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Domains by Classification"
+        },
+        {
+          "info": {
+            "name": "Get Shield Classification Samples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/shield/samples",
+            "params": [
+              {
+                "name": "class",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Shield Classification Samples"
+        },
+        {
+          "info": {
+            "name": "List Zones by Classification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/shield/zones_by_class",
+            "params": [
+              {
+                "name": "class",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Zones by Classification"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

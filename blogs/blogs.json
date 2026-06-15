@@ -3,12 +3,12 @@
   "feeds": [
     {
       "source": "https://brightdata.com/blog",
-      "feed_url": "",
-      "title": "",
-      "saved": 0,
-      "error": "no_feed"
+      "feed_url": "https://brightdata.com/blog",
+      "title": "Bright Data Blog",
+      "saved": 1,
+      "method": "html"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
-  "post_count": 0
+  "post_count": 1,
+  "fetched": "2026-06-07T00:00:00Z"
 }

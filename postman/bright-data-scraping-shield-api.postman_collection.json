@@ -1,0 +1,411 @@
+{
+  "info": {
+    "_postman_id": "65cb7a0b-1945-4911-9a2b-162eb0b4dfc1",
+    "name": "Bright Data Scraping Shield API",
+    "description": "Compliance-focused classification API that exposes Bright Data's allowlist/blocklist taxonomy.\nUse Scraping Shield to confirm whether a domain falls into a supported classification, retrieve\nsample classifications, and inspect which zones are cleared for each class.\n\n\nContact Support:\n Name: Bright Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:06:12.000Z",
+    "updatedAt": "2026-06-05T15:06:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-65cb7a0b-1945-4911-9a2b-162eb0b4dfc1"
+  },
+  "item": [
+    {
+      "name": "shield",
+      "item": [
+        {
+          "name": "class",
+          "item": [
+            {
+              "name": "List Shield Classifications",
+              "id": "fd9a27a3-551f-4209-aa93-ee450bf46498",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/shield/class",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "shield",
+                    "class"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1fe86f9d-2ce2-4925-86b3-ec4f9c524a82",
+                  "name": "Classifications.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/shield/class",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "shield",
+                        "class"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:06:12.000Z",
+                  "updatedAt": "2026-06-05T15:06:12.000Z",
+                  "uid": "35240-1fe86f9d-2ce2-4925-86b3-ec4f9c524a82"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:12.000Z",
+              "updatedAt": "2026-06-05T15:06:12.000Z",
+              "uid": "35240-fd9a27a3-551f-4209-aa93-ee450bf46498"
+            }
+          ],
+          "id": "73620073-683e-4a68-aa6b-2b5d261d48d1",
+          "createdAt": "2026-06-05T15:06:12.000Z",
+          "updatedAt": "2026-06-05T15:06:12.000Z",
+          "uid": "35240-73620073-683e-4a68-aa6b-2b5d261d48d1"
+        },
+        {
+          "name": "domains_by_class",
+          "item": [
+            {
+              "name": "List Domains by Classification",
+              "id": "480c746f-2108-40ea-ba01-4f8afc29ecba",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/shield/domains_by_class?class=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "shield",
+                    "domains_by_class"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "class",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bcf7e970-c085-4d3f-9aaf-4934b527e5e9",
+                  "name": "Domains for the class.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/shield/domains_by_class?class=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "shield",
+                        "domains_by_class"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "class",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "createdAt": "2026-06-05T15:06:12.000Z",
+                  "updatedAt": "2026-06-05T15:06:12.000Z",
+                  "uid": "35240-bcf7e970-c085-4d3f-9aaf-4934b527e5e9"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:12.000Z",
+              "updatedAt": "2026-06-05T15:06:12.000Z",
+              "uid": "35240-480c746f-2108-40ea-ba01-4f8afc29ecba"
+            }
+          ],
+          "id": "df039f18-ca90-4ecc-b01a-6aac8959ae61",
+          "createdAt": "2026-06-05T15:06:12.000Z",
+          "updatedAt": "2026-06-05T15:06:12.000Z",
+          "uid": "35240-df039f18-ca90-4ecc-b01a-6aac8959ae61"
+        },
+        {
+          "name": "samples",
+          "item": [
+            {
+              "name": "Get Shield Classification Samples",
+              "id": "d7e0d0b1-01a3-44a1-b366-94ce593b9a95",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/shield/samples?class=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "shield",
+                    "samples"
+                  ],
+                  "query": [
+                    {
+                      "key": "class",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "e93f9f89-d0cc-4580-98db-c0a142ef35d9",
+                  "name": "Samples.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/shield/samples?class=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "shield",
+                        "samples"
+                      ],
+                      "query": [
+                        {
+                          "key": "class",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"occaecat0\": true,\n    \"do_96f\": -66667491.61848182\n  },\n  {\n    \"esse5\": true,\n    \"dolord84\": -52438985\n  }\n]",
+                  "createdAt": "2026-06-05T15:06:12.000Z",
+                  "updatedAt": "2026-06-05T15:06:12.000Z",
+                  "uid": "35240-e93f9f89-d0cc-4580-98db-c0a142ef35d9"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:12.000Z",
+              "updatedAt": "2026-06-05T15:06:12.000Z",
+              "uid": "35240-d7e0d0b1-01a3-44a1-b366-94ce593b9a95"
+            }
+          ],
+          "id": "e638fbac-ba51-412a-af69-bea7095cc550",
+          "createdAt": "2026-06-05T15:06:12.000Z",
+          "updatedAt": "2026-06-05T15:06:12.000Z",
+          "uid": "35240-e638fbac-ba51-412a-af69-bea7095cc550"
+        },
+        {
+          "name": "zones_by_class",
+          "item": [
+            {
+              "name": "List Zones by Classification",
+              "id": "1c90b24f-372e-44d3-97a2-029e9884eb52",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/shield/zones_by_class?class=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "shield",
+                    "zones_by_class"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "class",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b77a9f3a-c451-475f-b1e0-ef6d74cb24c3",
+                  "name": "Zones cleared for the class.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/shield/zones_by_class?class=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "shield",
+                        "zones_by_class"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "class",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "createdAt": "2026-06-05T15:06:12.000Z",
+                  "updatedAt": "2026-06-05T15:06:12.000Z",
+                  "uid": "35240-b77a9f3a-c451-475f-b1e0-ef6d74cb24c3"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:12.000Z",
+              "updatedAt": "2026-06-05T15:06:12.000Z",
+              "uid": "35240-1c90b24f-372e-44d3-97a2-029e9884eb52"
+            }
+          ],
+          "id": "909b26b5-f3cd-4caf-a742-d45d44433d56",
+          "createdAt": "2026-06-05T15:06:12.000Z",
+          "updatedAt": "2026-06-05T15:06:12.000Z",
+          "uid": "35240-909b26b5-f3cd-4caf-a742-d45d44433d56"
+        }
+      ],
+      "id": "4be560f1-6659-424a-9ea3-7945ff647194",
+      "createdAt": "2026-06-05T15:06:12.000Z",
+      "updatedAt": "2026-06-05T15:06:12.000Z",
+      "uid": "35240-4be560f1-6659-424a-9ea3-7945ff647194"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.brightdata.com"
+    }
+  ]
+}

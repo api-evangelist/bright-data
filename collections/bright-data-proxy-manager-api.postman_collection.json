@@ -1,0 +1,833 @@
+{
+  "item": [
+    {
+      "id": "b539085e-e711-4000-86a7-7cd9601d40ac",
+      "name": "Proxies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f33e84b2-e7da-4de5-8f2c-3ab1f57197f2",
+          "name": "List Proxy Ports",
+          "request": {
+            "name": "List Proxy Ports",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "proxies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7c8b78a-f7ec-4c7a-8d53-11b3e2e09af5",
+              "name": "Configured ports.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "proxies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"port\": 6473,\n    \"zone\": \"string\",\n    \"country\": \"string\",\n    \"city\": \"string\",\n    \"session\": \"round-robin\",\n    \"sticky_ip\": true,\n    \"rotate_session\": 3545,\n    \"max_requests\": 4049,\n    \"allow_proxy_auth\": true,\n    \"log\": \"none\"\n  },\n  {\n    \"port\": 6703,\n    \"zone\": \"string\",\n    \"country\": \"string\",\n    \"city\": \"string\",\n    \"session\": \"round-robin\",\n    \"sticky_ip\": true,\n    \"rotate_session\": 7324,\n    \"max_requests\": 3019,\n    \"allow_proxy_auth\": false,\n    \"log\": \"info\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a6205c3-45ba-4393-8e30-9d6d87782eaa",
+          "name": "Create Proxy Port",
+          "request": {
+            "name": "Create Proxy Port",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "proxies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"port\": \"<integer>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"session\": \"<string>\",\n  \"sticky_ip\": \"<boolean>\",\n  \"rotate_session\": \"<integer>\",\n  \"max_requests\": \"<integer>\",\n  \"allow_proxy_auth\": \"<boolean>\",\n  \"log\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cad68ccc-2522-4b0b-b223-427664eeed77",
+              "name": "Port created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "proxies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"port\": \"<integer>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"session\": \"<string>\",\n  \"sticky_ip\": \"<boolean>\",\n  \"rotate_session\": \"<integer>\",\n  \"max_requests\": \"<integer>\",\n  \"allow_proxy_auth\": \"<boolean>\",\n  \"log\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"port\": 2221,\n  \"zone\": \"string\",\n  \"country\": \"string\",\n  \"city\": \"string\",\n  \"session\": \"rand\",\n  \"sticky_ip\": false,\n  \"rotate_session\": 3627,\n  \"max_requests\": 9499,\n  \"allow_proxy_auth\": false,\n  \"log\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60c238cd-a52d-4a50-b5fd-afc39d6b10bb",
+          "name": "Get Proxy Port",
+          "request": {
+            "name": "Get Proxy Port",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "proxies",
+                ":port"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "port",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6360ef0-9d66-45cb-a777-1aec0e838816",
+              "name": "Port detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "proxies",
+                    ":port"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "port",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"port\": 2221,\n  \"zone\": \"string\",\n  \"country\": \"string\",\n  \"city\": \"string\",\n  \"session\": \"rand\",\n  \"sticky_ip\": false,\n  \"rotate_session\": 3627,\n  \"max_requests\": 9499,\n  \"allow_proxy_auth\": false,\n  \"log\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b31588e-03a5-40c9-9f39-57353a8d4d1a",
+          "name": "Update Proxy Port",
+          "request": {
+            "name": "Update Proxy Port",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "proxies",
+                ":port"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "port",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"port\": \"<integer>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"session\": \"<string>\",\n  \"sticky_ip\": \"<boolean>\",\n  \"rotate_session\": \"<integer>\",\n  \"max_requests\": \"<integer>\",\n  \"allow_proxy_auth\": \"<boolean>\",\n  \"log\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b0f006e-7005-444e-b388-25b067bd5c7b",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "proxies",
+                    ":port"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "port",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"port\": \"<integer>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"session\": \"<string>\",\n  \"sticky_ip\": \"<boolean>\",\n  \"rotate_session\": \"<integer>\",\n  \"max_requests\": \"<integer>\",\n  \"allow_proxy_auth\": \"<boolean>\",\n  \"log\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"port\": 2221,\n  \"zone\": \"string\",\n  \"country\": \"string\",\n  \"city\": \"string\",\n  \"session\": \"rand\",\n  \"sticky_ip\": false,\n  \"rotate_session\": 3627,\n  \"max_requests\": 9499,\n  \"allow_proxy_auth\": false,\n  \"log\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c42bd1fa-1bf4-4a58-bac4-185c82beb9f1",
+          "name": "Delete Proxy Port",
+          "request": {
+            "name": "Delete Proxy Port",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "proxies",
+                ":port"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "port",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b226c6f5-da1d-4050-abba-3b724af21520",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "proxies",
+                    ":port"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "port",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d99f362d-1f50-4c14-8d26-3f80c6b323cf",
+          "name": "Ban an IP for Port",
+          "request": {
+            "name": "Ban an IP for Port",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "proxies",
+                ":port",
+                "banip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "port",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ip\": \"<string>\",\n  \"ttl_ms\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "306811a0-aab2-4662-b95c-aa4c50fe114a",
+              "name": "Banned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "proxies",
+                    ":port",
+                    "banip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "port",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ip\": \"<string>\",\n  \"ttl_ms\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fbe0691-397c-4530-bdf1-3691ca7f62d2",
+          "name": "Refresh IPs",
+          "request": {
+            "name": "Refresh IPs",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "refresh_ips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"zone\": \"<string>\",\n  \"ips\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8143bf07-3915-4c59-8967-11c60601c065",
+              "name": "Refresh started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "refresh_ips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"ips\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "09b0c934-90c6-4fe2-b90b-5c92a02f6fcc",
+      "name": "Zones",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "08231ca0-3f04-47af-a8e2-953b57f6bf3d",
+          "name": "List Zones",
+          "request": {
+            "name": "List Zones",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad07c391-36c1-48dd-a55f-464d10565785",
+              "name": "Zones configured in the Proxy Manager.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  {\n    \"key_0\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "93093fe8-3615-4dc1-b32e-6392f9f2c4b1",
+      "name": "Tokens",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a665132-8fa1-4651-a8eb-37b8606310f7",
+          "name": "Generate Proxy Manager Token",
+          "request": {
+            "name": "Generate Proxy Manager Token",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "gen_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d240bfa-4fdf-4d4e-a4b7-3a7131fba8d8",
+              "name": "New token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "gen_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:22999",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cfb03735-79ba-4ec0-9b9f-19d38a66cabe",
+    "name": "Bright Data Proxy Manager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Local self-hosted REST control plane for the Bright Data Proxy Manager. The Proxy Manager runs\non `localhost:22999` by default and exposes endpoints to create and configure proxy ports, ban\nmisbehaving IPs, refresh pools, read zone configuration, and manage SSL/logging/statistics.\n\n\nContact Support:\n Name: Bright Data",
+      "type": "text/plain"
+    }
+  }
+}

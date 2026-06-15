@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Proxy Manager API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Proxies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Proxy Ports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:22999/api/proxies"
+          },
+          "docs": "List Proxy Ports"
+        },
+        {
+          "info": {
+            "name": "Create Proxy Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:22999/api/proxies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Proxy Port"
+        },
+        {
+          "info": {
+            "name": "Get Proxy Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:22999/api/proxies/:port",
+            "params": [
+              {
+                "name": "port",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Proxy Port"
+        },
+        {
+          "info": {
+            "name": "Update Proxy Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:22999/api/proxies/:port",
+            "params": [
+              {
+                "name": "port",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Proxy Port"
+        },
+        {
+          "info": {
+            "name": "Delete Proxy Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:22999/api/proxies/:port",
+            "params": [
+              {
+                "name": "port",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Proxy Port"
+        },
+        {
+          "info": {
+            "name": "Ban an IP for Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:22999/api/proxies/:port/banip",
+            "params": [
+              {
+                "name": "port",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ban an IP for Port"
+        },
+        {
+          "info": {
+            "name": "Refresh IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:22999/api/refresh_ips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refresh IPs"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Zones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:22999/api/zones"
+          },
+          "docs": "List Zones"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Proxy Manager Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:22999/api/gen_token"
+          },
+          "docs": "Generate Proxy Manager Token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,398 @@
+{
+  "info": {
+    "_postman_id": "e151e979-52fd-48f9-bb1b-71b6348734a3",
+    "name": "Bright Data Web Unlocker API",
+    "description": "Web Unlocker is a single-endpoint unblocking service. Submit any target URL and Bright Data\nhandles residential proxy selection, JavaScript rendering, CAPTCHA solving, fingerprint\nmanagement, and anti-bot evasion, returning the fully rendered response. Supports both\nsynchronous (one-shot) and asynchronous (submit + poll) modes.\n\nAuthentication uses a Bearer API token. Successful requests only \u2014 failed unlocks are not billed.\n\n\nContact Support:\n Name: Bright Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:56.000Z",
+    "updatedAt": "2026-06-05T15:05:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e151e979-52fd-48f9-bb1b-71b6348734a3"
+  },
+  "item": [
+    {
+      "name": "request",
+      "item": [
+        {
+          "name": "Unlock a URL (Synchronous)",
+          "id": "b10b4d94-40ab-48f6-8cbb-4eb4384908e9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"format\": \"json\",\n  \"method\": \"GET\",\n  \"data\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/request",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "request"
+              ]
+            },
+            "description": "Submit a URL for synchronous unblocking. Bright Data returns the rendered response (HTML,\nJSON, or raw bytes) once the page is unlocked. Use the asynchronous endpoints for long-running\ntargets or batch flows.\n"
+          },
+          "response": [
+            {
+              "id": "2cbdf133-f311-4ab0-b09d-16bfae66a750",
+              "name": "Unlocked response.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"format\": \"json\",\n  \"method\": \"GET\",\n  \"data\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/request",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "request"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"quie\": true\n}",
+              "createdAt": "2026-06-05T15:05:56.000Z",
+              "updatedAt": "2026-06-05T15:05:56.000Z",
+              "uid": "35240-2cbdf133-f311-4ab0-b09d-16bfae66a750"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:56.000Z",
+          "updatedAt": "2026-06-05T15:05:56.000Z",
+          "uid": "35240-b10b4d94-40ab-48f6-8cbb-4eb4384908e9"
+        }
+      ],
+      "id": "8f947b8c-e8b1-475d-8d43-6b1ce1a5621b",
+      "createdAt": "2026-06-05T15:05:56.000Z",
+      "updatedAt": "2026-06-05T15:05:56.000Z",
+      "uid": "35240-8f947b8c-e8b1-475d-8d43-6b1ce1a5621b"
+    },
+    {
+      "name": "unblocker",
+      "item": [
+        {
+          "name": "req",
+          "item": [
+            {
+              "name": "Submit Asynchronous Unlock Request",
+              "id": "69b97a06-a552-43cd-a03c-9968289bbc21",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"response_id\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"format\": \"raw\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/unblocker/req",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "unblocker",
+                    "req"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9081aa27-f47f-4208-b48c-3180ae5f0a6f",
+                  "name": "Submitted.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"response_id\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"format\": \"raw\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/unblocker/req",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unblocker",
+                        "req"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response_id\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:56.000Z",
+                  "updatedAt": "2026-06-05T15:05:56.000Z",
+                  "uid": "35240-9081aa27-f47f-4208-b48c-3180ae5f0a6f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:56.000Z",
+              "updatedAt": "2026-06-05T15:05:56.000Z",
+              "uid": "35240-69b97a06-a552-43cd-a03c-9968289bbc21"
+            }
+          ],
+          "id": "90151fc5-ebaf-4a51-ad26-cb862b7fa071",
+          "createdAt": "2026-06-05T15:05:56.000Z",
+          "updatedAt": "2026-06-05T15:05:56.000Z",
+          "uid": "35240-90151fc5-ebaf-4a51-ad26-cb862b7fa071"
+        },
+        {
+          "name": "get_result",
+          "item": [
+            {
+              "name": "Get Asynchronous Unlock Result",
+              "id": "b9b06705-f8f4-4044-b569-3a69c6d0fb24",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/unblocker/get_result?response_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "unblocker",
+                    "get_result"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "response_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4c51631b-6630-4537-b4e9-90f6e3ff2bed",
+                  "name": "Result.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/unblocker/get_result?response_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unblocker",
+                        "get_result"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "response_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"ready\",\n  \"result\": {\n    \"id1b\": -86074367,\n    \"quis747\": true\n  },\n  \"status_code\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:05:56.000Z",
+                  "updatedAt": "2026-06-05T15:05:56.000Z",
+                  "uid": "35240-4c51631b-6630-4537-b4e9-90f6e3ff2bed"
+                },
+                {
+                  "id": "e042475f-dec1-4042-a2b1-1e33e9607dc2",
+                  "name": "Not yet ready.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/unblocker/get_result?response_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "unblocker",
+                        "get_result"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "response_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:05:56.000Z",
+                  "updatedAt": "2026-06-05T15:05:56.000Z",
+                  "uid": "35240-e042475f-dec1-4042-a2b1-1e33e9607dc2"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:56.000Z",
+              "updatedAt": "2026-06-05T15:05:56.000Z",
+              "uid": "35240-b9b06705-f8f4-4044-b569-3a69c6d0fb24"
+            }
+          ],
+          "id": "545542f9-4c71-4909-a8f8-106c83866e2c",
+          "createdAt": "2026-06-05T15:05:56.000Z",
+          "updatedAt": "2026-06-05T15:05:56.000Z",
+          "uid": "35240-545542f9-4c71-4909-a8f8-106c83866e2c"
+        }
+      ],
+      "id": "d0b15c82-b627-4fd5-8a9b-ba99c5eee210",
+      "createdAt": "2026-06-05T15:05:56.000Z",
+      "updatedAt": "2026-06-05T15:05:56.000Z",
+      "uid": "35240-d0b15c82-b627-4fd5-8a9b-ba99c5eee210"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.brightdata.com"
+    }
+  ]
+}

@@ -1,0 +1,1063 @@
+{
+  "item": [
+    {
+      "id": "7974f229-2a77-4451-abeb-586a06b10083",
+      "name": "Scrape",
+      "description": {
+        "content": "Trigger and monitor asynchronous scraping jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2914cc29-be61-480f-8fc2-5500227bdbb9",
+          "name": "Trigger a Web Scraper Job",
+          "request": {
+            "name": "Trigger a Web Scraper Job",
+            "description": {
+              "content": "Trigger an asynchronous scraping job against a Bright Data dataset. Pass the `dataset_id` of\nthe target collector and the per-record input payload as a JSON array. Returns a `snapshot_id`\nused to poll progress and download results.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "scrape"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataset_id",
+                  "value": "<string>",
+                  "description": "(Required) Bright Data dataset identifier (e.g. `gd_l1viktl72bvl7bjuj0`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_errors",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "notify",
+                  "value": "<uri>",
+                  "description": "Webhook URL Bright Data calls when the snapshot completes."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit_per_input",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit_multiple_results",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"key_0\": \"string\"\n  },\n  {\n    \"key_0\": 6812.015303472582,\n    \"key_1\": \"string\",\n    \"key_2\": false,\n    \"key_3\": 3888,\n    \"key_4\": false\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "daac126b-12af-4b71-b47c-d19c32245e34",
+              "name": "Job submitted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "scrape"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataset_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_errors",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "notify",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit_per_input",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit_multiple_results",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key_0\": 8270.807905108113\n  },\n  {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"snapshot_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5715f28-5b2e-4d62-ab00-2f90ecafc6d9",
+          "name": "Get Scrape Progress",
+          "request": {
+            "name": "Get Scrape Progress",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "progress",
+                ":snapshot_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3ba555f-2d01-413a-aedd-84ab642e60d3",
+              "name": "Progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "progress",
+                    ":snapshot_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"collecting\",\n  \"records\": 7824,\n  \"errors\": 2952\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73d541c3-54b1-4261-aa9f-12af942bb587",
+          "name": "List Available Datasets",
+          "request": {
+            "name": "List Available Datasets",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f196bbb-7764-436f-a5d7-512bba14d248",
+              "name": "List of datasets the caller is entitled to query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8bbcd8f1-0986-45cc-957d-f88217a01b2d",
+      "name": "Snapshots",
+      "description": {
+        "content": "List, download, cancel, and rerun snapshots produced by scraping jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f2318e7-5a53-4ae5-b2b3-a0187ef76d49",
+          "name": "Get Snapshot Log",
+          "request": {
+            "name": "Get Snapshot Log",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "log",
+                ":snapshot_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdcb60fa-dccb-48b8-b8d9-0e276b5bb9af",
+              "name": "Snapshot log.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "log",
+                    ":snapshot_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8cee783a-d276-4162-ba32-e3bcd9acdc7c",
+          "name": "List Snapshots",
+          "request": {
+            "name": "List Snapshots",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "snapshots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataset_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14002b88-a1a3-48c4-91f0-ad73e6390b39",
+              "name": "Snapshots.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataset_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"dataset_id\": \"string\",\n    \"status\": \"string\",\n    \"created\": \"2015-06-24T06:39:42.228Z\",\n    \"dataset_size\": 5478,\n    \"records\": 7264,\n    \"errors\": 6797\n  },\n  {\n    \"id\": \"string\",\n    \"dataset_id\": \"string\",\n    \"status\": \"string\",\n    \"created\": \"1950-08-26T01:57:07.999Z\",\n    \"dataset_size\": 3685,\n    \"records\": 6077,\n    \"errors\": 5040\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "003ee875-9a45-4c8a-b916-e7058575812c",
+          "name": "Cancel a Snapshot",
+          "request": {
+            "name": "Cancel a Snapshot",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "snapshot",
+                ":snapshot_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2dc39021-a68a-4ffc-ac92-edba2f94d691",
+              "name": "Cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "snapshot",
+                    ":snapshot_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5e4259a-f495-45e9-aa05-e53ea46d5d74",
+          "name": "Rerun a Snapshot",
+          "request": {
+            "name": "Rerun a Snapshot",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "snapshot",
+                ":snapshot_id",
+                "rerun"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba9ac202-c887-422a-ac1a-d7b5dae22c18",
+              "name": "Snapshot rerun started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "snapshot",
+                    ":snapshot_id",
+                    "rerun"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"snapshot_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f49ae8b-d638-43ea-b14c-606fa7619217",
+          "name": "Download Snapshot Results",
+          "request": {
+            "name": "Download Snapshot Results",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "snapshot",
+                ":snapshot_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "compress",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "part",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5aac5cf-716b-4603-84ed-63320fe3178f",
+              "name": "Snapshot data (up to 5 GB per request).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "snapshot",
+                    ":snapshot_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "compress",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "batch_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "part",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fcfc671a-ac83-445e-a3fd-62ea54f0018e",
+      "name": "Delivery",
+      "description": {
+        "content": "Deliver snapshots to cloud storage destinations or webhooks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f670384-fecf-45e9-9e4d-b091cc51e8c6",
+          "name": "Deliver Snapshot to Cloud Storage",
+          "request": {
+            "name": "Deliver Snapshot to Cloud Storage",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "snapshot",
+                ":snapshot_id",
+                "deliver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deliver\": {\n    \"type\": \"<string>\",\n    \"filename\": \"<object>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": 985\n    }\n  },\n  \"format\": \"<string>\",\n  \"compress\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd46f94e-5210-4924-9636-06a2acc95e47",
+              "name": "Delivery scheduled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "snapshot",
+                    ":snapshot_id",
+                    "deliver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deliver\": {\n    \"type\": \"<string>\",\n    \"filename\": \"<object>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": 6485\n    }\n  },\n  \"format\": \"<string>\",\n  \"compress\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brightdata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d75f5b90-87ec-43cf-abfd-1f4efa5211a7",
+    "name": "Bright Data Web Scraper API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Bright Data's Web Scraper API exposes asynchronous scraping jobs (snapshots) backed by 660+\npre-built dataset endpoints plus custom collectors. Trigger a scrape, poll progress, list snapshots,\ncancel or rerun, and download results in JSON, NDJSON, CSV, or JSONL — optionally compressed.\nSnapshots can be pushed to S3, Azure Blob, GCS, Snowflake, or a webhook.\n\nAuthentication uses a Bearer API token issued from the Bright Data control panel.\n\n\nContact Support:\n Name: Bright Data",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,372 @@
+{
+  "item": [
+    {
+      "id": "c08cf3e4-5dbc-47e8-9e8c-fae845e29040",
+      "name": "Unlock",
+      "description": {
+        "content": "Submit and retrieve unlock requests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd223d8d-6769-467a-a8e5-cc1f79e2e30c",
+          "name": "Unlock a URL (Synchronous)",
+          "request": {
+            "name": "Unlock a URL (Synchronous)",
+            "description": {
+              "content": "Submit a URL for synchronous unblocking. Bright Data returns the rendered response (HTML,\nJSON, or raw bytes) once the page is unlocked. Use the asynchronous endpoints for long-running\ntargets or batch flows.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"format\": \"<string>\",\n  \"method\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da08f0cc-4734-489b-a2d1-ee496ee6cd28",
+              "name": "Unlocked response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"format\": \"<string>\",\n  \"method\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 6552.354793658614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7ce4d65-6b36-4560-a49e-ef736d0b4713",
+          "name": "Submit Asynchronous Unlock Request",
+          "request": {
+            "name": "Submit Asynchronous Unlock Request",
+            "description": {},
+            "url": {
+              "path": [
+                "unblocker",
+                "req"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"response_id\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d72c1407-1064-4b2a-94ab-764b9b6f192b",
+              "name": "Submitted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unblocker",
+                    "req"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"response_id\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1bed7674-2e56-4217-8450-294e55010295",
+          "name": "Get Asynchronous Unlock Result",
+          "request": {
+            "name": "Get Asynchronous Unlock Result",
+            "description": {},
+            "url": {
+              "path": [
+                "unblocker",
+                "get_result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "response_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45b40d16-7837-4917-ba4d-e96109eb3dea",
+              "name": "Result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unblocker",
+                    "get_result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "response_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ready\",\n  \"result\": {\n    \"key_0\": true\n  },\n  \"status_code\": 9884\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ffeb7d3-8678-4f42-84eb-8c2e988b7875",
+              "name": "Not yet ready.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unblocker",
+                    "get_result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "response_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brightdata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ed12b002-fba8-4583-a14d-1e308933f7d4",
+    "name": "Bright Data Web Unlocker API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Web Unlocker is a single-endpoint unblocking service. Submit any target URL and Bright Data\nhandles residential proxy selection, JavaScript rendering, CAPTCHA solving, fingerprint\nmanagement, and anti-bot evasion, returning the fully rendered response. Supports both\nsynchronous (one-shot) and asynchronous (submit + poll) modes.\n\nAuthentication uses a Bearer API token. Successful requests only — failed unlocks are not billed.\n\n\nContact Support:\n Name: Bright Data",
+      "type": "text/plain"
+    }
+  }
+}

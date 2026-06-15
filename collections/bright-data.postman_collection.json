@@ -1,0 +1,20 @@
+{
+  "item": [],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brightdata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "281af4f8-b6cb-422f-b290-069ca4e510f7",
+    "name": "Bright Data API (Index)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This file is a stub. Bright Data's API surface is profiled across multiple per-product OpenAPI\nspecs in this directory. Use the per-API spec instead:\n\n- Web Unlocker      → bright-data-web-unlocker-api-openapi.yml\n- SERP              → bright-data-serp-api-openapi.yml\n- Web Scraper       → bright-data-web-scraper-api-openapi.yml\n- Scraping Browser  → bright-data-scraping-browser-api-openapi.yml\n- Deep Lookup       → bright-data-deep-lookup-api-openapi.yml\n- Web Archive       → bright-data-web-archive-api-openapi.yml\n- Dataset Marketplace → bright-data-dataset-marketplace-api-openapi.yml\n- Account Management → bright-data-account-management-api-openapi.yml\n- Proxy Manager     → bright-data-proxy-manager-api-openapi.yml\n- Scraping Shield   → bright-data-scraping-shield-api-openapi.yml\n",
+      "type": "text/plain"
+    }
+  }
+}
