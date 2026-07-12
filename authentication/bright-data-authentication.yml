@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bright-data-account-management-api-openapi.yml, openapi/bright-data-dataset-marketplace-api-openapi.yml,
+  openapi/bright-data-deep-lookup-api-openapi.yml, openapi/bright-data-scraping-browser-api-openapi.yml,
+  openapi/bright-data-scraping-shield-api-openapi.yml, openapi/bright-data-serp-api-openapi.yml,
+  openapi/bright-data-web-archive-api-openapi.yml, openapi/bright-data-web-scraper-api-openapi.yml,
+  openapi/bright-data-web-unlocker-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/bright-data-account-management-api-openapi.yml
+  - openapi/bright-data-dataset-marketplace-api-openapi.yml
+  - openapi/bright-data-deep-lookup-api-openapi.yml
+  - openapi/bright-data-scraping-browser-api-openapi.yml
+  - openapi/bright-data-scraping-shield-api-openapi.yml
+  - openapi/bright-data-serp-api-openapi.yml
+  - openapi/bright-data-web-archive-api-openapi.yml
+  - openapi/bright-data-web-scraper-api-openapi.yml
+  - openapi/bright-data-web-unlocker-api-openapi.yml
