@@ -5,10 +5,12 @@
       "source": "https://brightdata.com/blog",
       "feed_url": "https://brightdata.com/blog",
       "title": "Bright Data Blog",
-      "saved": 1,
-      "method": "html"
+      "saved": 0,
+      "method": "html",
+      "note": "listing has no dates; skipped to avoid false positives",
+      "error": "parse_failed"
     }
   ],
   "post_count": 2,
-  "fetched": "2026-06-21T17:00:00Z"
+  "fetched": "2026-07-11T11:43:46Z"
 }
