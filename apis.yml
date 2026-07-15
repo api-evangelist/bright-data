@@ -225,6 +225,8 @@ apis:
       LangChain, LangGraph, LlamaIndex, CrewAI, n8n, Google ADK, NVIDIA NeMo, and Cloudflare Agents. Available as a
       hosted endpoint (5,000 free requests/month), self-hosted, and remote.
 common:
+  - type: AgenticAccess
+    url: agentic-access/bright-data-agentic-access.yml
   - type: DomainSecurity
     url: security/bright-data-domain-security.yml
   - type: Authentication
