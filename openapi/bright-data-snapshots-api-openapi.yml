@@ -1,0 +1,223 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Account Management Access Snapshots API
+  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+
+    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+
+    '
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+- url: https://api.brightdata.com
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Snapshots
+paths:
+  /datasets/snapshots/{snapshot_id}:
+    parameters:
+    - name: snapshot_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get Dataset Snapshot
+      operationId: getDatasetSnapshot
+      tags:
+      - Snapshots
+      parameters:
+      - name: format
+        in: query
+        schema:
+          type: string
+          enum:
+          - json
+          - ndjson
+          - csv
+          - parquet
+      responses:
+        '200':
+          description: Snapshot rows.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+  /datasets/v3/log/{snapshot_id}:
+    parameters:
+    - name: snapshot_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get Snapshot Log
+      operationId: getSnapshotLog
+      tags:
+      - Snapshots
+      responses:
+        '200':
+          description: Snapshot log.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /datasets/v3/snapshots:
+    get:
+      summary: List Snapshots
+      operationId: listSnapshots
+      tags:
+      - Snapshots
+      parameters:
+      - name: dataset_id
+        in: query
+        schema:
+          type: string
+      - name: from_date
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: to_date
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: status
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Snapshots.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Snapshot'
+  /datasets/v3/snapshot/{snapshot_id}/cancel:
+    parameters:
+    - name: snapshot_id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Cancel a Snapshot
+      operationId: cancelSnapshot
+      tags:
+      - Snapshots
+      responses:
+        '200':
+          description: Cancelled.
+          content:
+            application/json:
+              schema:
+                type: object
+  /datasets/v3/snapshot/{snapshot_id}/rerun:
+    parameters:
+    - name: snapshot_id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Rerun a Snapshot
+      operationId: rerunSnapshot
+      tags:
+      - Snapshots
+      responses:
+        '200':
+          description: Snapshot rerun started.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  snapshot_id:
+                    type: string
+  /datasets/v3/snapshot/{snapshot_id}:
+    parameters:
+    - name: snapshot_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Download Snapshot Results
+      operationId: downloadSnapshot
+      tags:
+      - Snapshots
+      parameters:
+      - name: format
+        in: query
+        schema:
+          type: string
+          enum:
+          - json
+          - ndjson
+          - csv
+          - jsonl
+      - name: compress
+        in: query
+        schema:
+          type: boolean
+      - name: batch_size
+        in: query
+        schema:
+          type: integer
+      - name: part
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Snapshot data (up to 5 GB per request).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+            text/csv:
+              schema:
+                type: string
+            application/x-ndjson:
+              schema:
+                type: string
+components:
+  schemas:
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: string
+        dataset_id:
+          type: string
+        status:
+          type: string
+        created:
+          type: string
+          format: date-time
+        dataset_size:
+          type: integer
+        records:
+          type: integer
+        errors:
+          type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

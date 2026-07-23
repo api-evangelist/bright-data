@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Account Management Access API
+  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+
+    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+
+    '
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+- url: https://api.brightdata.com
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Access
+paths:
+  /zone/whitelist:
+    post:
+      summary: Add IPs to Zone Whitelist
+      operationId: addWhitelist
+      tags:
+      - Access
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - zone
+              - ip
+              properties:
+                zone:
+                  type: string
+                ip:
+                  type: string
+      responses:
+        '200':
+          description: Whitelist updated.
+          content:
+            application/json:
+              schema:
+                type: object
+  /zone/blacklist:
+    post:
+      summary: Add to Zone Blacklist
+      operationId: addBlacklist
+      tags:
+      - Access
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - zone
+              - ip
+              properties:
+                zone:
+                  type: string
+                ip:
+                  type: string
+      responses:
+        '200':
+          description: Blacklist updated.
+          content:
+            application/json:
+              schema:
+                type: object
+  /zone/domain_perm:
+    get:
+      summary: Get Zone Domain Permissions
+      operationId: getDomainPermissions
+      tags:
+      - Access
+      parameters:
+      - name: zone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Domain permission entries.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

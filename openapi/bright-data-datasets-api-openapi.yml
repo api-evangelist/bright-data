@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Account Management Access Datasets API
+  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+
+    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+
+    '
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+- url: https://api.brightdata.com
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Datasets
+paths:
+  /datasets:
+    get:
+      summary: List Marketplace Datasets
+      operationId: listMarketplaceDatasets
+      tags:
+      - Datasets
+      responses:
+        '200':
+          description: Datasets entitled to the caller.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    schema_url:
+                      type: string
+                      format: uri
+                    record_count:
+                      type: integer
+                    refresh_cadence:
+                      type: string
+  /datasets/{dataset_id}/metadata:
+    parameters:
+    - name: dataset_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get Dataset Metadata
+      operationId: getDatasetMetadata
+      tags:
+      - Datasets
+      responses:
+        '200':
+          description: Dataset metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

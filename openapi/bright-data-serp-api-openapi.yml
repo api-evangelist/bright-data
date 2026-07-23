@@ -1,68 +1,97 @@
 openapi: 3.1.0
 info:
-  title: Bright Data SERP API
-  description: |
-    Real-time search-engine results for Google, Bing, Yandex, and DuckDuckGo across 31 languages and
-    195 countries. Supports organic, news, images, videos, shopping, jobs, hotels, flights, lens,
-    trends, reviews, maps, and AI Overview result types.
+  title: Bright Data Account Management Access SERP API
+  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
 
-    Two access modes: asynchronous via `POST /serp/req` + `GET /serp/get_result`, or synchronous via
-    Bright Data's proxy on port 33335. All calls require a Bearer API token. Pay only for successful
-    requests.
+    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+
+    '
   version: '1.0'
   contact:
     name: Bright Data
     url: https://docs.brightdata.com
 servers:
-  - url: https://api.brightdata.com
-    description: REST
-  - url: https://brd.superproxy.io:33335
-    description: Proxy (Synchronous)
+- url: https://api.brightdata.com
+  description: Production
 security:
-  - BearerAuth: []
+- BearerAuth: []
 tags:
-  - name: SERP
-    description: Submit and retrieve SERP requests.
+- name: SERP
+  description: Submit and retrieve SERP requests.
 paths:
   /serp/req:
     post:
       summary: Submit Asynchronous SERP Request
       operationId: submitSerpRequest
-      tags: [SERP]
+      tags:
+      - SERP
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [zone, url]
+              required:
+              - zone
+              - url
               properties:
-                zone: { type: string }
-                url: { type: string, format: uri, description: 'Constructed search-engine URL (e.g. https://www.google.com/search?q=pizza).' }
-                country: { type: string }
-                language: { type: string }
-                device: { type: string, enum: [desktop, mobile, tablet] }
-                browser: { type: string, enum: [chrome, firefox, safari] }
-                format: { type: string, enum: [json, raw, html] }
-                callback_url: { type: string, format: uri }
+                zone:
+                  type: string
+                url:
+                  type: string
+                  format: uri
+                  description: Constructed search-engine URL (e.g. https://www.google.com/search?q=pizza).
+                country:
+                  type: string
+                language:
+                  type: string
+                device:
+                  type: string
+                  enum:
+                  - desktop
+                  - mobile
+                  - tablet
+                browser:
+                  type: string
+                  enum:
+                  - chrome
+                  - firefox
+                  - safari
+                format:
+                  type: string
+                  enum:
+                  - json
+                  - raw
+                  - html
+                callback_url:
+                  type: string
+                  format: uri
       responses:
-        "200":
+        '200':
           description: Submitted.
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  response_id: { type: string }
+                  response_id:
+                    type: string
   /serp/get_result:
     get:
       summary: Get Asynchronous SERP Result
       operationId: getSerpResult
-      tags: [SERP]
+      tags:
+      - SERP
       parameters:
-        - { name: response_id, in: query, required: true, schema: { type: string } }
+      - name: response_id
+        in: query
+        required: true
+        schema:
+          type: string
       responses:
-        "200":
+        '200':
           description: Parsed SERP payload.
           content:
             application/json:
@@ -71,22 +100,35 @@ paths:
                 properties:
                   organic:
                     type: array
-                    items: { type: object, additionalProperties: true }
+                    items:
+                      type: object
+                      additionalProperties: true
                   ads:
                     type: array
-                    items: { type: object, additionalProperties: true }
+                    items:
+                      type: object
+                      additionalProperties: true
                   related:
                     type: array
-                    items: { type: object, additionalProperties: true }
-                  ai_overview: { type: object, additionalProperties: true }
-                  knowledge: { type: object, additionalProperties: true }
+                    items:
+                      type: object
+                      additionalProperties: true
+                  ai_overview:
+                    type: object
+                    additionalProperties: true
+                  knowledge:
+                    type: object
+                    additionalProperties: true
                   general:
                     type: object
                     properties:
-                      query: { type: string }
-                      language: { type: string }
-                      country: { type: string }
-        "202":
+                      query:
+                        type: string
+                      language:
+                        type: string
+                      country:
+                        type: string
+        '202':
           description: Not yet ready.
 components:
   securitySchemes:

@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Account Management Access Tokens API
+  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+
+    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+
+    '
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+- url: https://api.brightdata.com
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Tokens
+paths:
+  /api/gen_token:
+    get:
+      summary: Generate Proxy Manager Token
+      operationId: genToken
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: New token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

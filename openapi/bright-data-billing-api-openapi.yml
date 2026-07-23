@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Account Management Access Billing API
+  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+
+    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+
+    '
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+- url: https://api.brightdata.com
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Billing
+paths:
+  /customer/balance:
+    get:
+      summary: Get Customer Balance
+      operationId: getCustomerBalance
+      tags:
+      - Billing
+      responses:
+        '200':
+          description: Account balance.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: number
+                  currency:
+                    type: string
+                  pending:
+                    type: number
+  /zone/bw:
+    get:
+      summary: Get Zone Bandwidth Usage
+      operationId: getZoneBandwidth
+      tags:
+      - Billing
+      parameters:
+      - name: zone
+        in: query
+        schema:
+          type: string
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Bandwidth usage.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

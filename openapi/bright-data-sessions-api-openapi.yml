@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Account Management Access Sessions API
+  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+
+    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+
+    '
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+- url: https://api.brightdata.com
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Sessions
+  description: Inspect active Scraping Browser sessions.
+paths:
+  /browser_sessions:
+    get:
+      summary: List Browser Sessions
+      operationId: listBrowserSessions
+      tags:
+      - Sessions
+      parameters:
+      - name: zone
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - active
+          - closed
+      responses:
+        '200':
+          description: Sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    session_id:
+                      type: string
+                    zone:
+                      type: string
+                    status:
+                      type: string
+                    started:
+                      type: string
+                      format: date-time
+                    duration_ms:
+                      type: integer
+                    pages:
+                      type: integer
+                    bytes:
+                      type: integer
+  /browser_sessions/{session_id}:
+    parameters:
+    - name: session_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get Browser Session
+      operationId: getBrowserSession
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: Session detail.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                  zone:
+                    type: string
+                  status:
+                    type: string
+                  started:
+                    type: string
+                    format: date-time
+                  duration_ms:
+                    type: integer
+                  pages:
+                    type: integer
+                  bytes:
+                    type: integer
+                  events:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Account Management Access Scrape API
+  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+
+    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+
+    '
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+- url: https://api.brightdata.com
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Scrape
+  description: Trigger and monitor asynchronous scraping jobs.
+paths:
+  /datasets/v3/scrape:
+    post:
+      summary: Trigger a Web Scraper Job
+      description: 'Trigger an asynchronous scraping job against a Bright Data dataset. Pass the `dataset_id` of
+
+        the target collector and the per-record input payload as a JSON array. Returns a `snapshot_id`
+
+        used to poll progress and download results.
+
+        '
+      operationId: triggerScrape
+      tags:
+      - Scrape
+      parameters:
+      - name: dataset_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Bright Data dataset identifier (e.g. `gd_l1viktl72bvl7bjuj0`).
+      - name: include_errors
+        in: query
+        schema:
+          type: boolean
+      - name: notify
+        in: query
+        schema:
+          type: string
+          format: uri
+        description: Webhook URL Bright Data calls when the snapshot completes.
+      - name: format
+        in: query
+        schema:
+          type: string
+          enum:
+          - json
+          - ndjson
+          - csv
+          - jsonl
+      - name: limit_per_input
+        in: query
+        schema:
+          type: integer
+      - name: limit_multiple_results
+        in: query
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+      responses:
+        '200':
+          description: Job submitted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  snapshot_id:
+                    type: string
+  /datasets/v3/progress/{snapshot_id}:
+    parameters:
+    - name: snapshot_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get Scrape Progress
+      operationId: getScrapeProgress
+      tags:
+      - Scrape
+      responses:
+        '200':
+          description: Progress.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                    - running
+                    - ready
+                    - failed
+                    - building
+                    - collecting
+                    - cancelled
+                  records:
+                    type: integer
+                  errors:
+                    type: integer
+  /datasets:
+    get:
+      summary: List Available Datasets
+      operationId: listDatasets
+      tags:
+      - Scrape
+      responses:
+        '200':
+          description: List of datasets the caller is entitled to query.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
