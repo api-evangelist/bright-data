@@ -16,214 +16,647 @@ tags:
   - MCP
   - AI Agents
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bright-data.png
 access: 3rd-Party
 x-type: company
 apis:
-  - aid: bright-data:web-unlocker-api
-    name: Bright Data Web Unlocker API
-    tags:
-      - Web Unlocker
-      - Unblocking
-      - Anti-Bot
-      - CAPTCHA
-    humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
-    properties:
-      - url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
-        type: Documentation
-      - url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
-        type: Documentation
-      - url: openapi/bright-data-web-unlocker-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Single-endpoint web unblocking with a 98%+ success rate. Send any URL, Bright Data handles residential proxy
-      selection, JavaScript rendering, CAPTCHA solving, fingerprint spoofing, and anti-bot evasion, returning the fully
-      rendered page. Supports both synchronous and asynchronous modes via `/unblocker/req` with `/unblocker/get_result`
-      for polling. Pay only for successful requests.
-  - aid: bright-data:serp-api
-    name: Bright Data SERP API
-    tags:
-      - SERP
-      - Search
-      - Google
-      - Bing
-    humanURL: https://docs.brightdata.com/scraping-automation/serp-api/introduction
-    properties:
-      - url: https://docs.brightdata.com/scraping-automation/serp-api/introduction
-        type: Documentation
-      - url: https://docs.brightdata.com/scraping-automation/serp-api/send-your-first-request
-        type: Documentation
-      - url: openapi/bright-data-serp-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Real-time SERP data from Google, Bing, Yandex, and DuckDuckGo across 31 languages and 195 countries. Supports
-      organic, news, images, videos, shopping, jobs, hotels, flights, lens, trends, reviews, maps, and AI Overview
-      result types. Submit asynchronous requests via `/serp/req` and poll `/serp/get_result`, or stream synchronously
-      over the proxy on port 33335. Geolocation, device, browser, pagination, and localization parameters supported.
-  - aid: bright-data:web-scraper-api
-    name: Bright Data Web Scraper API
-    tags:
-      - Web Scraping
-      - Datasets
-      - Structured Data
-    humanURL: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
-    properties:
-      - url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
-        type: Documentation
-      - url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
-        type: Documentation
-      - url: openapi/bright-data-web-scraper-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/bright-data-snapshot-schema.json
-        type: JSONSchema
-    description: >-
-      Asynchronous snapshot-based scraping over 660+ pre-built dataset endpoints (Amazon, Walmart, LinkedIn, Instagram,
-      TikTok, YouTube, Reddit, Google Maps, Airbnb, Booking, Zillow, and many more) plus custom collectors. Trigger via
-      `POST /datasets/v3/scrape`, poll `/datasets/v3/progress/{snapshot_id}`, and download via
-      `/datasets/v3/snapshot/{snapshot_id}`. Returns JSON, NDJSON, CSV, or Parquet; supports direct delivery to S3,
-      Azure Blob, GCS, Snowflake, and webhooks.
-  - aid: bright-data:scraping-browser-api
-    name: Bright Data Scraping Browser API
-    tags:
-      - Browser Automation
-      - Headless Browser
-      - Puppeteer
-      - Playwright
-      - Selenium
-    humanURL: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
-    properties:
-      - url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
-        type: Documentation
-      - url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
-        type: Documentation
-      - url: openapi/bright-data-scraping-browser-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Fully managed remote Chromium browsers driven over CDP/WebSocket from Puppeteer, Playwright, or Selenium. Each
-      session ships with built-in unlocker logic, residential proxy egress, CAPTCHA solving, and fingerprint management
-      so JavaScript-heavy and interactive flows complete reliably. REST endpoints expose session inventory (`GET
-      /browser_sessions`) for observability and lifecycle inspection.
-  - aid: bright-data:deep-lookup-api
-    name: Bright Data Deep Lookup API
-    tags:
-      - Entity Resolution
-      - People Search
-      - Company Search
-      - Enrichment
-    humanURL: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
-    properties:
-      - url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
-        type: Documentation
-      - url: openapi/bright-data-deep-lookup-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Find companies and professionals across 1,000+ public sources with 95%+ accuracy. Submit a natural-language
-      description or structured query via `POST /trigger`, preview row counts with `/preview`, optimize the query with
-      `/enhance_query`, and enrich existing columns with `/request/{id}/enrich`. Results are downloaded via
-      `/request/{id}/download`. Billed per result.
-  - aid: bright-data:web-archive-api
-    name: Bright Data Web Archive API
-    tags:
-      - Historical Data
-      - Web Archive
-      - Time Series
-    humanURL: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
-    properties:
-      - url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
-        type: Documentation
-      - url: openapi/bright-data-web-archive-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Search and deliver petabyte-scale historical web snapshots across 250+ domains. Submit a query via `POST
-      /webarchive/search`, monitor with `GET /webarchive/search/{search_id}`, list all searches via `GET
-      /webarchive/searches`, and deliver matching corpora to S3/Azure/GCS via `POST /deliver-to-cloud`.
-  - aid: bright-data:dataset-marketplace-api
-    name: Bright Data Dataset Marketplace API
-    tags:
-      - Datasets
-      - Marketplace
-      - Bulk Data
-    humanURL: https://docs.brightdata.com/datasets/marketplace
-    properties:
-      - url: https://docs.brightdata.com/datasets/marketplace
-        type: Documentation
-      - url: openapi/bright-data-dataset-marketplace-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Programmatic access to 350+ ready-to-use datasets across 250+ domains (eCommerce, social, real estate, travel,
-      business). List available datasets via `GET /datasets`, inspect schemas via `GET /datasets/{dataset_id}/metadata`,
-      retrieve snapshots via `GET /datasets/snapshots/{id}`, and push deliveries to S3, Azure, GCS, Snowflake, or
-      webhooks via `POST /datasets/snapshots/{id}/deliver`.
-  - aid: bright-data:account-management-api
-    name: Bright Data Account Management API
-    tags:
-      - Administrative
-      - Zones
-      - Billing
-    humanURL: https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
-    properties:
-      - url: https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
-        type: Documentation
-      - url: openapi/bright-data-account-management-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/bright-data-zone-schema.json
-        type: JSONSchema
-    description: >-
-      Manage Bright Data zones (proxy pools and product entitlements), IP allocations, access control, and billing
-      programmatically. Endpoints include `POST/GET/DELETE /zone`, `/zone/change_disable`, `/zone/ips`
-      (add/remove/refresh/migrate/statistics), `/zone/whitelist`, `/zone/blacklist`, `/zone/domain_perm`, plus
-      `/customer/balance` and `/zone/bw` for balance and bandwidth reporting.
-  - aid: bright-data:proxy-manager-api
-    name: Bright Data Proxy Manager API
-    tags:
-      - Proxy Manager
-      - Local API
-      - Self-Hosted
-    humanURL: https://docs.brightdata.com/proxy-networks/proxy-manager/api
-    properties:
-      - url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
-        type: Documentation
-      - url: openapi/bright-data-proxy-manager-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Local self-hosted REST control plane (port 22999) for the Bright Data Proxy Manager. Programmatically create and
-      configure proxy ports (`/api/proxies`, `/api/proxies/{PORT}`), ban offending IPs (`/api/proxies/{PORT}/banip`),
-      refresh IP pools (`/api/refresh_ips`), and read zone configuration (`/api/zones`). Supports SSL, logging,
-      statistics, and remote upgrade/restart endpoints.
-  - aid: bright-data:scraping-shield-api
-    name: Bright Data Scraping Shield API
-    tags:
-      - Compliance
-      - Domain Classification
-      - Trust and Safety
-    humanURL: https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
-    properties:
-      - url: https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
-        type: Documentation
-      - url: openapi/bright-data-scraping-shield-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Compliance-focused classification API that exposes Bright Data's allowlist/blocklist taxonomy. `GET /shield/class`
-      lists every classification, `/shield/domains_by_class` returns domains by category, `/shield/samples` returns
-      sample classifications, and `/shield/zones_by_class` reports the zones cleared for each class.
-  - aid: bright-data:mcp-server
-    name: Bright Data MCP Server
-    tags:
-      - MCP
-      - Model Context Protocol
-      - AI Agents
-      - Tools
-    humanURL: https://docs.brightdata.com/mcp-server/overview
-    properties:
-      - url: https://docs.brightdata.com/mcp-server/overview
-        type: Documentation
-      - url: https://github.com/brightdata/brightdata-mcp
-        type: SourceCode
-    description: >-
-      Bright Data's Model Context Protocol server exposes 60+ web-access tools (search, scrape, structured extraction,
-      browser automation, datasets) to MCP-compatible clients including Claude Desktop, Claude Code, ChatGPT, Cursor,
-      LangChain, LangGraph, LlamaIndex, CrewAI, n8n, Google ADK, NVIDIA NeMo, and Cloudflare Agents. Available as a
-      hosted endpoint (5,000 free requests/month), self-hosted, and remote.
+- aid: bright-data:serp-api
+  name: Bright Data SERP API
+  tags:
+  - SERP
+  - Search
+  - Google
+  - Bing
+  humanURL: https://docs.brightdata.com/scraping-automation/serp-api/introduction
+  properties:
+  - url: https://docs.brightdata.com/scraping-automation/serp-api/introduction
+    type: Documentation
+  - url: https://docs.brightdata.com/scraping-automation/serp-api/send-your-first-request
+    type: Documentation
+  - url: openapi/bright-data-serp-api-openapi.yml
+    type: OpenAPI
+  description: >-
+    Real-time SERP data from Google, Bing, Yandex, and DuckDuckGo across 31 languages and 195 countries.
+    Supports organic, news, images, videos, shopping, jobs, hotels, flights, lens, trends, reviews, maps,
+    and AI Overview result types. Submit asynchronous requests via `/serp/req` and poll `/serp/get_result`,
+    or stream synchronously over the proxy on port 33335. Geolocation, device, browser, pagination, and
+    localization parameters supported.
+- aid: bright-data:mcp-server
+  name: Bright Data MCP Server
+  tags:
+  - MCP
+  - Model Context Protocol
+  - AI Agents
+  - Tools
+  humanURL: https://docs.brightdata.com/mcp-server/overview
+  properties:
+  - url: https://docs.brightdata.com/mcp-server/overview
+    type: Documentation
+  - url: https://github.com/brightdata/brightdata-mcp
+    type: SourceCode
+  description: >-
+    Bright Data's Model Context Protocol server exposes 60+ web-access tools (search, scrape, structured
+    extraction, browser automation, datasets) to MCP-compatible clients including Claude Desktop, Claude
+    Code, ChatGPT, Cursor, LangChain, LangGraph, LlamaIndex, CrewAI, n8n, Google ADK, NVIDIA NeMo, and
+    Cloudflare Agents. Available as a hosted endpoint (5,000 free requests/month), self-hosted, and remote.
+- aid: bright-data:bright-data-access-api
+  name: Bright Data Access API
+  description: The Access API from Bright Data — 3 operation(s) for access.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Access
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-access-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-archive-api
+  name: Bright Data Archive API
+  description: The Archive API from Bright Data — 4 operation(s) for archive.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Archive
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-archive-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-billing-api
+  name: Bright Data Billing API
+  description: The Billing API from Bright Data — 2 operation(s) for billing.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-billing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-datasets-api
+  name: Bright Data Datasets API
+  description: The Datasets API from Bright Data — 2 operation(s) for datasets.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-datasets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-delivery-api
+  name: Bright Data Delivery API
+  description: The Delivery API from Bright Data — 2 operation(s) for delivery.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Delivery
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-delivery-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-ips-api
+  name: Bright Data IPs API
+  description: The IPs API from Bright Data — 2 operation(s) for ips.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - IPs
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-ips-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-lookup-api
+  name: Bright Data Lookup API
+  description: The Lookup API from Bright Data — 6 operation(s) for lookup.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Lookup
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-lookup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-proxies-api
+  name: Bright Data Proxies API
+  description: The Proxies API from Bright Data — 4 operation(s) for proxies.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Proxies
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-proxies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-scrape-api
+  name: Bright Data Scrape API
+  description: Trigger and monitor asynchronous scraping jobs.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Scrape
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-scrape-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-sessions-api
+  name: Bright Data Sessions API
+  description: Inspect active Scraping Browser sessions.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-shield-api
+  name: Bright Data Shield API
+  description: The Shield API from Bright Data — 4 operation(s) for shield.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Shield
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-shield-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-snapshots-api
+  name: Bright Data Snapshots API
+  description: The Snapshots API from Bright Data — 6 operation(s) for snapshots.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-snapshots-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-tokens-api
+  name: Bright Data Tokens API
+  description: The Tokens API from Bright Data — 1 operation(s) for tokens.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-unlock-api
+  name: Bright Data Unlock API
+  description: Submit and retrieve unlock requests.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Unlock
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-unlock-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-zones-api
+  name: Bright Data Zones API
+  description: The Zones API from Bright Data — 3 operation(s) for zones.
+  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  tags:
+  - Zones
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-zones-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
 common:
   - type: AgenticAccess
     url: agentic-access/bright-data-agentic-access.yml
