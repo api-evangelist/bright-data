@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Bright Data Scraping Shield API
+  description: |
+    Compliance-focused classification API that exposes Bright Data's allowlist/blocklist taxonomy.
+    Use Scraping Shield to confirm whether a domain falls into a supported classification, retrieve
+    sample classifications, and inspect which zones are cleared for each class.
+  version: '1.0'
+  contact:
+    name: Bright Data
+    url: https://docs.brightdata.com
+servers:
+  - url: https://api.brightdata.com
+    description: Production
+security:
+  - BearerAuth: []
+tags:
+  - name: Shield
+paths:
+  /shield/class:
+    get:
+      summary: List Shield Classifications
+      operationId: listShieldClasses
+      tags: [Shield]
+      responses:
+        "200":
+          description: Classifications.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: string }
+                    name: { type: string }
+                    description: { type: string }
+  /shield/domains_by_class:
+    get:
+      summary: List Domains by Classification
+      operationId: domainsByClass
+      tags: [Shield]
+      parameters:
+        - { name: class, in: query, required: true, schema: { type: string } }
+      responses:
+        "200":
+          description: Domains for the class.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: string }
+  /shield/samples:
+    get:
+      summary: Get Shield Classification Samples
+      operationId: getShieldSamples
+      tags: [Shield]
+      parameters:
+        - { name: class, in: query, schema: { type: string } }
+      responses:
+        "200":
+          description: Samples.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: object, additionalProperties: true }
+  /shield/zones_by_class:
+    get:
+      summary: List Zones by Classification
+      operationId: zonesByClass
+      tags: [Shield]
+      parameters:
+        - { name: class, in: query, required: true, schema: { type: string } }
+      responses:
+        "200":
+          description: Zones cleared for the class.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: string }
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
