@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Account Management Access Proxies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Proxies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Proxy Ports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/api/proxies"
+          },
+          "docs": "List Proxy Ports"
+        },
+        {
+          "info": {
+            "name": "Create Proxy Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/api/proxies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Proxy Port"
+        },
+        {
+          "info": {
+            "name": "Get Proxy Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/api/proxies/:port",
+            "params": [
+              {
+                "name": "port",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Proxy Port"
+        },
+        {
+          "info": {
+            "name": "Update Proxy Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.brightdata.com/api/proxies/:port",
+            "params": [
+              {
+                "name": "port",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Proxy Port"
+        },
+        {
+          "info": {
+            "name": "Delete Proxy Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.brightdata.com/api/proxies/:port",
+            "params": [
+              {
+                "name": "port",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Proxy Port"
+        },
+        {
+          "info": {
+            "name": "Ban an IP for Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/api/proxies/:port/banip",
+            "params": [
+              {
+                "name": "port",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ban an IP for Port"
+        },
+        {
+          "info": {
+            "name": "Refresh IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/api/refresh_ips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refresh IPs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,374 @@
+{
+  "item": [
+    {
+      "id": "e9c6391f-0e6c-4cea-9e12-fe69fa112763",
+      "name": "Scrape",
+      "description": {
+        "content": "Trigger and monitor asynchronous scraping jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fdaa668a-1a65-486c-b170-47c8eb45fad1",
+          "name": "Trigger a Web Scraper Job",
+          "request": {
+            "name": "Trigger a Web Scraper Job",
+            "description": {
+              "content": "Trigger an asynchronous scraping job against a Bright Data dataset. Pass the `dataset_id` of\nthe target collector and the per-record input payload as a JSON array. Returns a `snapshot_id`\nused to poll progress and download results.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "scrape"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataset_id",
+                  "value": "<string>",
+                  "description": "(Required) Bright Data dataset identifier (e.g. `gd_l1viktl72bvl7bjuj0`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_errors",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "notify",
+                  "value": "<uri>",
+                  "description": "Webhook URL Bright Data calls when the snapshot completes."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit_per_input",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit_multiple_results",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"key_0\": 787.3331228084568,\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  {\n    \"key_0\": 9821.008032376434,\n    \"key_1\": 3660\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "359d1c4b-9173-42e6-9baa-d94e5472d688",
+              "name": "Job submitted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "scrape"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataset_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_errors",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "notify",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit_per_input",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit_multiple_results",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key_0\": 3939\n  },\n  {\n    \"key_0\": 8947,\n    \"key_1\": true,\n    \"key_2\": 3964.2380026109136\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"snapshot_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a2ca060-bf51-4e6d-b296-d3c06544241b",
+          "name": "Get Scrape Progress",
+          "request": {
+            "name": "Get Scrape Progress",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                "v3",
+                "progress",
+                ":snapshot_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f2be0a5-9b9c-4694-b6eb-1c977f257453",
+              "name": "Progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "v3",
+                    "progress",
+                    ":snapshot_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"running\",\n  \"records\": 7911,\n  \"errors\": 5152\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b89a31d-e933-48d6-bf30-de5d4620cdba",
+          "name": "List Available Datasets",
+          "request": {
+            "name": "List Available Datasets",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65debe98-268a-4dc7-bdb5-175de3d9e759",
+              "name": "List of datasets the caller is entitled to query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brightdata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "03c22cd1-4b10-4706-8881-208b3d99682e",
+    "name": "Bright Data Account Management Access Scrape API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Programmatic management of Bright Data zones (proxy pools and product entitlements), IP\nallocations, access control (whitelists, blacklists, domain permissions), passwords, and\nbilling/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.\n\n\nContact Support:\n Name: Bright Data",
+      "type": "text/plain"
+    }
+  }
+}

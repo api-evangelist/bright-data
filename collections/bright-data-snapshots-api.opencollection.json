@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Account Management Access Snapshots API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dataset Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/snapshots/:snapshot_id",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Dataset Snapshot"
+        },
+        {
+          "info": {
+            "name": "Get Snapshot Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/v3/log/:snapshot_id",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Snapshot Log"
+        },
+        {
+          "info": {
+            "name": "List Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/v3/snapshots",
+            "params": [
+              {
+                "name": "dataset_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Snapshots"
+        },
+        {
+          "info": {
+            "name": "Cancel a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/v3/snapshot/:snapshot_id/cancel",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a Snapshot"
+        },
+        {
+          "info": {
+            "name": "Rerun a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/v3/snapshot/:snapshot_id/rerun",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Rerun a Snapshot"
+        },
+        {
+          "info": {
+            "name": "Download Snapshot Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/v3/snapshot/:snapshot_id",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "compress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "batch_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "part",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Download Snapshot Results"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

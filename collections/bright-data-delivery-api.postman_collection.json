@@ -1,29 +1,39 @@
 {
   "item": [
     {
-      "id": "673f2bf3-b383-4364-aec8-47fee8113a76",
-      "name": "SERP",
+      "id": "c6fa61f6-a81a-46e8-9462-380be6af488f",
+      "name": "Delivery",
       "description": {
-        "content": "Submit and retrieve SERP requests.",
+        "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "3b835584-8ffa-40b0-b768-5a17fac73505",
-          "name": "Submit Asynchronous SERP Request",
+          "id": "01681552-38ab-4477-a088-c9075971a7b4",
+          "name": "Deliver Snapshot to Cloud",
           "request": {
-            "name": "Submit Asynchronous SERP Request",
+            "name": "Deliver Snapshot to Cloud",
             "description": {},
             "url": {
               "path": [
-                "serp",
-                "req"
+                "datasets",
+                "snapshots",
+                ":snapshot_id",
+                "deliver"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) "
+                }
+              ]
             },
             "header": [
               {
@@ -39,7 +49,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"<string>\",\n  \"browser\": \"<string>\",\n  \"format\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
+              "raw": "{\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": \"string\",\n      \"key_1\": true\n    }\n  },\n  \"format\": \"<string>\",\n  \"compress\": \"<boolean>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -49,19 +59,29 @@
           },
           "response": [
             {
-              "id": "4aaf661f-e0d7-4bec-bfee-7f78f7de4509",
-              "name": "Submitted.",
+              "id": "8b323f0d-9495-4ed6-9913-e5d35c5ad914",
+              "name": "Delivery scheduled.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
-                    "req"
+                    "datasets",
+                    "snapshots",
+                    ":snapshot_id",
+                    "deliver"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -80,7 +100,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"<string>\",\n  \"browser\": \"<string>\",\n  \"format\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": false,\n      \"key_1\": 8518\n    }\n  },\n  \"format\": \"<string>\",\n  \"compress\": \"<boolean>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -96,7 +116,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"response_id\": \"string\"\n}",
+              "body": "{}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -107,58 +127,81 @@
           }
         },
         {
-          "id": "ae990330-0984-4af6-9e81-db76bf47a168",
-          "name": "Get Asynchronous SERP Result",
+          "id": "d5dc2488-db9b-4866-8d72-e18f7fc5208e",
+          "name": "Deliver Snapshot to Cloud Storage",
           "request": {
-            "name": "Get Asynchronous SERP Result",
+            "name": "Deliver Snapshot to Cloud Storage",
             "description": {},
             "url": {
               "path": [
-                "serp",
-                "get_result"
+                "datasets",
+                "v3",
+                "snapshot",
+                ":snapshot_id",
+                "deliver"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [
+              "query": [],
+              "variable": [
                 {
                   "disabled": false,
-                  "key": "response_id",
+                  "type": "any",
                   "value": "<string>",
+                  "key": "snapshot_id",
                   "description": "(Required) "
                 }
-              ],
-              "variable": []
+              ]
             },
             "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deliver\": {\n    \"type\": \"<string>\",\n    \"filename\": \"<object>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": 7413.079642295267\n    }\n  },\n  \"format\": \"<string>\",\n  \"compress\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
           },
           "response": [
             {
-              "id": "9c613fed-40ed-413e-85bb-54b775810670",
-              "name": "Parsed SERP payload.",
+              "id": "0baa6c30-7c47-40b8-8955-dc44e13cca68",
+              "name": "Delivery scheduled.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
-                    "get_result"
+                    "datasets",
+                    "v3",
+                    "snapshot",
+                    ":snapshot_id",
+                    "deliver"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
+                  "query": [],
+                  "variable": [
                     {
-                      "key": "response_id",
-                      "value": "<string>"
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) "
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
                 "header": [
                   {
@@ -174,8 +217,16 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deliver\": {\n    \"type\": \"<string>\",\n    \"filename\": \"<object>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"format\": \"<string>\",\n  \"compress\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
               },
               "status": "OK",
               "code": 200,
@@ -185,54 +236,9 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"organic\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 9745\n    },\n    {\n      \"key_0\": 3888.7765818071784,\n      \"key_1\": 4352.885201865011\n    }\n  ],\n  \"ads\": [\n    {\n      \"key_0\": true\n    },\n    {\n      \"key_0\": 8525,\n      \"key_1\": \"string\",\n      \"key_2\": 4258,\n      \"key_3\": 3956\n    }\n  ],\n  \"related\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false\n    },\n    {\n      \"key_0\": 3608,\n      \"key_1\": false,\n      \"key_2\": \"string\"\n    }\n  ],\n  \"ai_overview\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"knowledge\": {\n    \"key_0\": 2320.1279286117783,\n    \"key_1\": 4658\n  },\n  \"general\": {\n    \"query\": \"string\",\n    \"language\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+              "body": "{}",
               "cookie": [],
               "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1edb95fe-63a9-4479-8ad3-02ae747f24ad",
-              "name": "Not yet ready.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "serp",
-                    "get_result"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "response_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Accepted",
-              "code": 202,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -262,8 +268,8 @@
     ]
   },
   "info": {
-    "_postman_id": "c39b62ac-7c23-4a22-a922-b3f2bafaec32",
-    "name": "Bright Data Account Management Access SERP API",
+    "_postman_id": "ac2fba23-b7c3-4890-820a-0c7decb716d2",
+    "name": "Bright Data Account Management Access Delivery API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Programmatic management of Bright Data zones (proxy pools and product entitlements), IP\nallocations, access control (whitelists, blacklists, domain permissions), passwords, and\nbilling/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.\n\n\nContact Support:\n Name: Bright Data",

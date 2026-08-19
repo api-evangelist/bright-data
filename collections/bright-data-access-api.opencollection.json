@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Account Management Access API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add IPs to Zone Whitelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/whitelist",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add IPs to Zone Whitelist"
+        },
+        {
+          "info": {
+            "name": "Add to Zone Blacklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/blacklist",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add to Zone Blacklist"
+        },
+        {
+          "info": {
+            "name": "Get Zone Domain Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/zone/domain_perm",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Zone Domain Permissions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

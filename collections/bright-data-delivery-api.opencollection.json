@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Account Management Access Delivery API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Delivery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deliver Snapshot to Cloud",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/snapshots/:snapshot_id/deliver",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deliver Snapshot to Cloud"
+        },
+        {
+          "info": {
+            "name": "Deliver Snapshot to Cloud Storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/datasets/v3/snapshot/:snapshot_id/deliver",
+            "params": [
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deliver Snapshot to Cloud Storage"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

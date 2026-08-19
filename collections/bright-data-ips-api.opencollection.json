@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Account Management Access IPs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IPs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Zone IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/zone/ips",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Zone IPs"
+        },
+        {
+          "info": {
+            "name": "Add IPs to Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/ips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add IPs to Zone"
+        },
+        {
+          "info": {
+            "name": "Remove IPs from Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.brightdata.com/zone/ips",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ips",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Remove IPs from Zone"
+        },
+        {
+          "info": {
+            "name": "Refresh Zone IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/ips/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refresh Zone IPs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

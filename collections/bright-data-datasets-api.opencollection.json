@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Bright Data Account Management Access SERP API",
+    "name": "Bright Data Account Management Access Datasets API",
     "version": "1.0"
   },
   "request": {
@@ -13,42 +13,38 @@
   "items": [
     {
       "info": {
-        "name": "SERP",
+        "name": "Datasets",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Submit Asynchronous SERP Request",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://api.brightdata.com/serp/req",
-            "body": {
-              "type": "json",
-              "data": "{}"
-            }
-          },
-          "docs": "Submit Asynchronous SERP Request"
-        },
-        {
-          "info": {
-            "name": "Get Asynchronous SERP Result",
+            "name": "List Marketplace Datasets",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.brightdata.com/serp/get_result",
+            "url": "https://api.brightdata.com/datasets"
+          },
+          "docs": "List Marketplace Datasets"
+        },
+        {
+          "info": {
+            "name": "Get Dataset Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/datasets/:dataset_id/metadata",
             "params": [
               {
-                "name": "response_id",
+                "name": "dataset_id",
                 "value": "",
-                "type": "query"
+                "type": "path"
               }
             ]
           },
-          "docs": "Get Asynchronous SERP Result"
+          "docs": "Get Dataset Metadata"
         }
       ]
     }

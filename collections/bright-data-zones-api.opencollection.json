@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Account Management Access Zones API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/zone",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Zone"
+        },
+        {
+          "info": {
+            "name": "Add Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Zone"
+        },
+        {
+          "info": {
+            "name": "Delete Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.brightdata.com/zone",
+            "params": [
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete Zone"
+        },
+        {
+          "info": {
+            "name": "Enable or Disable Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/zone/change_disable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or Disable Zone"
+        },
+        {
+          "info": {
+            "name": "List Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/api/zones"
+          },
+          "docs": "List Zones"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

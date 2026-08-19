@@ -1,23 +1,23 @@
 {
   "item": [
     {
-      "id": "673f2bf3-b383-4364-aec8-47fee8113a76",
-      "name": "SERP",
+      "id": "330ec5b2-bc96-46d8-b466-b8c5278cf996",
+      "name": "Access",
       "description": {
-        "content": "Submit and retrieve SERP requests.",
+        "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "3b835584-8ffa-40b0-b768-5a17fac73505",
-          "name": "Submit Asynchronous SERP Request",
+          "id": "4912d1e9-57bb-4499-81c0-f408a647bc03",
+          "name": "Add IPs to Zone Whitelist",
           "request": {
-            "name": "Submit Asynchronous SERP Request",
+            "name": "Add IPs to Zone Whitelist",
             "description": {},
             "url": {
               "path": [
-                "serp",
-                "req"
+                "zone",
+                "whitelist"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -39,7 +39,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"<string>\",\n  \"browser\": \"<string>\",\n  \"format\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
+              "raw": "{\n  \"zone\": \"<string>\",\n  \"ip\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -49,13 +49,13 @@
           },
           "response": [
             {
-              "id": "4aaf661f-e0d7-4bec-bfee-7f78f7de4509",
-              "name": "Submitted.",
+              "id": "2a734ddd-4e25-44a0-aa5e-9ff3fd03472c",
+              "name": "Whitelist updated.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
-                    "req"
+                    "zone",
+                    "whitelist"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -80,7 +80,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"<string>\",\n  \"browser\": \"<string>\",\n  \"format\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"ip\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -96,7 +96,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"response_id\": \"string\"\n}",
+              "body": "{}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -107,15 +107,113 @@
           }
         },
         {
-          "id": "ae990330-0984-4af6-9e81-db76bf47a168",
-          "name": "Get Asynchronous SERP Result",
+          "id": "334956b4-c1e5-42cd-85b0-80a89a415b07",
+          "name": "Add to Zone Blacklist",
           "request": {
-            "name": "Get Asynchronous SERP Result",
+            "name": "Add to Zone Blacklist",
             "description": {},
             "url": {
               "path": [
-                "serp",
-                "get_result"
+                "zone",
+                "blacklist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"zone\": \"<string>\",\n  \"ip\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61f43ad0-bb48-4eda-bdb3-6e4453e6a87d",
+              "name": "Blacklist updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zone",
+                    "blacklist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"zone\": \"<string>\",\n  \"ip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8650424-1f86-46bc-9516-5a054a5a409e",
+          "name": "Get Zone Domain Permissions",
+          "request": {
+            "name": "Get Zone Domain Permissions",
+            "description": {},
+            "url": {
+              "path": [
+                "zone",
+                "domain_perm"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -123,7 +221,7 @@
               "query": [
                 {
                   "disabled": false,
-                  "key": "response_id",
+                  "key": "zone",
                   "value": "<string>",
                   "description": "(Required) "
                 }
@@ -141,20 +239,20 @@
           },
           "response": [
             {
-              "id": "9c613fed-40ed-413e-85bb-54b775810670",
-              "name": "Parsed SERP payload.",
+              "id": "ba39e9a8-81b0-4f02-801c-0f9835aebe94",
+              "name": "Domain permission entries.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
-                    "get_result"
+                    "zone",
+                    "domain_perm"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [
                     {
-                      "key": "response_id",
+                      "key": "zone",
                       "value": "<string>"
                     }
                   ],
@@ -185,54 +283,9 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"organic\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 9745\n    },\n    {\n      \"key_0\": 3888.7765818071784,\n      \"key_1\": 4352.885201865011\n    }\n  ],\n  \"ads\": [\n    {\n      \"key_0\": true\n    },\n    {\n      \"key_0\": 8525,\n      \"key_1\": \"string\",\n      \"key_2\": 4258,\n      \"key_3\": 3956\n    }\n  ],\n  \"related\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false\n    },\n    {\n      \"key_0\": 3608,\n      \"key_1\": false,\n      \"key_2\": \"string\"\n    }\n  ],\n  \"ai_overview\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"knowledge\": {\n    \"key_0\": 2320.1279286117783,\n    \"key_1\": 4658\n  },\n  \"general\": {\n    \"query\": \"string\",\n    \"language\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+              "body": "{\n  \"key_0\": 1138\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1edb95fe-63a9-4479-8ad3-02ae747f24ad",
-              "name": "Not yet ready.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "serp",
-                    "get_result"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "response_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Accepted",
-              "code": 202,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -262,8 +315,8 @@
     ]
   },
   "info": {
-    "_postman_id": "c39b62ac-7c23-4a22-a922-b3f2bafaec32",
-    "name": "Bright Data Account Management Access SERP API",
+    "_postman_id": "9ab80c43-1539-4348-871e-11550e77eed0",
+    "name": "Bright Data Account Management Access API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Programmatic management of Bright Data zones (proxy pools and product entitlements), IP\nallocations, access control (whitelists, blacklists, domain permissions), passwords, and\nbilling/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.\n\n\nContact Support:\n Name: Bright Data",

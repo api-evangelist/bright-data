@@ -1,0 +1,229 @@
+{
+  "item": [
+    {
+      "id": "2003bb8a-69ab-4b8d-8e3e-d9d7558ad1f7",
+      "name": "Sessions",
+      "description": {
+        "content": "Inspect active Scraping Browser sessions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62c798a3-2e01-4c54-9a24-3fce72929e9b",
+          "name": "List Browser Sessions",
+          "request": {
+            "name": "List Browser Sessions",
+            "description": {},
+            "url": {
+              "path": [
+                "browser_sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "zone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c136605-d8b6-43c8-ac90-a52a0583b6c7",
+              "name": "Sessions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browser_sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"session_id\": \"string\",\n    \"zone\": \"string\",\n    \"status\": \"string\",\n    \"started\": \"1956-01-19T07:15:00.265Z\",\n    \"duration_ms\": 7338,\n    \"pages\": 894,\n    \"bytes\": 5746\n  },\n  {\n    \"session_id\": \"string\",\n    \"zone\": \"string\",\n    \"status\": \"string\",\n    \"started\": \"2024-09-02T22:53:56.777Z\",\n    \"duration_ms\": 6089,\n    \"pages\": 5778,\n    \"bytes\": 9803\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb985d6c-47f4-473b-9133-9727adfd8600",
+          "name": "Get Browser Session",
+          "request": {
+            "name": "Get Browser Session",
+            "description": {},
+            "url": {
+              "path": [
+                "browser_sessions",
+                ":session_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f98c4a9e-a8c1-4279-a8a8-f28156e9b814",
+              "name": "Session detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browser_sessions",
+                    ":session_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"session_id\": \"string\",\n  \"zone\": \"string\",\n  \"status\": \"string\",\n  \"started\": \"2019-07-21T12:38:19.504Z\",\n  \"duration_ms\": 7086,\n  \"pages\": 5398,\n  \"bytes\": 7027,\n  \"events\": [\n    {\n      \"key_0\": 5837\n    },\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brightdata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9d4d1cd2-c610-4939-814c-71dcd008116a",
+    "name": "Bright Data Account Management Access Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Programmatic management of Bright Data zones (proxy pools and product entitlements), IP\nallocations, access control (whitelists, blacklists, domain permissions), passwords, and\nbilling/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.\n\n\nContact Support:\n Name: Bright Data",
+      "type": "text/plain"
+    }
+  }
+}

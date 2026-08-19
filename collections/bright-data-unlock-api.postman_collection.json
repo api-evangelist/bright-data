@@ -1,22 +1,121 @@
 {
   "item": [
     {
-      "id": "673f2bf3-b383-4364-aec8-47fee8113a76",
-      "name": "SERP",
+      "id": "207fb64b-ef79-4896-96a4-f6819f80ffc6",
+      "name": "Unlock",
       "description": {
-        "content": "Submit and retrieve SERP requests.",
+        "content": "Submit and retrieve unlock requests.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "3b835584-8ffa-40b0-b768-5a17fac73505",
-          "name": "Submit Asynchronous SERP Request",
+          "id": "edb7dae7-de93-434f-b94d-b7c4829e34ac",
+          "name": "Unlock a URL (Synchronous)",
           "request": {
-            "name": "Submit Asynchronous SERP Request",
+            "name": "Unlock a URL (Synchronous)",
+            "description": {
+              "content": "Submit a URL for synchronous unblocking. Bright Data returns the rendered response (HTML,\nJSON, or raw bytes) once the page is unlocked. Use the asynchronous endpoints for long-running\ntargets or batch flows.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"format\": \"<string>\",\n  \"method\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a73a6b1f-d525-4939-9580-f1edd05ea72a",
+              "name": "Unlocked response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"format\": \"<string>\",\n  \"method\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 9274.359389622365,\n  \"key_1\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fce5cd7a-6323-4dda-84ae-e8f0ea2e4d20",
+          "name": "Submit Asynchronous Unlock Request",
+          "request": {
+            "name": "Submit Asynchronous Unlock Request",
             "description": {},
             "url": {
               "path": [
-                "serp",
+                "unblocker",
                 "req"
               ],
               "host": [
@@ -39,7 +138,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"<string>\",\n  \"browser\": \"<string>\",\n  \"format\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"response_id\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"format\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -49,12 +148,12 @@
           },
           "response": [
             {
-              "id": "4aaf661f-e0d7-4bec-bfee-7f78f7de4509",
+              "id": "77a704b9-11a1-49fa-a780-4f1e5e6ea24b",
               "name": "Submitted.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
+                    "unblocker",
                     "req"
                   ],
                   "host": [
@@ -80,7 +179,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"<string>\",\n  \"browser\": \"<string>\",\n  \"format\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"zone\": \"<string>\",\n  \"country\": \"<string>\",\n  \"response_id\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"format\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -107,14 +206,14 @@
           }
         },
         {
-          "id": "ae990330-0984-4af6-9e81-db76bf47a168",
-          "name": "Get Asynchronous SERP Result",
+          "id": "98a26ac2-552b-45d6-a66e-06df37163843",
+          "name": "Get Asynchronous Unlock Result",
           "request": {
-            "name": "Get Asynchronous SERP Result",
+            "name": "Get Asynchronous Unlock Result",
             "description": {},
             "url": {
               "path": [
-                "serp",
+                "unblocker",
                 "get_result"
               ],
               "host": [
@@ -141,12 +240,12 @@
           },
           "response": [
             {
-              "id": "9c613fed-40ed-413e-85bb-54b775810670",
-              "name": "Parsed SERP payload.",
+              "id": "0ea1dc33-d0e3-4db2-adb0-89758857c59d",
+              "name": "Result.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
+                    "unblocker",
                     "get_result"
                   ],
                   "host": [
@@ -185,17 +284,17 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"organic\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 9745\n    },\n    {\n      \"key_0\": 3888.7765818071784,\n      \"key_1\": 4352.885201865011\n    }\n  ],\n  \"ads\": [\n    {\n      \"key_0\": true\n    },\n    {\n      \"key_0\": 8525,\n      \"key_1\": \"string\",\n      \"key_2\": 4258,\n      \"key_3\": 3956\n    }\n  ],\n  \"related\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false\n    },\n    {\n      \"key_0\": 3608,\n      \"key_1\": false,\n      \"key_2\": \"string\"\n    }\n  ],\n  \"ai_overview\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"knowledge\": {\n    \"key_0\": 2320.1279286117783,\n    \"key_1\": 4658\n  },\n  \"general\": {\n    \"query\": \"string\",\n    \"language\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+              "body": "{\n  \"status\": \"pending\",\n  \"result\": {\n    \"key_0\": false\n  },\n  \"status_code\": 722\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "1edb95fe-63a9-4479-8ad3-02ae747f24ad",
+              "id": "c2d1609e-0d50-4453-a6a2-99a3f1af7e81",
               "name": "Not yet ready.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
+                    "unblocker",
                     "get_result"
                   ],
                   "host": [
@@ -262,8 +361,8 @@
     ]
   },
   "info": {
-    "_postman_id": "c39b62ac-7c23-4a22-a922-b3f2bafaec32",
-    "name": "Bright Data Account Management Access SERP API",
+    "_postman_id": "8d009bcf-51ee-4e5e-81d4-f22a3d966fcb",
+    "name": "Bright Data Account Management Access Unlock API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Programmatic management of Bright Data zones (proxy pools and product entitlements), IP\nallocations, access control (whitelists, blacklists, domain permissions), passwords, and\nbilling/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.\n\n\nContact Support:\n Name: Bright Data",

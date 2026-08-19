@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bright Data Account Management Access Unlock API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unlock",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Unlock a URL (Synchronous)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a URL for synchronous unblocking. Bright Data returns the rendered response (HTML,\nJSON, or raw bytes) once the page is unlocked. Use the asynchronous endpoints for long-running\ntargets or batch flows.\n"
+        },
+        {
+          "info": {
+            "name": "Submit Asynchronous Unlock Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.brightdata.com/unblocker/req",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit Asynchronous Unlock Request"
+        },
+        {
+          "info": {
+            "name": "Get Asynchronous Unlock Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.brightdata.com/unblocker/get_result",
+            "params": [
+              {
+                "name": "response_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Asynchronous Unlock Result"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

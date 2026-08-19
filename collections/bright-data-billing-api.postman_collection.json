@@ -1,23 +1,23 @@
 {
   "item": [
     {
-      "id": "673f2bf3-b383-4364-aec8-47fee8113a76",
-      "name": "SERP",
+      "id": "bcfcd228-ea69-4a96-9583-0e927b0ab731",
+      "name": "Billing",
       "description": {
-        "content": "Submit and retrieve SERP requests.",
+        "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "3b835584-8ffa-40b0-b768-5a17fac73505",
-          "name": "Submit Asynchronous SERP Request",
+          "id": "86074cb1-b34b-4187-9d6a-1dd377fe07a0",
+          "name": "Get Customer Balance",
           "request": {
-            "name": "Submit Asynchronous SERP Request",
+            "name": "Get Customer Balance",
             "description": {},
             "url": {
               "path": [
-                "serp",
-                "req"
+                "customer",
+                "balance"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -27,35 +27,22 @@
             },
             "header": [
               {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"<string>\",\n  \"browser\": \"<string>\",\n  \"format\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "GET",
+            "auth": null
           },
           "response": [
             {
-              "id": "4aaf661f-e0d7-4bec-bfee-7f78f7de4509",
-              "name": "Submitted.",
+              "id": "9bc7f26d-dc21-46ac-bbea-21180ba35e57",
+              "name": "Account balance.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
-                    "req"
+                    "customer",
+                    "balance"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -77,16 +64,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"zone\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"device\": \"<string>\",\n  \"browser\": \"<string>\",\n  \"format\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "OK",
               "code": 200,
@@ -96,7 +75,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"response_id\": \"string\"\n}",
+              "body": "{\n  \"balance\": 8092.849846966164,\n  \"currency\": \"string\",\n  \"pending\": 2894.778613296386\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -107,15 +86,15 @@
           }
         },
         {
-          "id": "ae990330-0984-4af6-9e81-db76bf47a168",
-          "name": "Get Asynchronous SERP Result",
+          "id": "edb81d44-ce9b-4784-851c-d1d106761fee",
+          "name": "Get Zone Bandwidth Usage",
           "request": {
-            "name": "Get Asynchronous SERP Result",
+            "name": "Get Zone Bandwidth Usage",
             "description": {},
             "url": {
               "path": [
-                "serp",
-                "get_result"
+                "zone",
+                "bw"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -123,9 +102,18 @@
               "query": [
                 {
                   "disabled": false,
-                  "key": "response_id",
-                  "value": "<string>",
-                  "description": "(Required) "
+                  "key": "zone",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>"
                 }
               ],
               "variable": []
@@ -141,21 +129,29 @@
           },
           "response": [
             {
-              "id": "9c613fed-40ed-413e-85bb-54b775810670",
-              "name": "Parsed SERP payload.",
+              "id": "b3dd581d-bcc0-40b5-bc20-783ab5d7cb38",
+              "name": "Bandwidth usage.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "serp",
-                    "get_result"
+                    "zone",
+                    "bw"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [
                     {
-                      "key": "response_id",
+                      "key": "zone",
                       "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
                     }
                   ],
                   "variable": []
@@ -185,54 +181,9 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"organic\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 9745\n    },\n    {\n      \"key_0\": 3888.7765818071784,\n      \"key_1\": 4352.885201865011\n    }\n  ],\n  \"ads\": [\n    {\n      \"key_0\": true\n    },\n    {\n      \"key_0\": 8525,\n      \"key_1\": \"string\",\n      \"key_2\": 4258,\n      \"key_3\": 3956\n    }\n  ],\n  \"related\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false\n    },\n    {\n      \"key_0\": 3608,\n      \"key_1\": false,\n      \"key_2\": \"string\"\n    }\n  ],\n  \"ai_overview\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"knowledge\": {\n    \"key_0\": 2320.1279286117783,\n    \"key_1\": 4658\n  },\n  \"general\": {\n    \"query\": \"string\",\n    \"language\": \"string\",\n    \"country\": \"string\"\n  }\n}",
+              "body": "{\n  \"key_0\": 9017\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1edb95fe-63a9-4479-8ad3-02ae747f24ad",
-              "name": "Not yet ready.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "serp",
-                    "get_result"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "response_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Accepted",
-              "code": 202,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -262,8 +213,8 @@
     ]
   },
   "info": {
-    "_postman_id": "c39b62ac-7c23-4a22-a922-b3f2bafaec32",
-    "name": "Bright Data Account Management Access SERP API",
+    "_postman_id": "e33c9ff3-7ec0-47a9-ba18-46c46a319927",
+    "name": "Bright Data Account Management Access Billing API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Programmatic management of Bright Data zones (proxy pools and product entitlements), IP\nallocations, access control (whitelists, blacklists, domain permissions), passwords, and\nbilling/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.\n\n\nContact Support:\n Name: Bright Data",

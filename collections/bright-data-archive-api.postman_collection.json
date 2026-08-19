@@ -1,0 +1,409 @@
+{
+  "item": [
+    {
+      "id": "4c729719-49cc-4021-8955-d14844391b29",
+      "name": "Archive",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d23146b2-e680-408e-9dc8-be94908b452d",
+          "name": "Submit a Web Archive Search",
+          "request": {
+            "name": "Submit a Web Archive Search",
+            "description": {},
+            "url": {
+              "path": [
+                "webarchive",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"<string>\",\n  \"query\": \"<string>\",\n  \"from_date\": \"<date>\",\n  \"to_date\": \"<date>\",\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62233a4e-d45a-4aa4-8e3a-ab4a646cd635",
+              "name": "Search submitted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webarchive",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"query\": \"<string>\",\n  \"from_date\": \"<date>\",\n  \"to_date\": \"<date>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"search_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08afeb56-a0b2-41dd-9e1d-0ad2c6933376",
+          "name": "Get Web Archive Search",
+          "request": {
+            "name": "Get Web Archive Search",
+            "description": {},
+            "url": {
+              "path": [
+                "webarchive",
+                "search",
+                ":search_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "search_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a7d3653-7242-4e5b-891e-1ffce057364b",
+              "name": "Search status and results pointer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webarchive",
+                    "search",
+                    ":search_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"search_id\": \"string\",\n  \"status\": \"running\",\n  \"records\": 2944,\n  \"download_url\": \"https://VmhsXUhEamRBlzJLnMOV.ivkGEDXrPNXstWpCChHb6vRdLhKAEf-8EVsxJ-mvqiANDotFLJ4Lhka2UE+Qnd4xTnMnRaIAMCO3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b66c645-0631-4562-9d76-36dd4614b531",
+          "name": "List Web Archive Searches",
+          "request": {
+            "name": "List Web Archive Searches",
+            "description": {},
+            "url": {
+              "path": [
+                "webarchive",
+                "searches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8965e645-e806-4e17-8b51-cc80c5d82475",
+              "name": "List of searches.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webarchive",
+                    "searches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"search_id\": \"string\",\n    \"domain\": \"string\",\n    \"status\": \"string\",\n    \"created\": \"2015-03-01T09:22:49.245Z\"\n  },\n  {\n    \"search_id\": \"string\",\n    \"domain\": \"string\",\n    \"status\": \"string\",\n    \"created\": \"1965-02-23T15:03:42.585Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d92f8812-415a-4f3d-a450-d2b52bd60aa8",
+          "name": "Deliver Archive Search to Cloud Storage",
+          "request": {
+            "name": "Deliver Archive Search to Cloud Storage",
+            "description": {},
+            "url": {
+              "path": [
+                "webarchive",
+                "deliver-to-cloud"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"search_id\": \"<string>\",\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": false,\n      \"key_1\": false\n    }\n  },\n  \"format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f0bb898c-75b1-434d-b2da-113edd1395db",
+              "name": "Delivery scheduled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webarchive",
+                    "deliver-to-cloud"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search_id\": \"<string>\",\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"bucket\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": 5010,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.brightdata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eab43e85-d8e1-428f-b1e0-dac39f50a581",
+    "name": "Bright Data Account Management Access Archive API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Programmatic management of Bright Data zones (proxy pools and product entitlements), IP\nallocations, access control (whitelists, blacklists, domain permissions), passwords, and\nbilling/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.\n\n\nContact Support:\n Name: Bright Data",
+      "type": "text/plain"
+    }
+  }
+}
