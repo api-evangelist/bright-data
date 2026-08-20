@@ -58,6 +58,10 @@ apis:
   name: Bright Data MCP Server
   tags:
   - MCP
+  - AI Agents
+  - Tools
+  tags_raw:
+  - MCP
   - Model Context Protocol
   - AI Agents
   - Tools
