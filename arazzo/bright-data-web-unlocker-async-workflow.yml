@@ -12,8 +12,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: webUnlockerApi
-  url: ../openapi/bright-data-web-unlocker-api-openapi.yml
+- name: unlockApi
+  url: ../openapi/bright-data-unlock-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: submit-and-fetch-unlock

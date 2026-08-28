@@ -10,8 +10,14 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: datasetMarketplaceApi
-  url: ../openapi/bright-data-dataset-marketplace-api-openapi.yml
+- name: datasetsApi
+  url: ../openapi/bright-data-datasets-api-openapi.yml
+  type: openapi
+- name: deliveryApi
+  url: ../openapi/bright-data-delivery-api-openapi.yml
+  type: openapi
+- name: snapshotsApi
+  url: ../openapi/bright-data-snapshots-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: inspect-snapshot-and-deliver

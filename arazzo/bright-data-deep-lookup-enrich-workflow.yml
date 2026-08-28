@@ -10,8 +10,8 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: deepLookupApi
-  url: ../openapi/bright-data-deep-lookup-api-openapi.yml
+- name: lookupApi
+  url: ../openapi/bright-data-lookup-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: trigger-and-enrich

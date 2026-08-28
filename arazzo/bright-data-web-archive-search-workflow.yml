@@ -11,8 +11,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: webArchiveApi
-  url: ../openapi/bright-data-web-archive-api-openapi.yml
+- name: archiveApi
+  url: ../openapi/bright-data-archive-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: search-and-deliver-archive

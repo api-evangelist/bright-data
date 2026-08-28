@@ -10,8 +10,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: accountManagementApi
-  url: ../openapi/bright-data-account-management-api-openapi.yml
+- name: ipsApi
+  url: ../openapi/bright-data-ips-api-openapi.yml
+  type: openapi
+- name: zonesApi
+  url: ../openapi/bright-data-zones-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-zone-and-ips

@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: webScraperApi
-  url: ../openapi/bright-data-web-scraper-api-openapi.yml
+- name: scrapeApi
+  url: ../openapi/bright-data-scrape-api-openapi.yml
+  type: openapi
+- name: snapshotsApi
+  url: ../openapi/bright-data-snapshots-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: rerun-and-monitor-snapshot
