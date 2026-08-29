@@ -1,11 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bright Data Account Management Access Lookup API
-  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+  title: Bright Data Deep Lookup API
+  description: 'Deep Lookup is an entity-research API that finds companies and professionals across 1,000+
 
-    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+    public sources with 95%+ accuracy. Submit a natural-language description or structured query
 
-    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+    via `POST /trigger`, preview row counts and shape with `/preview`, optimize the query with
+
+    `/enhance_query`, enrich existing columns with `/request/{id}/enrich`, monitor with `/status`,
+
+    and download results once ready. Billed per delivered result.
 
     '
   version: '1.0'

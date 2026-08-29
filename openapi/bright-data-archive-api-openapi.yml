@@ -1,11 +1,13 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bright Data Account Management Access Archive API
-  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+  title: Bright Data Web Archive API
+  description: 'The Web Archive API exposes Bright Data''s petabyte-scale historical web index across 250+ domains.
 
-    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+    Submit a search via `POST /webarchive/search`, monitor with `GET /webarchive/search/{search_id}`,
 
-    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+    list all searches via `GET /webarchive/searches`, and deliver matching corpora to S3/Azure/GCS
+
+    via `POST /webarchive/deliver-to-cloud`.
 
     '
   version: '1.0'

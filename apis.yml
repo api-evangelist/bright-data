@@ -46,27 +46,6 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bright-dat
 access: 3rd-Party
 x-type: company
 apis:
-- aid: bright-data:serp-api
-  name: Bright Data SERP API
-  tags:
-  - SERP
-  - Search
-  - Google
-  - Bing
-  humanURL: https://docs.brightdata.com/scraping-automation/serp-api/introduction
-  properties:
-  - url: https://docs.brightdata.com/scraping-automation/serp-api/introduction
-    type: Documentation
-  - url: https://docs.brightdata.com/scraping-automation/serp-api/send-your-first-request
-    type: Documentation
-  - url: openapi/bright-data-serp-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    Real-time SERP data from Google, Bing, Yandex, and DuckDuckGo across 31 languages and 195 countries.
-    Supports organic, news, images, videos, shopping, jobs, hotels, flights, lens, trends, reviews, maps,
-    and AI Overview result types. Submit asynchronous requests via `/serp/req` and poll `/serp/get_result`,
-    or stream synchronously over the proxy on port 33335. Geolocation, device, browser, pagination, and
-    localization parameters supported.
 - aid: bright-data:mcp-server
   name: Bright Data MCP Server
   tags:

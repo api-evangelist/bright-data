@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bright Data Account Management Access Datasets API
-  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+  title: Bright Data Dataset Marketplace Datasets API
+  description: 'Programmatic access to Bright Data''s 350+ ready-to-use datasets across 250+ domains (eCommerce,
 
-    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+    social, real estate, travel, business). List entitled datasets, inspect metadata, retrieve snapshots,
 
-    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+    and deliver to S3, Azure Blob, GCS, Snowflake, or a webhook.
 
     '
-  version: '1.0'
+  version: v3
   contact:
     name: Bright Data
     url: https://docs.brightdata.com

@@ -1,11 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bright Data Account Management Access Sessions API
-  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+  title: Bright Data Scraping Browser Sessions API
+  description: 'Scraping Browser provides fully managed remote Chromium browsers controlled via CDP/WebSocket
 
-    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+    from Puppeteer, Playwright, or Selenium. The browser session includes built-in unlocker logic,
 
-    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+    residential proxy egress, CAPTCHA solving, and fingerprint management.
+
+
+    Driver control happens over WebSocket. This REST surface exposes session inventory and lifecycle
+
+    inspection for observability and management.
 
     '
   version: '1.0'
@@ -14,7 +19,9 @@ info:
     url: https://docs.brightdata.com
 servers:
 - url: https://api.brightdata.com
-  description: Production
+  description: REST control plane
+- url: wss://brd.superproxy.io:9222
+  description: Browser CDP endpoint
 security:
 - BearerAuth: []
 tags:

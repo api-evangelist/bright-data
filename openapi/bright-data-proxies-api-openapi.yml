@@ -1,22 +1,20 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bright Data Account Management Access Proxies API
-  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+  title: Bright Data Proxy Manager Proxies API
+  description: 'Local self-hosted REST control plane for the Bright Data Proxy Manager. The Proxy Manager runs
 
-    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+    on `localhost:22999` by default and exposes endpoints to create and configure proxy ports, ban
 
-    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+    misbehaving IPs, refresh pools, read zone configuration, and manage SSL/logging/statistics.
 
     '
   version: '1.0'
   contact:
     name: Bright Data
-    url: https://docs.brightdata.com
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
 servers:
-- url: https://api.brightdata.com
-  description: Production
-security:
-- BearerAuth: []
+- url: http://localhost:22999
+  description: Local Proxy Manager
 tags:
 - name: Proxies
 paths:
@@ -193,7 +191,3 @@ components:
           - warn
           - info
           - debug
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer

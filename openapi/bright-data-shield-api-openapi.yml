@@ -1,11 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bright Data Account Management Access Shield API
-  description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
+  title: Bright Data Scraping Shield API
+  description: 'Compliance-focused classification API that exposes Bright Data''s allowlist/blocklist taxonomy.
 
-    allocations, access control (whitelists, blacklists, domain permissions), passwords, and
+    Use Scraping Shield to confirm whether a domain falls into a supported classification, retrieve
 
-    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
+    sample classifications, and inspect which zones are cleared for each class.
 
     '
   version: '1.0'
