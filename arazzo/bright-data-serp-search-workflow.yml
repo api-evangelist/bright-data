@@ -13,7 +13,7 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: serpApi
-  url: ../openapi/bright-data-serp-api-openapi.yml
+  url: ../openapi/_superseded/bright-data-serp-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: submit-and-fetch-serp
