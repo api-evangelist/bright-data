@@ -264,45 +264,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
-- aid: bright-data:bright-data-ips-api
-  name: Bright Data IPs API
-  description: The IPs API from Bright Data — 2 operation(s) for ips.
-  humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
-  tags:
-  - IPs
-  properties:
-  - type: OpenAPI
-    url: openapi/bright-data-ips-api-openapi.yml
-  - type: Documentation
-    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
-  - type: Documentation
-    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
-  - type: Documentation
-    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
-  - type: Documentation
-    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
-  - type: JSONSchema
-    url: json-schema/bright-data-snapshot-schema.json
-  - type: Documentation
-    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
-  - type: Documentation
-    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
-  - type: Documentation
-    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
-  - type: Documentation
-    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
-  - type: Documentation
-    url: https://docs.brightdata.com/datasets/marketplace
-  - type: Documentation
-    url: >-
-      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
-  - type: JSONSchema
-    url: json-schema/bright-data-zone-schema.json
-  - type: Documentation
-    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
-  - type: Documentation
-    url: >-
-      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
 - aid: bright-data:bright-data-lookup-api
   name: Bright Data Lookup API
   description: The Lookup API from Bright Data — 6 operation(s) for lookup.
@@ -624,6 +585,45 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/bright-data-zones-api-openapi.yml
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/overview
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection
+  - type: JSONSchema
+    url: json-schema/bright-data-snapshot-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/introduction
+  - type: Documentation
+    url: https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview
+  - type: Documentation
+    url: https://docs.brightdata.com/datasets/marketplace
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview
+  - type: JSONSchema
+    url: json-schema/bright-data-zone-schema.json
+  - type: Documentation
+    url: https://docs.brightdata.com/proxy-networks/proxy-manager/api
+  - type: Documentation
+    url: >-
+      https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview
+- aid: bright-data:bright-data-ips-api
+  name: Bright Data I Ps API
+  description: The IPs API from Bright Data — 2 operation(s) for ips.
+  humanURL: https://docs.brightdata.com/mcp-server/overview
+  tags:
+  - IPs
+  properties:
+  - type: OpenAPI
+    url: openapi/bright-data-ips-api-openapi.yml
   - type: Documentation
     url: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
   - type: Documentation
