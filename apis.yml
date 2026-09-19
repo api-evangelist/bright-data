@@ -113,6 +113,8 @@ apis:
   description: The Archive API from Bright Data — 4 operation(s) for archive.
   humanURL: https://docs.brightdata.com/scraping-automation/web-unlocker/introduction
   tags:
+  - Archives
+  tags_raw:
   - Archive
   properties:
   - type: OpenAPI
@@ -620,6 +622,8 @@ apis:
   description: The IPs API from Bright Data — 2 operation(s) for ips.
   humanURL: https://docs.brightdata.com/mcp-server/overview
   tags:
+  - IP
+  tags_raw:
   - IPs
   properties:
   - type: OpenAPI
