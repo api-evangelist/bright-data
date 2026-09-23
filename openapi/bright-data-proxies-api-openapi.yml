@@ -5,9 +5,7 @@ info:
 
     on `localhost:22999` by default and exposes endpoints to create and configure proxy ports, ban
 
-    misbehaving IPs, refresh pools, read zone configuration, and manage SSL/logging/statistics.
-
-    '
+    misbehaving IPs, refresh pools, read zone configuration, and manage SSL/logging/statistics.'
   version: '1.0'
   contact:
     name: Bright Data

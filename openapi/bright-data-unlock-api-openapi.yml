@@ -10,9 +10,7 @@ info:
     synchronous (one-shot) and asynchronous (submit + poll) modes.
 
 
-    Authentication uses a Bearer API token. Successful requests only — failed unlocks are not billed.
-
-    '
+    Authentication uses a Bearer API token. Successful requests only — failed unlocks are not billed.'
   version: '1.0'
   contact:
     name: Bright Data
@@ -33,9 +31,7 @@ paths:
 
         JSON, or raw bytes) once the page is unlocked. Use the asynchronous endpoints for long-running
 
-        targets or batch flows.
-
-        '
+        targets or batch flows.'
       operationId: unlockSync
       tags:
       - Unlock

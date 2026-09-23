@@ -7,9 +7,7 @@ info:
 
     list all searches via `GET /webarchive/searches`, and deliver matching corpora to S3/Azure/GCS
 
-    via `POST /webarchive/deliver-to-cloud`.
-
-    '
+    via `POST /webarchive/deliver-to-cloud`.'
   version: '1.0'
   contact:
     name: Bright Data

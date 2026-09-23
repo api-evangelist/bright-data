@@ -5,9 +5,7 @@ info:
 
     Use Scraping Shield to confirm whether a domain falls into a supported classification, retrieve
 
-    sample classifications, and inspect which zones are cleared for each class.
-
-    '
+    sample classifications, and inspect which zones are cleared for each class.'
   version: '1.0'
   contact:
     name: Bright Data

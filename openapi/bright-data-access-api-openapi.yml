@@ -5,9 +5,7 @@ info:
 
     allocations, access control (whitelists, blacklists, domain permissions), passwords, and
 
-    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.
-
-    '
+    billing/bandwidth reporting. Authentication uses a Bearer API token issued from the control panel.'
   version: '1.0'
   contact:
     name: Bright Data

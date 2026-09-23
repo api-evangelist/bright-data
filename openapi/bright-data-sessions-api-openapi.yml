@@ -10,9 +10,7 @@ info:
 
     Driver control happens over WebSocket. This REST surface exposes session inventory and lifecycle
 
-    inspection for observability and management.
-
-    '
+    inspection for observability and management.'
   version: '1.0'
   contact:
     name: Bright Data

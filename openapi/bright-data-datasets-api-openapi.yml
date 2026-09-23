@@ -5,9 +5,7 @@ info:
 
     social, real estate, travel, business). List entitled datasets, inspect metadata, retrieve snapshots,
 
-    and deliver to S3, Azure Blob, GCS, Snowflake, or a webhook.
-
-    '
+    and deliver to S3, Azure Blob, GCS, Snowflake, or a webhook.'
   version: v3
   contact:
     name: Bright Data

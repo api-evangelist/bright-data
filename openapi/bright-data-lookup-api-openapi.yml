@@ -9,9 +9,7 @@ info:
 
     `/enhance_query`, enrich existing columns with `/request/{id}/enrich`, monitor with `/status`,
 
-    and download results once ready. Billed per delivered result.
-
-    '
+    and download results once ready. Billed per delivered result.'
   version: '1.0'
   contact:
     name: Bright Data

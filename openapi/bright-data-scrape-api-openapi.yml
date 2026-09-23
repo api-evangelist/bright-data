@@ -10,9 +10,7 @@ info:
     Snapshots can be pushed to S3, Azure Blob, GCS, Snowflake, or a webhook.
 
 
-    Authentication uses a Bearer API token issued from the Bright Data control panel.
-
-    '
+    Authentication uses a Bearer API token issued from the Bright Data control panel.'
   version: v3
   contact:
     name: Bright Data
@@ -36,9 +34,7 @@ paths:
 
         the target collector and the per-record input payload as a JSON array. Returns a `snapshot_id`
 
-        used to poll progress and download results.
-
-        '
+        used to poll progress and download results.'
       operationId: triggerScrape
       tags:
       - Scrape
