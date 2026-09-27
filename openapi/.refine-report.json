@@ -29,9 +29,7 @@
     "bright-data-scrape-api-openapi.yml",
     "bright-data-unlock-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -49,8 +47,7 @@
     "tag 'Zones' spans 2 source specs (bright-data-account-management-api-openapi.yml, bright-data-proxy-manager-api-openapi.yml): per-path servers applied",
     "tag 'Delivery' spans 2 source specs (bright-data-dataset-marketplace-api-openapi.yml, bright-data-web-scraper-api-openapi.yml): per-path servers applied",
     "tag 'Snapshots' spans 2 source specs (bright-data-dataset-marketplace-api-openapi.yml, bright-data-web-scraper-api-openapi.yml): per-path servers applied",
-    "superseded outputs removed: bright-data-i-ps-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 16 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "bright-data-access-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -58,7 +55,7 @@
     "bright-data-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "bright-data-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "bright-data-delivery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "bright-data-i-ps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bright-data-ips-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "bright-data-lookup-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "bright-data-proxies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "bright-data-scrape-api-openapi.yml: previously refined output, superseded by openapi/_original/",

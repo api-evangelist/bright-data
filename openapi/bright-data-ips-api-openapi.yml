@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bright Data Account Management I Ps API
+  title: Bright Data Account Management IPs API
   description: 'Programmatic management of Bright Data zones (proxy pools and product entitlements), IP
 
     allocations, access control (whitelists, blacklists, domain permissions), passwords, and
