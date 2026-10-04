@@ -19,6 +19,7 @@ tags:
   - Dataset Marketplace
   - MCP
   - AI Agents
+  - Data Extraction
 kind: contract
 deliveryModel:
   model: saas
