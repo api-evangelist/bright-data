@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.brightdata.com/api-reference/browser-api.json",
+ "requested_url": "https://docs.brightdata.com/api-reference/browser-api.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 17397,
+ "sha256": "77a8300d368b29183129d03122e6cdc4373bf95cd563a168998451aea8d0e160",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
