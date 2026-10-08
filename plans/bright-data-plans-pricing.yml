@@ -382,3 +382,165 @@ sources:
   - https://brightdata.com/pricing/serp
   - https://brightdata.com/pricing/web-scraper
   - https://brightdata.com/pricing/proxy-network
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  - negotiated
+  - subscription
+  units:
+  - data
+  - period
+  plans:
+  - name: Web Unlocker — Pay As You Go
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - per-use
+  - name: Web Unlocker — Growth
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    - period
+    periods:
+    - month
+    - per-use
+  - name: Web Unlocker — Business
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    - period
+    periods:
+    - month
+    - per-use
+  - name: Web Unlocker — Premium
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    - period
+    periods:
+    - month
+    - per-use
+  - name: SERP API — Pay As You Go
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - per-use
+  - name: SERP API — Growth
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    - period
+    periods:
+    - month
+    - per-use
+  - name: Web Scraper API — Pay As You Go
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - data
+    periods:
+    - per-use
+  - name: Web Scraper API — Scale
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    - period
+    periods:
+    - month
+    - per-use
+  - name: Residential Proxies — Pay As You Go
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - data
+    periods:
+    - per-use
+  - name: Residential Proxies — Growth
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    - period
+    periods:
+    - month
+    - per-use
+  - name: Residential Proxies — Business
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    - period
+    periods:
+    - month
+    - per-use
+  - name: Residential Proxies — Premium
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    - period
+    periods:
+    - month
+    - per-use
+  - name: ISP Proxies — Starter
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: ISP Proxies — Growth
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Datacenter Proxies — Starter
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Datacenter Proxies — Growth
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Enterprise
+    access: enterprise
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
