@@ -1,0 +1,25 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=bf9b4324-6ee3-4eb3-9ca4-083e558d04c4
+  listing_count: 7
+  apps:
+  - Residential Proxies
+  - Serp API
+  - Web Unlocker
+  - Data Center Proxies
+  - Deep Lookup - AI-Powered Search for Complex Queries
+  seller_name: Bright Data
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
