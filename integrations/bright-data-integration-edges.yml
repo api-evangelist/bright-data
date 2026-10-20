@@ -3,9 +3,29 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://zapier.com/api/v4/apps/
 marketplace_apps: []
 edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=bf9b4324-6ee3-4eb3-9ca4-083e558d04c4
+  listing_count: 7
+  apps:
+  - Residential Proxies
+  - Serp API
+  - Web Unlocker
+  - Data Center Proxies
+  - Deep Lookup - AI-Powered Search for Complex Queries
+  seller_name: Bright Data
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-19'
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -39,7 +59,7 @@ edges:
   channel: open-source-node
   relationship: ipaas-bridge
   direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/bright_data
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/bright_data
   category: null
   contract_reference:
     register: Pipedream components (PipedreamHQ/pipedream components/)
