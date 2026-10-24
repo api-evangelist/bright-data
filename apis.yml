@@ -889,6 +889,10 @@ apis:
   baseURL: wss://brd.superproxy.io:9222
   tags:
   - Web Scraping
+  - Browser Automation
+  - WebSocket
+  tags_raw:
+  - Web Scraping
   - Headless Browser
   - WebSocket
   properties:
