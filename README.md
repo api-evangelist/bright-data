@@ -1,4 +1,4 @@
-# Bright Data (bright-data)
+# Bright Data
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,315 +66,228 @@
 
 Bright Data is an Israeli web data platform and operator of the world's largest legitimate residential proxy network (400M+ IPs across 195 countries). The platform combines proxy infrastructure (residential, ISP, datacenter, mobile) with higher-level web-access APIs — Web Unlocker, SERP API, Web Scraper API, Scraping Browser, Deep Lookup, and Web Archive — plus a 350-dataset marketplace and an MCP server that exposes 60+ web-access tools to AI agents. Serves 20,000+ customers across eCommerce, finance, real estate, ad-tech, and AI/ML, and is a primary supplier of training and grounding data for foundation-model providers.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bright-data/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bright-data/refs/heads/main/apis.yml)
+**Areas:** Web Data · Web Scraping · Proxy · Residential Proxy · Datacenter Proxy · ISP Proxy · Mobile Proxy · SERP · Web Unlocker · Scraping Browser · Dataset Marketplace · MCP
 
-## Scope
+## Bright Data on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Bright Data is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bright-data/](https://apis.io/providers/bright-data/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (17)
 
-- Web Data
-- Web Scraping
-- Proxy
-- Residential Proxy
-- Datacenter Proxy
-- ISP Proxy
-- Mobile Proxy
-- SERP
-- Web Unlocker
-- Scraping Browser
-- Dataset Marketplace
-- MCP
-- AI Agents
+- [Bright Data MCP Server](https://apis.io/apis/bright-data/mcp-server/) — Bright Data's Model Context Protocol server exposes 60+ web-access tools (search, scrape, structured extraction, browser automation, datasets) to…
+- [Bright Data Access API](https://apis.io/apis/bright-data/bright-data-access-api/) — The Access API from Bright Data — 3 operation(s) for access.
+- [Bright Data Archive API](https://apis.io/apis/bright-data/bright-data-archive-api/) — The Archive API from Bright Data — 4 operation(s) for archive.
+- [Bright Data Billing API](https://apis.io/apis/bright-data/bright-data-billing-api/) — The Billing API from Bright Data — 2 operation(s) for billing.
+- [Bright Data Datasets API](https://apis.io/apis/bright-data/bright-data-datasets-api/) — The Datasets API from Bright Data — 2 operation(s) for datasets.
+- [Bright Data Delivery API](https://apis.io/apis/bright-data/bright-data-delivery-api/) — The Delivery API from Bright Data — 2 operation(s) for delivery.
+- [Bright Data Lookup API](https://apis.io/apis/bright-data/bright-data-lookup-api/) — The Lookup API from Bright Data — 6 operation(s) for lookup.
+- [Bright Data Proxies API](https://apis.io/apis/bright-data/bright-data-proxies-api/) — The Proxies API from Bright Data — 4 operation(s) for proxies.
+- [Bright Data Scrape API](https://apis.io/apis/bright-data/bright-data-scrape-api/) — Trigger and monitor asynchronous scraping jobs.
+- [Bright Data Sessions API](https://apis.io/apis/bright-data/bright-data-sessions-api/) — Inspect active Scraping Browser sessions.
+- [Bright Data Shield API](https://apis.io/apis/bright-data/bright-data-shield-api/) — The Shield API from Bright Data — 4 operation(s) for shield.
+- [Bright Data Snapshots API](https://apis.io/apis/bright-data/bright-data-snapshots-api/) — The Snapshots API from Bright Data — 6 operation(s) for snapshots.
+- [Bright Data Tokens API](https://apis.io/apis/bright-data/bright-data-tokens-api/) — The Tokens API from Bright Data — 1 operation(s) for tokens.
+- [Bright Data Unlock API](https://apis.io/apis/bright-data/bright-data-unlock-api/) — Submit and retrieve unlock requests.
+- [Bright Data Zones API](https://apis.io/apis/bright-data/bright-data-zones-api/) — The Zones API from Bright Data — 3 operation(s) for zones.
+- [Bright Data I Ps API](https://apis.io/apis/bright-data/bright-data-ips-api/) — The IPs API from Bright Data — 2 operation(s) for ips.
+- [Bright Data Scraping Browser (Browser API) CDP WebSocket](https://apis.io/apis/bright-data/bright-data-scraping-browser-cdp/) — Bright Data's Scraping Browser / Browser API: a cloud headless-browser fleet that speaks the Chrome DevTools Protocol (CDP) over a secure WebSocket,…
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (13)
 
-### Bright Data Web Unlocker API
+Multi-step workflows that chain operations into a business task.
 
-Single-endpoint web unblocking with a 98%+ success rate. Send any URL, Bright Data handles residential proxy selection, JavaScript rendering, CAPTCHA solving, fingerprint spoofing, and anti-bot evasion, returning the fully rendered page. Supports both synchronous and asynchronous modes via `/unblocker/req` with `/unblocker/get_result` for polling. Pay only for successful requests.
+- [Bright Data Marketplace Dataset Snapshot and Deliver](https://apis.io/arazzos/bright-data/bright-data-dataset-marketplace-deliver-workflow/)
+- [Bright Data Deep Lookup Trigger and Enrich Columns](https://apis.io/arazzos/bright-data/bright-data-deep-lookup-enrich-workflow/)
+- [Bright Data Deep Lookup Research and Download](https://apis.io/arazzos/bright-data/bright-data-deep-lookup-research-workflow/)
+- [Bright Data Provision an Unlocker Zone then Unlock a URL](https://apis.io/arazzos/bright-data/bright-data-provision-unlocker-zone-and-scrape-workflow/)
+- [Bright Data Provision a Zone and Allocate IPs](https://apis.io/arazzos/bright-data/bright-data-provision-zone-ips-workflow/)
+- [Bright Data Proxy Manager Create and Verify a Port](https://apis.io/arazzos/bright-data/bright-data-proxy-port-provision-workflow/)
+- [Bright Data Submit SERP Request and Retrieve Results](https://apis.io/arazzos/bright-data/bright-data-serp-search-workflow/)
+- [Bright Data Web Archive Search and Deliver](https://apis.io/arazzos/bright-data/bright-data-web-archive-search-workflow/)
+- [Bright Data Scrape and Deliver Snapshot to Cloud Storage](https://apis.io/arazzos/bright-data/bright-data-web-scraper-deliver-workflow/)
+- [Bright Data Trigger Web Scraper Job and Download Results](https://apis.io/arazzos/bright-data/bright-data-web-scraper-job-workflow/)
+- [Bright Data Monitor a Snapshot and Cancel a Stuck Job](https://apis.io/arazzos/bright-data/bright-data-web-scraper-monitor-cancel-workflow/)
+- [Bright Data Rerun a Failed Snapshot and Monitor It](https://apis.io/arazzos/bright-data/bright-data-web-scraper-rerun-workflow/)
+- [Bright Data Submit Async Unlock and Retrieve Result](https://apis.io/arazzos/bright-data/bright-data-web-unlocker-async-workflow/)
 
-- **Human URL:** [https://docs.brightdata.com/scraping-automation/web-unlocker/introduction](https://docs.brightdata.com/scraping-automation/web-unlocker/introduction)
+#### AsyncAPI (1)
 
-#### Tags
+Event-driven and webhook contracts.
 
-- Web Unlocker
-- Unblocking
-- Anti-Bot
-- CAPTCHA
+- [Bright Data Scraping Browser (Browser API) - CDP over WebSocket](https://apis.io/asyncapis/bright-data/bright-data-scraping-browser-asyncapi/)
 
-#### Properties
+#### Event channels (1)
 
-- [Documentation](https://docs.brightdata.com/scraping-automation/web-unlocker/introduction)
-- [Documentation](https://docs.brightdata.com/scraping-automation/web-unlocker/async-requests)
-- [OpenAPI](openapi/bright-data-web-unlocker-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-web-unlocker-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-web-unlocker-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Individual events and webhooks the provider emits.
 
-### Bright Data SERP API
+- [/](https://apis.io/channels/bright-data/untitled/)
 
-Real-time SERP data from Google, Bing, Yandex, and DuckDuckGo across 31 languages and 195 countries. Supports organic, news, images, videos, shopping, jobs, hotels, flights, lens, trends, reviews, maps, and AI Overview result types. Submit asynchronous requests via `/serp/req` and poll `/serp/get_result`, or stream synchronously over the proxy on port 33335. Geolocation, device, browser, pagination, and localization parameters supported.
+#### MCP servers (1)
 
-- **Human URL:** [https://docs.brightdata.com/scraping-automation/serp-api/introduction](https://docs.brightdata.com/scraping-automation/serp-api/introduction)
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [bright-data](https://apis.io/servers/bright-data/bright-data/)
 
-- SERP
-- Search
-- Google
-- Bing
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://docs.brightdata.com/scraping-automation/serp-api/introduction)
-- [Documentation](https://docs.brightdata.com/scraping-automation/serp-api/send-your-first-request)
-- [OpenAPI](openapi/bright-data-serp-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-serp-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-serp-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Bright Data Agentic Access](https://apis.io/agentic-access/bright-data/bright-data-agentic-access/)
 
-### Bright Data Web Scraper API
+#### JSON Schema (3)
 
-Asynchronous snapshot-based scraping over 660+ pre-built dataset endpoints (Amazon, Walmart, LinkedIn, Instagram, TikTok, YouTube, Reddit, Google Maps, Airbnb, Booking, Zillow, and many more) plus custom collectors. Trigger via `POST /datasets/v3/scrape`, poll `/datasets/v3/progress/{snapshot_id}`, and download via `/datasets/v3/snapshot/{snapshot_id}`. Returns JSON, NDJSON, CSV, or Parquet; supports direct delivery to S3, Azure Blob, GCS, Snowflake, and webhooks.
+The data models the API reads and writes.
 
-- **Human URL:** [https://docs.brightdata.com/scraping-automation/web-scraper-api/overview](https://docs.brightdata.com/scraping-automation/web-scraper-api/overview)
+- [Bright Data Proxy Port](https://apis.io/schemas/bright-data/bright-data-proxy-port/)
+- [Bright Data Snapshot](https://apis.io/schemas/bright-data/bright-data-snapshot/)
+- [Bright Data Zone](https://apis.io/schemas/bright-data/bright-data-zone/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Web Scraping
-- Datasets
-- Structured Data
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Bright Data Context](https://apis.io/jsonld/bright-data/bright-data-context/)
 
-- [Documentation](https://docs.brightdata.com/scraping-automation/web-scraper-api/overview)
-- [Documentation](https://docs.brightdata.com/scraping-automation/web-scraper-api/trigger-a-collection)
-- [OpenAPI](openapi/bright-data-web-scraper-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-web-scraper-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-web-scraper-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/bright-data-snapshot-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### Vocabulary (1)
 
-### Bright Data Scraping Browser API
+The provider's domain terms, defined.
 
-Fully managed remote Chromium browsers driven over CDP/WebSocket from Puppeteer, Playwright, or Selenium. Each session ships with built-in unlocker logic, residential proxy egress, CAPTCHA solving, and fingerprint management so JavaScript-heavy and interactive flows complete reliably. REST endpoints expose session inventory (`GET /browser_sessions`) for observability and lifecycle inspection.
+- [Bright Data Vocabulary](https://apis.io/vocabularies/bright-data/bright-data-vocabulary/)
 
-- **Human URL:** [https://docs.brightdata.com/scraping-automation/scraping-browser/introduction](https://docs.brightdata.com/scraping-automation/scraping-browser/introduction)
+#### Collections (36)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Browser Automation
-- Headless Browser
-- Puppeteer
-- Playwright
-- Selenium
+- [Bright Data API (Index)](https://apis.io/collections/bright-data/open-bright-data/)
+- [Bright Data Account Management Access API](https://apis.io/collections/bright-data/open-bright-data-access-api/)
+- [Bright Data Account Management API](https://apis.io/collections/bright-data/open-bright-data-account-management-api/)
+- [Bright Data Account Management Access Archive API](https://apis.io/collections/bright-data/open-bright-data-archive-api/)
+- [Bright Data Account Management Access Billing API](https://apis.io/collections/bright-data/open-bright-data-billing-api/)
+- [Bright Data Dataset Marketplace API](https://apis.io/collections/bright-data/open-bright-data-dataset-marketplace-api/)
+- [Bright Data Account Management Access Datasets API](https://apis.io/collections/bright-data/open-bright-data-datasets-api/)
+- [Bright Data Deep Lookup API](https://apis.io/collections/bright-data/open-bright-data-deep-lookup-api/)
+- [Bright Data Account Management Access Delivery API](https://apis.io/collections/bright-data/open-bright-data-delivery-api/)
+- [Bright Data Account Management Access IPs API](https://apis.io/collections/bright-data/open-bright-data-ips-api/)
+- [Bright Data Account Management Access Lookup API](https://apis.io/collections/bright-data/open-bright-data-lookup-api/)
+- [Bright Data Account Management Access Proxies API](https://apis.io/collections/bright-data/open-bright-data-proxies-api/)
+- [Bright Data Proxy Manager API](https://apis.io/collections/bright-data/open-bright-data-proxy-manager-api/)
+- [Bright Data Account Management Access Scrape API](https://apis.io/collections/bright-data/open-bright-data-scrape-api/)
+- [Bright Data Scraping Browser API](https://apis.io/collections/bright-data/open-bright-data-scraping-browser-api/)
+- [Bright Data Scraping Shield API](https://apis.io/collections/bright-data/open-bright-data-scraping-shield-api/)
+- [Bright Data Account Management Access SERP API](https://apis.io/collections/bright-data/open-bright-data-serp-api/)
+- [Bright Data Account Management Access Sessions API](https://apis.io/collections/bright-data/open-bright-data-sessions-api/)
+- [Bright Data Account Management Access Shield API](https://apis.io/collections/bright-data/open-bright-data-shield-api/)
+- [Bright Data Account Management Access Snapshots API](https://apis.io/collections/bright-data/open-bright-data-snapshots-api/)
+- [Bright Data Account Management Access Tokens API](https://apis.io/collections/bright-data/open-bright-data-tokens-api/)
+- [Bright Data Account Management Access Unlock API](https://apis.io/collections/bright-data/open-bright-data-unlock-api/)
+- [Bright Data Web Archive API](https://apis.io/collections/bright-data/open-bright-data-web-archive-api/)
+- [Bright Data Web Scraper API](https://apis.io/collections/bright-data/open-bright-data-web-scraper-api/)
+- [Bright Data Web Unlocker API](https://apis.io/collections/bright-data/open-bright-data-web-unlocker-api/)
+- …and 11 more published on APIs.io
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://docs.brightdata.com/scraping-automation/scraping-browser/introduction)
-- [Documentation](https://docs.brightdata.com/scraping-automation/scraping-browser/quickstart)
-- [OpenAPI](openapi/bright-data-scraping-browser-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-scraping-browser-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-scraping-browser-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Spectral rulesets for the provider's contracts.
 
-### Bright Data Deep Lookup API
+- [Bright Data — jsonschema rules](https://apis.io/rules/bright-data/bright-data-jsonschema-spectral-rules/)
+- [Bright Data API Rules](https://apis.io/rules/bright-data/bright-data-rules/)
 
-Find companies and professionals across 1,000+ public sources with 95%+ accuracy. Submit a natural-language description or structured query via `POST /trigger`, preview row counts with `/preview`, optimize the query with `/enhance_query`, and enrich existing columns with `/request/{id}/enrich`. Results are downloaded via `/request/{id}/download`. Billed per result.
+#### Security (2)
 
-- **Human URL:** [https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview](https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview)
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Bright Data Authentication](https://apis.io/security/bright-data/bright-data-authentication/)
+- [Bright Data Domain Security](https://apis.io/security/bright-data/bright-data-domain-security/)
 
-- Entity Resolution
-- People Search
-- Company Search
-- Enrichment
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://docs.brightdata.com/api-reference/deep-lookup/Deep-Lookup-API-Overview)
-- [OpenAPI](openapi/bright-data-deep-lookup-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-deep-lookup-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-deep-lookup-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Bright Data Plans Pricing](https://apis.io/plans/bright-data/bright-data-plans-pricing/)
 
-### Bright Data Web Archive API
+#### Rate limits (1)
 
-Search and deliver petabyte-scale historical web snapshots across 250+ domains. Submit a query via `POST /webarchive/search`, monitor with `GET /webarchive/search/{search_id}`, list all searches via `GET /webarchive/searches`, and deliver matching corpora to S3/Azure/GCS via `POST /deliver-to-cloud`.
+Published request limits.
 
-- **Human URL:** [https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview](https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview)
+- [Bright Data Rate Limits](https://apis.io/rate-limits/bright-data/bright-data-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Historical Data
-- Web Archive
-- Time Series
+What the API costs to run, by operation.
 
-#### Properties
+- [Bright Data Finops](https://apis.io/finops/bright-data/bright-data-finops/)
 
-- [Documentation](https://docs.brightdata.com/api-reference/web-archive-api/Web-Archive-API-Overview)
-- [OpenAPI](openapi/bright-data-web-archive-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-web-archive-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-web-archive-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-### Bright Data Dataset Marketplace API
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-Programmatic access to 350+ ready-to-use datasets across 250+ domains (eCommerce, social, real estate, travel, business). List available datasets via `GET /datasets`, inspect schemas via `GET /datasets/{dataset_id}/metadata`, retrieve snapshots via `GET /datasets/snapshots/{id}`, and push deliveries to S3, Azure, GCS, Snowflake, or webhooks via `POST /datasets/snapshots/{id}/deliver`.
-
-- **Human URL:** [https://docs.brightdata.com/datasets/marketplace](https://docs.brightdata.com/datasets/marketplace)
-
-#### Tags
-
-- Datasets
-- Marketplace
-- Bulk Data
-
-#### Properties
-
-- [Documentation](https://docs.brightdata.com/datasets/marketplace)
-- [OpenAPI](openapi/bright-data-dataset-marketplace-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-dataset-marketplace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-dataset-marketplace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Bright Data Account Management API
-
-Manage Bright Data zones (proxy pools and product entitlements), IP allocations, access control, and billing programmatically. Endpoints include `POST/GET/DELETE /zone`, `/zone/change_disable`, `/zone/ips` (add/remove/refresh/migrate/statistics), `/zone/whitelist`, `/zone/blacklist`, `/zone/domain_perm`, plus `/customer/balance` and `/zone/bw` for balance and bandwidth reporting.
-
-- **Human URL:** [https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview](https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview)
-
-#### Tags
-
-- Administrative
-- Zones
-- Billing
-
-#### Properties
-
-- [Documentation](https://docs.brightdata.com/api-reference/account-management-api/Account-Management-API-Overview)
-- [OpenAPI](openapi/bright-data-account-management-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-account-management-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-account-management-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/bright-data-zone-schema.json) — [JSON Schema](https://json-schema.org/specification)
-
-### Bright Data Proxy Manager API
-
-Local self-hosted REST control plane (port 22999) for the Bright Data Proxy Manager. Programmatically create and configure proxy ports (`/api/proxies`, `/api/proxies/{PORT}`), ban offending IPs (`/api/proxies/{PORT}/banip`), refresh IP pools (`/api/refresh_ips`), and read zone configuration (`/api/zones`). Supports SSL, logging, statistics, and remote upgrade/restart endpoints.
-
-- **Human URL:** [https://docs.brightdata.com/proxy-networks/proxy-manager/api](https://docs.brightdata.com/proxy-networks/proxy-manager/api)
-
-#### Tags
-
-- Proxy Manager
-- Local API
-- Self-Hosted
-
-#### Properties
-
-- [Documentation](https://docs.brightdata.com/proxy-networks/proxy-manager/api)
-- [OpenAPI](openapi/bright-data-proxy-manager-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-proxy-manager-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-proxy-manager-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Bright Data Scraping Shield API
-
-Compliance-focused classification API that exposes Bright Data's allowlist/blocklist taxonomy. `GET /shield/class` lists every classification, `/shield/domains_by_class` returns domains by category, `/shield/samples` returns sample classifications, and `/shield/zones_by_class` reports the zones cleared for each class.
-
-- **Human URL:** [https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview](https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview)
-
-#### Tags
-
-- Compliance
-- Domain Classification
-- Trust and Safety
-
-#### Properties
-
-- [Documentation](https://docs.brightdata.com/api-reference/scraping-shield-api/Scraping-Shield-API-Overview)
-- [OpenAPI](openapi/bright-data-scraping-shield-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bright-data-scraping-shield-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-scraping-shield-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Bright Data MCP Server
-
-Bright Data's Model Context Protocol server exposes 60+ web-access tools (search, scrape, structured extraction, browser automation, datasets) to MCP-compatible clients including Claude Desktop, Claude Code, ChatGPT, Cursor, LangChain, LangGraph, LlamaIndex, CrewAI, n8n, Google ADK, NVIDIA NeMo, and Cloudflare Agents. Available as a hosted endpoint (5,000 free requests/month), self-hosted, and remote.
-
-- **Human URL:** [https://docs.brightdata.com/mcp-server/overview](https://docs.brightdata.com/mcp-server/overview)
-
-#### Tags
-
-- MCP
-- Model Context Protocol
-- AI Agents
-- Tools
-
-#### Properties
-
-- [Documentation](https://docs.brightdata.com/mcp-server/overview)
-- [Source Code](https://github.com/brightdata/brightdata-mcp)
-- [Postman Collection](collections/bright-data-account-management-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-account-management-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-dataset-marketplace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-dataset-marketplace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-deep-lookup-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-deep-lookup-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-proxy-manager-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-proxy-manager-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-scraping-browser-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-scraping-browser-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-scraping-shield-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-scraping-shield-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-serp-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-serp-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-web-archive-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-web-archive-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-web-scraper-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-web-scraper-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data-web-unlocker-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data-web-unlocker-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bright-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bright-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://brightdata.com)
+- [Website](https://brightdata.com/)
 - [Documentation](https://docs.brightdata.com)
-- [Getting Started](https://docs.brightdata.com/quickstart)
-- [Sign Up](https://brightdata.com/cp/start)
-- [Login](https://brightdata.com/cp/zones)
+- [Getting started](https://docs.brightdata.com/quickstart)
 - [Pricing](https://brightdata.com/pricing)
-- [Plans](plans/bright-data-plans-pricing.yml)
-- [Rate Limits](rate-limits/bright-data-rate-limits.yml)
-- [Fin Ops](finops/bright-data-finops.yml)
-- [Blog](https://brightdata.com/blog)
-- [Status Page](https://status.brightdata.com)
-- [Terms of Service](https://brightdata.com/legal/tos)
-- [Privacy Policy](https://brightdata.com/legal/privacy-policy)
-- [Trust Center](https://brightdata.com/trust-center)
 - [Support](https://brightdata.com/contact)
-- [LinkedIn](https://www.linkedin.com/company/bright-data)
-- [GitHub Organization](https://github.com/luminati-io)
-- [GitHub Organization](https://github.com/brightdata)
-- [SDK](https://github.com/brightdata/sdk-python)
-- [SDK](https://github.com/brightdata/sdk-js)
-- [SDK](https://github.com/brightdata/ai-sdk)
-- [Command Line Interface](https://github.com/brightdata/cli)
-- [Tool](https://github.com/brightdata/brightdata-mcp)
-- [Tool](https://github.com/brightdata/openclaw-plugin)
-- [Tool](https://github.com/brightdata/brightdata-cursor-plugin)
-- [Code Examples](https://github.com/brightdata/bright-data-quickstart-templates)
-- [Code Examples](https://github.com/luminati-io/sbr-examples)
-- [Integrations](https://brightdata.com/integrations)
-- [L L Ms Txt](https://docs.brightdata.com/llms.txt)
-- [Documentation](https://docs.brightdata.com/api-reference)
-- [Forum](https://discord.gg/brightdata)
-- [Features](undefined)
+- [Blog](https://brightdata.com/blog)
+- [Trust centre](https://brightdata.com/trust-center)
+- [Terms of service](https://brightdata.com/legal/tos)
+- [Privacy policy](https://brightdata.com/legal/privacy-policy)
+- [GitHub](https://github.com/luminati-io)
+- [Status](https://status.brightdata.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 45.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 66.6 |
+| Contract governance | 31.8 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 56.0 |
+| Access clarity | 25.0 |
+
+**Agent readiness 46.3** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bright-data/](https://apis.io/providers/bright-data/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bright Data: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bright-data/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
